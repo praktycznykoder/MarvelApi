@@ -1,4 +1,4 @@
-package pl.praktycznyprogramista.marvelapi;
+package pl.praktycznykoder.marvelapi;
 
 import java.net.URL;
 import java.util.ResourceBundle;

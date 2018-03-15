@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pl.praktycznyprogramista.marvelapi.model.services;
+package pl.praktycznykoder.marvelapi.model.repositories;
 
 /**
  *
- * @author User
+ * @author praktycznykoder.pl
  */
-public interface Service {
+public interface Repository {
     
 }

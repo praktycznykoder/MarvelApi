@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pl.praktycznyprogramista.marvelapi.model.domain.remote;
+package pl.praktycznykoder.marvelapi.model.domain.remote;
 
 /**
- * @author praktycznyprogramista.pl
+ * @author praktycznykoder.pl
  * Służy do pobrania podstawowych informacji o obiekcie
  * podrzędnym oraz umożliwia pobranie go, dzięki zawartemu adresowi Url
  * prowadzącego do danego zasobu

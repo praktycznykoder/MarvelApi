@@ -1,4 +1,4 @@
-package pl.praktycznyprogramista.marvelapi;
+package pl.praktycznykoder.marvelapi;
 
 import javafx.application.Application;
 import static javafx.application.Application.launch;
@@ -7,7 +7,10 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-
+/**
+ *
+ * @author praktycznykoder.pl
+ */
 public class MainApp extends Application {
 
     @Override

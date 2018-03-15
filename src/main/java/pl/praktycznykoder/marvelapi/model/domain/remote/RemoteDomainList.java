@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pl.praktycznyprogramista.marvelapi.model.domain.remote;
+package pl.praktycznykoder.marvelapi.model.domain.remote;
 
 /**
- * @author praktycznyprogramista.pl
+ * @author praktycznykoder.pl
  * Służy do pobrania listy obiektów 
- * @see pl.praktycznyprogramista.marvelapi.model.domain.remote.RemoteDomain
+ * @see pl.praktycznykoder.marvelapi.model.domain.remote.RemoteDomain
  */
 public class RemoteDomainList {
     

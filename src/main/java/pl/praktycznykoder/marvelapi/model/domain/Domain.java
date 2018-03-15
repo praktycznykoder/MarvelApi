@@ -3,11 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pl.praktycznyprogramista.marvelapi.model.domain;
+package pl.praktycznykoder.marvelapi.model.domain;
 
 /**
  *
- * @author User
+ * @author praktycznykoder.pl
  */
 public interface Domain {
     int getId();
