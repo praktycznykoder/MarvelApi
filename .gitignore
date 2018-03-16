@@ -1,1 +1,3 @@
 /target/
+/nbproject/
+/src/main/resources/properties/api-connect.properties
