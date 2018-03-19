@@ -6,13 +6,17 @@
 package pl.praktycznykoder.api;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.URI;
+import java.net.URISyntaxException;
 import java.security.NoSuchAlgorithmException;
 import java.time.Clock;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import org.apache.http.HttpResponse;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -44,125 +48,144 @@ public class ApiClientTest {
     
     @After
     public void tearDown() {
-    }
+    }  
 
     /**
-     * Test of getTimestamp method, of class ApiClient.
-     * @throws java.io.FileNotFoundException
-     */
-    @Test
-    public void testGetTimestamp() throws FileNotFoundException {
-        System.out.println("getTimestamp");
-        Date date = new Date();
-        // set the time for 10000 milliseconds after
-        // january 1, 1970 00:00:00 gmt.
-        date.setTime(10000);
-        ApiClient instance = new ApiClient();
-        String expResult = "10000";
-        String result = instance.getTimestamp(date);
-        assertEquals(expResult, result);
-    }
-
-    /**
-     * Test of getHash method, of class ApiClient.
+     * Test of buildURI method, of class ApiClient.
      * @throws java.io.UnsupportedEncodingException
      * @throws java.security.NoSuchAlgorithmException
-     * @throws java.io.FileNotFoundException
-     */
-    //@Test
-    public void testGetKeyHash() throws UnsupportedEncodingException, NoSuchAlgorithmException, FileNotFoundException {
-        System.out.println("getHash");
-        ApiClient instance = new ApiClient();
-        String expResult = "";
-        String result = instance.getKeyHash(new Date(10000));
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of buildURI method, of class ApiClient.
-     */
-    //@Test
-    public void testBuildURI_4args() throws Exception {
-        System.out.println("buildURI");
-        String scheme = "";
-        String host = "";
-        String path = "";
-        List<Param> params = null;
-        ApiClient instance = new ApiClient();
-        URI expResult = null;
-        URI result = instance.buildURI(scheme, host, path, params);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of buildURI method, of class ApiClient.
-     * @throws java.lang.Exception
+     * @throws java.net.URISyntaxException
      */
     @Test
-    public void testBuildURI_String_List() throws Exception {
+    public void testBuildURI_4args() throws UnsupportedEncodingException, 
+            NoSuchAlgorithmException, URISyntaxException {
         System.out.println("buildURI");
         
+        String sheme = "scheme";
+        String host = "host";
+        String path = "path";
+        String API_KEY = "testKeyApi";
+        String KEY_HASH = "testKeyHash";
+        
         ApiClient instance = new ApiClient();
-        String url = instance.SHEME+"://"+instance.HOST;
+        
         Date date = new Date();
-        String timestamp = instance.getTimestamp(date);
+        String timestamp = date.getTime()+"";
+        String url = sheme+"://"+host+"/"+path;        
         
         List<Param> params = new ArrayList();
         params.add(new Param("ts", timestamp));
-        params.add(new Param("apikey", instance.API_KEY));
-        params.add(new Param("hash", instance.getKeyHash(date)));
+        params.add(new Param("apikey", API_KEY));
+        params.add(new Param("hash", KEY_HASH));
         
         String expResult = url+
-            "/?ts="+ timestamp+
-            "&apikey="+ instance.API_KEY+
-            "&hash="+instance.getKeyHash(date);
+            "?ts="+ timestamp+
+            "&apikey="+ API_KEY+
+            "&hash="+KEY_HASH;
         
         
-        URI result = instance.buildURI(url, params);
+        URI result = instance.buildURI(sheme, host, path, params);
         
-        System.out.println(expResult);
-        System.out.println(result.toString());
         assertEquals(expResult, result.toString());
     }
 
     /**
-     * Test of getRequest method, of class ApiClient.
+     * Test of buildURI method, of class ApiClient.
+     * @throws java.io.UnsupportedEncodingException
+     * @throws java.security.NoSuchAlgorithmException
+     * @throws java.net.URISyntaxException
+     */
+    @Test
+    public void testBuildURI_String_List() throws UnsupportedEncodingException, NoSuchAlgorithmException, URISyntaxException {
+        System.out.println("buildURI");
+        
+        String sheme = "http";
+        String host = "praktycznykoder.pl";
+        String path = "tests/test_api.php";
+        String API_KEY = "testKeyApi";
+        String KEY_HASH = "testKeyHash";
+        
+        ApiClient instance = new ApiClient();
+        String url = sheme+"://"+host+"/"+path;
+        Date date = new Date();
+        String timestamp = date.getTime()+"";
+        
+        List<Param> params = new ArrayList();
+        params.add(new Param("ts", timestamp));
+        params.add(new Param("apikey", API_KEY));
+        params.add(new Param("hash", KEY_HASH));
+        
+        String expResult = url+
+            "?ts="+ timestamp+
+            "&apikey="+ API_KEY+
+            "&hash="+KEY_HASH;
+        
+        
+        URI result = instance.buildURI(url, params);
+        
+        assertEquals(expResult, result.toString());
+    }  
+
+    /**
+     * Test of convertStreamContentToString method, of class ApiClient.
      */
     //@Test
-    public void testGetRequest_5args() throws Exception {
-        System.out.println("getRequest");
-        String acceptHeaderType = "";
-        String scheme = "";
-        String host = "";
-        String path = "";
-        List<Param> params = null;
+    public void testConvertStreamContentToString() {
+        System.out.println("convertStreamContentToString");
+        InputStream is = null;
         ApiClient instance = new ApiClient();
         String expResult = "";
-        String result = instance.getRequest(acceptHeaderType, scheme, host, path, params);
+        String result = instance.convertStreamContentToString(is);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of getRequest method, of class ApiClient.
+     * Test of getResponse method, of class ApiClient.
+     * @throws java.net.URISyntaxException
+     * @throws java.io.IOException
+     */
+    @Test
+    public void testGetResponse() throws URISyntaxException, IOException {
+        System.out.println("getResponse");
+        
+        String sheme = "http";
+        String host = "praktycznykoder.pl";
+        String path = "tests/test_api.php";
+        String acceptHeaderType = "application/json";
+        ApiClient instance = new ApiClient();
+        String url = sheme+"://"+host+"/"+path;
+        
+        List<Param> params = new ArrayList();
+        params.add(new Param("password", "test2018"));       
+        
+        URI uri = instance.buildURI(url, params);
+        HttpResponse response = instance.getResponse(acceptHeaderType, uri);
+        
+        int expResult = 200;
+        int result = response.getStatusLine().getStatusCode();
+        
+        assertEquals(expResult, result);
+        
+        String result2 = instance.convertStreamContentToString(
+                response.getEntity().getContent());
+        
+        String expResult2 = "pass";
+        assertEquals(expResult2, result2);
+    }
+
+    /**
+     * Test of getObjectFromJsonString method, of class ApiClient.
      */
     //@Test
-    public void testGetRequest_3args() throws Exception {
-        System.out.println("getRequest");
-        String acceptHeaderType = "";
-        String url = "";
-        List<Param> params = null;
+    public void testGetObjectFromJsonString() {
+        System.out.println("getObjectFromJsonString");
         ApiClient instance = new ApiClient();
-        String expResult = "";
-        String result = instance.getRequest(acceptHeaderType, url, params);
-        assertEquals(expResult, result);
+        Object expResult = null;
+        //Object result = instance.getObjectFromJsonString(null);
+        //assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
-    
 }
