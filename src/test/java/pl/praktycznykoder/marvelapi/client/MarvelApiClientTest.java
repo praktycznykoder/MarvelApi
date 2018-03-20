@@ -8,6 +8,7 @@ package pl.praktycznykoder.marvelapi.client;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.net.URISyntaxException;
 import java.security.NoSuchAlgorithmException;
 import java.util.Date;
 import java.util.List;
@@ -56,7 +57,7 @@ public class MarvelApiClientTest {
         System.out.println("getKeyHash");
         long timestamp = 10000L;
         MarvelApiClient instance = new MarvelApiClient(
-                    "API_KEY","PRIVATE_API_KEY", "ACCEPT_HEADER", "test", "test");
+                    "API_KEY","PRIVATE_API_KEY", "ACCEPT_HEADER", "test", "test", 10);
         String expResult = "9bcd01dfa14dc32022e95c7b0c011af2";
         String result = instance.getKeyHash(timestamp);
         assertEquals(expResult, result);
@@ -64,19 +65,39 @@ public class MarvelApiClientTest {
 
     /**
      * Test of getResponseFromMarvelApi method, of class MarvelApiClient.
+     * @throws java.security.NoSuchAlgorithmException
+     * @throws java.io.IOException
+     * @throws java.io.UnsupportedEncodingException
+     * @throws java.net.URISyntaxException
      */
-    //@Test
-    public void testGetResponseFromMarvelApi() throws Exception {
+    @Test
+    public void testGetResponseFromMarvelApi() throws NoSuchAlgorithmException,
+                IOException, UnsupportedEncodingException, URISyntaxException {
         System.out.println("getResponseFromMarvelApi");
         String path = "";
         boolean pathIsFullUrl = false;
         List<Param> params = null;
         MarvelApiClient instance = new MarvelApiClient();
+        String result = instance.getResponseFromMarvelApi(
+                path, pathIsFullUrl, params);
+        assertNotNull(result);
+    }
+
+    /**
+     * Test of getPaggingResponseFromMarvelApi method, of class MarvelApiClient.
+     */
+    @Test
+    public void testGetPaggingResponseFromMarvelApi() throws Exception {
+        System.out.println("getPaggingResponseFromMarvelApi");
+        String path = "";
+        boolean pathIsFullUrl = false;
+        List<Param> params = null;
+        int page = 0;
+        MarvelApiClient instance = new MarvelApiClient();
         String expResult = "";
-        String result = instance.getResponseFromMarvelApi(path, pathIsFullUrl, params);
+        String result = instance.getPaggingResponseFromMarvelApi(path, pathIsFullUrl, params, page);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
-    }
-    
+    }    
 }

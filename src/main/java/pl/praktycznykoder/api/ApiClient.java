@@ -15,7 +15,6 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
@@ -27,9 +26,8 @@ import pl.praktycznykoder.marvelapi.client.MarvelApiClient;
 /**
  *
  * @author praktycznykoder.pl
- * @param <Type>
  */
-public class ApiClient<Type> {
+public class ApiClient {
 
     public URI buildURI(String scheme, String host, String path, 
         List<Param> params) throws URISyntaxException {
@@ -84,13 +82,22 @@ public class ApiClient<Type> {
         return response;
     }
     
-    protected Type getObjectFromJsonString(String jsonString, Class<Type> clazz) throws java.lang.NullPointerException {
+    /**
+     *
+     * @param <Type>
+     * @param jsonString
+     * @param clazz
+     * @return
+     * @throws NullPointerException
+     */
+    public <Type> Type getObjectFromJsonString(String jsonString, Class<Type> clazz) throws java.lang.NullPointerException {
         try {
             Gson gson = new Gson();
             return (Type) gson.fromJson(jsonString, clazz);
         } catch (com.google.gson.JsonSyntaxException ex) {
             Logger.getLogger(MarvelApiClient.class.getName()).
                     log(Level.SEVERE, null, ex);
+            System.out.println(ex.getLocalizedMessage());
         }
         return null;
     }

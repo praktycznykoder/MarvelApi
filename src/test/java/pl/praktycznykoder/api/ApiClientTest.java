@@ -5,6 +5,8 @@
  */
 package pl.praktycznykoder.api;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
@@ -128,17 +130,19 @@ public class ApiClientTest {
 
     /**
      * Test of convertStreamContentToString method, of class ApiClient.
+     * @throws java.io.FileNotFoundException
      */
-    //@Test
-    public void testConvertStreamContentToString() {
+    @Test
+    public void testConvertStreamContentToString() throws FileNotFoundException {
         System.out.println("convertStreamContentToString");
-        InputStream is = null;
+        File initialFile = new File(
+            "src\\test\\java\\pl\\praktycznykoder\\api\\testConvertInputStreamFile");
+        InputStream is = new FileInputStream(initialFile);
+        
         ApiClient instance = new ApiClient();
-        String expResult = "";
+        String expResult = "test test test";
         String result = instance.convertStreamContentToString(is);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -178,14 +182,13 @@ public class ApiClientTest {
     /**
      * Test of getObjectFromJsonString method, of class ApiClient.
      */
-    //@Test
+    @Test
     public void testGetObjectFromJsonString() {
         System.out.println("getObjectFromJsonString");
+        String jsonString = "{\"id\":\"testId\", \"text\":\"test Text\"}";
         ApiClient instance = new ApiClient();
-        Object expResult = null;
-        //Object result = instance.getObjectFromJsonString(null);
-        //assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        TestJson result = instance.
+                getObjectFromJsonString(jsonString, TestJson.class);
+        assertEquals(new TestJson("testId", "test Text"), result);
     }
 }

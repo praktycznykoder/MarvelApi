@@ -5,30 +5,57 @@
  */
 package pl.praktycznykoder.api.domain;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
 /**
  *
- * @author praktycznykoder.pl
+ * @author User
  */
 public class Pagging {
-    private int offset;
+    private int offset;    
+    private int limit ;
     private int total;
 
-    public Pagging(int offset, int total) {
-        super();
+    public Collection toParams() {
+        List<Param> params = new ArrayList<>();
+        params.add(new Param("offset", offset+""));
+        params.add(new Param("limit", limit+""));
+        return params;
+    }
+    
+    public Pagging(int offset, int limit, int total) {
         this.offset = offset;
+        this.limit = limit;
         this.total = total;
     }
 
     public int getOffset() {
-            return offset;
+        return offset;
     }
+
     public void setOffset(int offset) {
-            this.offset = offset;
+        this.offset = offset;
     }
+
+    public int getLimit() {
+        return limit;
+    }
+
+    public void setLimit(int limit) {
+        this.limit = limit;
+    }
+
     public int getTotal() {
-            return total;
+        return total;
     }
+
     public void setTotal(int total) {
-            this.total = total;
+        this.total = total;
     }
+
+    
+    
+    
 }

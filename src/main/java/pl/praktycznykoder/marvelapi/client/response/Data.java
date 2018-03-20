@@ -3,7 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pl.praktycznykoder.marvelapi.model.domain.others;
+package pl.praktycznykoder.marvelapi.client.response;
+
+import java.util.Arrays;
 
 /**
  *
@@ -64,5 +66,11 @@ public class Data<Type> {
 
     public void setLimit(int limit) {
         this.limit = limit;
+    }
+
+    @Override
+    public String toString() {
+        return "Data{" + "offset=" + offset + ", total=" + total + 
+            ", results=" + Arrays.toString(results) + ", count=" + count + ", limit=" + limit + '}';
     }
 }

@@ -22,6 +22,8 @@ import java.util.logging.Logger;
 import org.apache.http.HttpResponse;
 import pl.praktycznykoder.api.ApiClient;
 import pl.praktycznykoder.api.domain.Param;
+import pl.praktycznykoder.marvelapi.client.response.MarvelApiResponse;
+import pl.praktycznykoder.marvelapi.model.domain.Comics;
 
 /**
  *
@@ -34,15 +36,27 @@ public class MarvelApiClient extends ApiClient{
 
     private String SHEME;
     private String HOST;
+    
+    private int RESULT_LIMIT;
+
+    public int getRESULT_LIMIT() {
+        return RESULT_LIMIT;
+    }
+    public void setRESULT_LIMIT(int RESULT_LIMIT) {
+        this.RESULT_LIMIT = RESULT_LIMIT;
+    }
+    
+    
 
     public MarvelApiClient(String API_KEY, String PRIVATE_API_KEY, 
-            String ACCEPT_HEADER, String SHEME, String HOST) {
+            String ACCEPT_HEADER, String SHEME, String HOST, int RESULT_LIMIT) {
         super();
         this.API_KEY = API_KEY;
         this.PRIVATE_API_KEY = PRIVATE_API_KEY;
         this.ACCEPT_HEADER = ACCEPT_HEADER;
         this.SHEME = SHEME;
         this.HOST = HOST;
+        this.RESULT_LIMIT = RESULT_LIMIT;
     }
 
     public MarvelApiClient() {
@@ -71,6 +85,7 @@ public class MarvelApiClient extends ApiClient{
         ACCEPT_HEADER = props.getProperty("acceptheader");
         API_KEY = props.getProperty("apikey");
         PRIVATE_API_KEY = props.getProperty("privateapikey");
+        RESULT_LIMIT = Integer.parseInt(props.getProperty("resultlimit"));
     }
     
     protected String getKeyHash(long timestamp) throws
@@ -97,6 +112,12 @@ public class MarvelApiClient extends ApiClient{
         auths.add(new Param("hash", this.getKeyHash(timestamp))); 
         return auths;
     }
+    private List<Param> createPaggingParam(int page) throws UnsupportedEncodingException, NoSuchAlgorithmException {
+        List<Param> pagging = new ArrayList();
+        pagging.add(new Param("limit", RESULT_LIMIT+""));
+        pagging.add(new Param("offset", (page*RESULT_LIMIT)+""));
+        return pagging;
+    }
     public String getResponseFromMarvelApi(
             String path, boolean pathIsFullUrl, List<Param> params)
         throws UnsupportedEncodingException, NoSuchAlgorithmException,
@@ -110,10 +131,33 @@ public class MarvelApiClient extends ApiClient{
         HttpResponse response;
         if(pathIsFullUrl){
             response =  this.getResponse(
-                    ACCEPT_HEADER, this.buildURI(path, params));
+                ACCEPT_HEADER, this.buildURI(path, params));
         } else {
             response =  this.getResponse(
-                    ACCEPT_HEADER, this.buildURI(SHEME, HOST, path, params));
+                ACCEPT_HEADER, this.buildURI(SHEME, HOST, path, params));
+        }
+        return this.convertStreamContentToString(response.getEntity().getContent());
+    }
+    
+    
+    public String getPaggingResponseFromMarvelApi(
+            String path, boolean pathIsFullUrl, List<Param> params, int page)
+        throws UnsupportedEncodingException, NoSuchAlgorithmException,
+            URISyntaxException, IOException {
+        
+        if(params != null){
+            params.addAll(this.createAuthParam());            
+        } else {
+            params = this.createAuthParam();
+        }
+        params.addAll(createPaggingParam(page));
+        HttpResponse response;
+        if(pathIsFullUrl){
+            response =  this.getResponse(
+                ACCEPT_HEADER, this.buildURI(path, params));
+        } else {
+            response =  this.getResponse(
+                ACCEPT_HEADER, this.buildURI(SHEME, HOST, path, params));
         }
         return this.convertStreamContentToString(response.getEntity().getContent());
     }
@@ -129,6 +173,10 @@ public class MarvelApiClient extends ApiClient{
     }
     public String getHOST() {
         return HOST;
+    }
+
+    public Object getObjectFromJsonString(String paggingResponseFromMarvelApi, MarvelApiResponse<Comics> marvelApiResponse) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
 
