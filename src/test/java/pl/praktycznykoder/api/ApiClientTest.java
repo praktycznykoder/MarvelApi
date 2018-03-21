@@ -5,6 +5,7 @@
  */
 package pl.praktycznykoder.api;
 
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -190,5 +191,20 @@ public class ApiClientTest {
         TestJson result = instance.
                 getObjectFromJsonString(jsonString, TestJson.class);
         assertEquals(new TestJson("testId", "test Text"), result);
+    }
+
+    /**
+     * Test of getImage method, of class ApiClient.
+     */
+    @Test
+    public void testGetImage() {
+        System.out.println("getImage");
+        String urlString = "";
+        ApiClient instance = new ApiClient();
+        BufferedImage expResult = null;
+        BufferedImage result = instance.getImage(urlString);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
     }
 }

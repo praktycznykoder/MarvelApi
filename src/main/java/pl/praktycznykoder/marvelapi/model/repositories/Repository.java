@@ -5,16 +5,18 @@
  */
 package pl.praktycznykoder.marvelapi.model.repositories;
 
+import java.awt.image.BufferedImage;
 import java.util.List;
 import pl.praktycznykoder.api.domain.Param;
-import pl.praktycznykoder.marvelapi.client.response.MarvelApiResponse;
 
 /**
  *
  * @author praktycznykoder.pl
+ * @param <RESPONSE_TYPE>
  */
-public interface Repository<Type> {
-    MarvelApiResponse<Type> getObjects(List<Param> params, int page);
-    MarvelApiResponse<Type> getObjectWithId(String id);
-    MarvelApiResponse<Type> getObjectWithUrl(String url, List<Param> params);
+public interface Repository<RESPONSE_TYPE> {
+    RESPONSE_TYPE getObjects(List<Param> params, int page);
+    RESPONSE_TYPE getObjectWithId(String id);
+    RESPONSE_TYPE getObjectWithUrl(String url, List<Param> params);
+    BufferedImage getImage(String url);
 }

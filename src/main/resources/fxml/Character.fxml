@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<GridPane alignment="CENTER" hgap="100.0" vgap="10.0"
+    xmlns:fx="http://javafx.com/fxml"
+    fx:controller="pl.praktycznykoder.marvelapi.javafx.CharacterFXMLController"
+        style="width:100%;height:100%" >
+    <Label style="-fx-font: NORMAL 20 Tahoma;" text="Characters"                
+        GridPane.columnIndex="0" GridPane.rowIndex="0">
+    </Label>
+    <TableView fx:id="tableView" 
+        GridPane.columnIndex="0" GridPane.rowIndex="1"
+        GridPane.hgrow="ALWAYS" 
+        GridPane.vgrow="ALWAYS">
+     <columns>
+          <TableColumn text="Id">
+              <cellValueFactory>
+                <javafx.scene.control.cell.PropertyValueFactory 
+                    property="id" />
+              </cellValueFactory>
+          </TableColumn>
+          <TableColumn text="Name">
+              <cellValueFactory>
+                <javafx.scene.control.cell.PropertyValueFactory 
+                    property="name" />
+              </cellValueFactory>
+          </TableColumn>
+          <TableColumn text="Modyfied">
+              <cellValueFactory>
+                <javafx.scene.control.cell.PropertyValueFactory 
+                    property="modyfied" />
+              </cellValueFactory>
+          </TableColumn>
+          <TableColumn text="Description"  >
+              <cellValueFactory>
+                <javafx.scene.control.cell.PropertyValueFactory 
+                    property="description" />
+              </cellValueFactory>
+          </TableColumn>
+     </columns>    
+    </TableView>
+</GridPane>

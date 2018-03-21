@@ -27,7 +27,11 @@ public class Character implements Domain {
     private RemoteDomainList events;
     private RemoteDomainList stories;
 
-    public Character(int id, String name, String decription, String modified, String resourceURI, Image thumbnail, Url[] urls, RemoteDomainList comics, RemoteDomainList series, RemoteDomainList events, RemoteDomainList stories) {
+    public Character(int id, String name, String decription, String modified, 
+            String resourceURI, Image thumbnail, Url[] urls, 
+            RemoteDomainList comics, RemoteDomainList series, 
+            RemoteDomainList events, RemoteDomainList stories) {
+        
         this.id = id;
         this.name = name;
         this.decription = decription;

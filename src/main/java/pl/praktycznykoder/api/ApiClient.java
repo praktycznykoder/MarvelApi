@@ -6,15 +6,18 @@
 package pl.praktycznykoder.api;
 
 import com.google.gson.Gson;
+import java.awt.image.BufferedImage;
 import pl.praktycznykoder.api.domain.Param;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.List;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
@@ -28,6 +31,16 @@ import pl.praktycznykoder.marvelapi.client.MarvelApiClient;
  * @author praktycznykoder.pl
  */
 public class ApiClient {
+    
+    public BufferedImage getImage(String urlString){
+        try {
+            URL url = new URL(urlString);
+            return ImageIO.read(url);
+        } catch (IOException e) {
+                System.out.println(e.getLocalizedMessage());
+        }
+        return null;
+    }
 
     public URI buildURI(String scheme, String host, String path, 
         List<Param> params) throws URISyntaxException {

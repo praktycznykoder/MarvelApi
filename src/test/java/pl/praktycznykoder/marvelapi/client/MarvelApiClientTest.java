@@ -74,7 +74,7 @@ public class MarvelApiClientTest {
     public void testGetResponseFromMarvelApi() throws NoSuchAlgorithmException,
                 IOException, UnsupportedEncodingException, URISyntaxException {
         System.out.println("getResponseFromMarvelApi");
-        String path = "";
+        String path = null;
         boolean pathIsFullUrl = false;
         List<Param> params = null;
         MarvelApiClient instance = new MarvelApiClient();
@@ -89,15 +89,12 @@ public class MarvelApiClientTest {
     @Test
     public void testGetPaggingResponseFromMarvelApi() throws Exception {
         System.out.println("getPaggingResponseFromMarvelApi");
-        String path = "";
+        String path = null;
         boolean pathIsFullUrl = false;
         List<Param> params = null;
         int page = 0;
         MarvelApiClient instance = new MarvelApiClient();
-        String expResult = "";
         String result = instance.getPaggingResponseFromMarvelApi(path, pathIsFullUrl, params, page);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertNotNull(result);
     }    
 }
