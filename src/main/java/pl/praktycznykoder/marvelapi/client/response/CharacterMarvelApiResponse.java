@@ -4,10 +4,11 @@
  * and open the template in the editor.
  */
 package pl.praktycznykoder.marvelapi.client.response;
+import pl.praktycznykoder.marvelapi.model.domain.Character;
 
 /**
  *
- * @author User
+ * @author praktycznykoder.pl
  */
 public class CharacterMarvelApiResponse extends MarvelApiResponse<Character>{
     

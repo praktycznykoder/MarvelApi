@@ -5,6 +5,9 @@
  */
 package pl.praktycznykoder.marvelapi.model.repositories;
 
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -105,7 +108,7 @@ public class AbstractRepositoryTest {
      * Test of getObjects method, of class AbstractRepository.
      */
     @Test
-    public void testGetObjects() {
+    public void testGetObjects() throws NoSuchAlgorithmException, URISyntaxException, IOException {
         System.out.println("getObjects");        
         List params = null;
         int resultLimit = 10;
@@ -129,7 +132,7 @@ public class AbstractRepositoryTest {
      * Test of getObjectWithId method, of class AbstractRepository.
      */
     @Test
-    public void testGetObjectWithId() {
+    public void testGetObjectWithId() throws NoSuchAlgorithmException, URISyntaxException, IOException {
         System.out.println("getObjectWithId");
         String id = "59533";
         ComicsAbstractRepositoryImpl instance = new ComicsAbstractRepositoryImpl();
@@ -149,7 +152,7 @@ public class AbstractRepositoryTest {
      * Test of getObjectWithUrl method, of class AbstractRepository.
      */
     @Test
-    public void testGetObjectWithUrl() {
+    public void testGetObjectWithUrl() throws NoSuchAlgorithmException, URISyntaxException, IOException {
         System.out.println("getObjectWithUrl");
         String url = "http://gateway.marvel.com/v1/public/comics/57868";
         List params = null;

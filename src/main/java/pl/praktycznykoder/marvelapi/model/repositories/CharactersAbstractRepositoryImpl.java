@@ -9,7 +9,7 @@ import pl.praktycznykoder.marvelapi.client.response.CharacterMarvelApiResponse;
 
 /**
  *
- * @author User
+ * @author praktycznykoder.pl
  */
 public class CharactersAbstractRepositoryImpl  extends AbstractRepository<CharacterMarvelApiResponse> {
 

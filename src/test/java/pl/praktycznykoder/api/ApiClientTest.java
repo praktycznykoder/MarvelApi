@@ -26,6 +26,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.Ignore;
 import pl.praktycznykoder.api.domain.Param;
 
 /**
@@ -63,6 +64,7 @@ public class ApiClientTest {
     public void testBuildURI_4args() throws UnsupportedEncodingException, 
             NoSuchAlgorithmException, URISyntaxException {
         System.out.println("buildURI");
+        
         
         String sheme = "scheme";
         String host = "host";
@@ -196,8 +198,9 @@ public class ApiClientTest {
     /**
      * Test of getImage method, of class ApiClient.
      */
+    @Ignore
     @Test
-    public void testGetImage() {
+    public void testGetImage() throws IOException {
         System.out.println("getImage");
         String urlString = "";
         ApiClient instance = new ApiClient();

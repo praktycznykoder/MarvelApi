@@ -6,6 +6,9 @@
 package pl.praktycznykoder.marvelapi.model.services;
 
 import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 import pl.praktycznykoder.api.domain.Param;
 
@@ -15,8 +18,11 @@ import pl.praktycznykoder.api.domain.Param;
  * @param <OBJECT_TYPE>
  */
 public interface Service<OBJECT_TYPE> {
-    List<OBJECT_TYPE> getObjects(List<Param> params, int page);
-    OBJECT_TYPE getObjectWithId(String id);
-    OBJECT_TYPE getObjectWithUrl(String url, List<Param> params);
-    BufferedImage getImage(String url);
+    List<OBJECT_TYPE> getObjects(List<Param> params, int page)
+            throws NoSuchAlgorithmException, URISyntaxException,IOException;
+    OBJECT_TYPE getObjectWithId(String id)
+            throws NoSuchAlgorithmException, URISyntaxException,IOException;
+    OBJECT_TYPE getObjectWithUrl(String url, List<Param> params)
+            throws NoSuchAlgorithmException, URISyntaxException,IOException;
+    BufferedImage getImage(String url) throws IOException;
 }

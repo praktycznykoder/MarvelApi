@@ -5,6 +5,7 @@
  */
 package pl.praktycznykoder.marvelapi.client;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -20,9 +21,11 @@ import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.apache.http.HttpResponse;
+import org.apache.log4j.chainsaw.Main;
 import pl.praktycznykoder.api.ApiClient;
 import pl.praktycznykoder.api.domain.Param;
 import pl.praktycznykoder.marvelapi.client.response.MarvelApiResponse;
+import pl.praktycznykoder.marvelapi.javafx.MainApp;
 import pl.praktycznykoder.marvelapi.model.domain.Comics;
 
 /**
@@ -64,16 +67,21 @@ public class MarvelApiClient extends ApiClient{
         try {
             this.init();
         } catch (IOException ex) {
-            Logger.getLogger(MarvelApiClient.class.getName()).
-                    log(Level.SEVERE, null, ex);
+            Logger.getLogger(MarvelApiClient.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
-    private Properties getProps() throws FileNotFoundException, IOException  {
+    protected Properties getProps() throws FileNotFoundException, IOException{
         Properties props = new Properties();
         FileReader file;
-        file = new FileReader(
+        try {
+            file = new FileReader(new File("").getAbsolutePath()+"//classes//properties//api-connect.properties");
+        } catch (FileNotFoundException ex) {
+            file = new FileReader(
                 "src\\main\\resources\\properties\\api-connect.properties");
+            org.apache.log4j.Logger.getLogger(MarvelApiClient.class.getName()).
+                    error("GET_ITEMS", ex);
+        }
         props.load(file);
         return props;
     }
@@ -175,8 +183,5 @@ public class MarvelApiClient extends ApiClient{
         return HOST;
     }
 
-    public Object getObjectFromJsonString(String paggingResponseFromMarvelApi, MarvelApiResponse<Comics> marvelApiResponse) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 }
 

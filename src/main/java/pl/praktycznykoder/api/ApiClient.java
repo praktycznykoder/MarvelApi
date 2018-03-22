@@ -32,14 +32,9 @@ import pl.praktycznykoder.marvelapi.client.MarvelApiClient;
  */
 public class ApiClient {
     
-    public BufferedImage getImage(String urlString){
-        try {
-            URL url = new URL(urlString);
-            return ImageIO.read(url);
-        } catch (IOException e) {
-                System.out.println(e.getLocalizedMessage());
-        }
-        return null;
+    public BufferedImage getImage(String urlString) throws IOException{
+        URL url = new URL(urlString);
+        return ImageIO.read(url);
     }
 
     public URI buildURI(String scheme, String host, String path, 

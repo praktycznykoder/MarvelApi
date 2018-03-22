@@ -12,6 +12,8 @@ import java.security.NoSuchAlgorithmException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import pl.praktycznykoder.api.domain.Param;
 import pl.praktycznykoder.marvelapi.client.MarvelApiClient;
 import pl.praktycznykoder.marvelapi.client.response.ComicsMarvelApiResponse;
@@ -39,21 +41,17 @@ public abstract class AbstractRepository<RESPONSE_TYPE> implements Repository<RE
     
     
     
-     @Override
-    public RESPONSE_TYPE getObjects(List params,int page) {
-        try {
-            return (RESPONSE_TYPE) getClient().getObjectFromJsonString(
+    @Override
+    public RESPONSE_TYPE getObjects(List params,int page)
+            throws NoSuchAlgorithmException, URISyntaxException,IOException {
+        return (RESPONSE_TYPE) getClient().getObjectFromJsonString(
                 getClient().getPaggingResponseFromMarvelApi(
                         getPath(), false, params, page), getClazz());
-        } catch (NoSuchAlgorithmException | URISyntaxException | IOException ex) {
-            Logger.getLogger(ComicsAbstractRepositoryImpl.class.getName()).
-                    log(Level.SEVERE, null, ex);
-        }
-        return null;
     }
 
     @Override
-    public RESPONSE_TYPE getObjectWithId(String id) { 
+    public RESPONSE_TYPE getObjectWithId(String id) 
+            throws NoSuchAlgorithmException, URISyntaxException,IOException{ 
         String path = getPath()+"/"+id;
         try {
             return (RESPONSE_TYPE) getClient().getObjectFromJsonString(
@@ -67,7 +65,8 @@ public abstract class AbstractRepository<RESPONSE_TYPE> implements Repository<RE
     }
 
     @Override
-    public RESPONSE_TYPE getObjectWithUrl(String url, List<Param> params) {
+    public RESPONSE_TYPE getObjectWithUrl(String url, List<Param> params) 
+            throws NoSuchAlgorithmException, URISyntaxException,IOException{
         try {
             return (RESPONSE_TYPE) getClient().getObjectFromJsonString(
                 getClient().getPaggingResponseFromMarvelApi(
@@ -79,8 +78,14 @@ public abstract class AbstractRepository<RESPONSE_TYPE> implements Repository<RE
         return null;
     }
 
+    /**
+     *
+     * @param url
+     * @return
+     * @throws IOException
+     */
     @Override
-    public BufferedImage getImage(String url) {
+    public BufferedImage getImage(String url) throws IOException {
         return getClient().getImage(url);
     }
     

@@ -5,6 +5,9 @@
  */
 package pl.praktycznykoder.marvelapi.model.services;
 
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -46,7 +49,7 @@ public class AbstractServiceTest {
      * Test of getObjectWithUrl method, of class AbstractService.
      */
     @Test
-    public void testGetObjectWithUrl() {
+    public void testGetObjectWithUrl() throws NoSuchAlgorithmException, URISyntaxException, IOException {
         System.out.println("getObjectWithUrl");
         String url = "http://gateway.marvel.com/v1/public/comics/57868";
         List<Param> params = null;
@@ -60,7 +63,7 @@ public class AbstractServiceTest {
      * Test of getObjectWithId method, of class AbstractService.
      */
     @Test
-    public void testGetObjectWithId() {
+    public void testGetObjectWithId() throws NoSuchAlgorithmException, URISyntaxException, IOException {
         System.out.println("getObjectWithId");
         String id = "57868";
         AbstractService instance = new AbstractServiceImpl();
@@ -73,7 +76,7 @@ public class AbstractServiceTest {
      * Test of getObjects method, of class AbstractService.
      */
     @Test
-    public void testGetObjects() {
+    public void testGetObjects() throws NoSuchAlgorithmException, URISyntaxException, IOException {
         System.out.println("getObjects");
         List<Param> params = null;
         int page = 0;

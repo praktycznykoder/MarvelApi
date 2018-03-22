@@ -7,6 +7,7 @@ package pl.praktycznykoder.marvelapi.model.services;
 
 import pl.praktycznykoder.marvelapi.model.repositories.CharactersAbstractRepositoryImpl;
 import pl.praktycznykoder.marvelapi.model.repositories.Repository;
+import pl.praktycznykoder.marvelapi.model.domain.Character;
 
 /**
  *
