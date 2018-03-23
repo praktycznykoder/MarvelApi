@@ -1,77 +1,80 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.cell.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<GridPane alignment="CENTER" hgap="100.0" vgap="10.0"
-    xmlns:fx="http://javafx.com/fxml"
-    fx:controller="pl.praktycznykoder.marvelapi.javafx.ComicsFXMLController"
-        style="width:100%;height:100%" >
-    <Label style="-fx-font: NORMAL 20 Tahoma;" text="Comics"                
-        GridPane.columnIndex="0" GridPane.rowIndex="0">
+<SplitPane dividerPositions="0.5, 0.5, 0.5, 0.5" orientation="VERTICAL" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.praktycznykoder.marvelapi.javafx.CharacterFXMLController">
+   <items>
+       <Label style="-fx-font: NORMAL 20 Tahoma;" text="Characters">
     </Label>
-    <TableView fx:id="tableView" 
-        GridPane.columnIndex="0" GridPane.rowIndex="1"
-        GridPane.hgrow="ALWAYS" 
-        GridPane.vgrow="ALWAYS">
-     <columns>
-          <TableColumn text="Id">
+       <TableView fx:id="tableView">
+        <columns>
+             <TableColumn editable="false" text="Id">
               <cellValueFactory>
                 <javafx.scene.control.cell.PropertyValueFactory 
                     property="id" />
               </cellValueFactory>
           </TableColumn>
-          <TableColumn text="Modyfied">
+          <TableColumn editable="false" text="Modyfied">
               <cellValueFactory>
                 <javafx.scene.control.cell.PropertyValueFactory 
                     property="modyfied" />
               </cellValueFactory>
           </TableColumn>
-          <TableColumn text="Title">
+          <TableColumn editable="false" text="Title">
               <cellValueFactory>
                 <javafx.scene.control.cell.PropertyValueFactory 
                     property="title" />
               </cellValueFactory>
           </TableColumn>
-          <TableColumn text="Digital id">
+          <TableColumn editable="false" text="Digital id">
               <cellValueFactory>
                 <javafx.scene.control.cell.PropertyValueFactory 
                     property="digitalId" />
               </cellValueFactory>
           </TableColumn>
-          <TableColumn text="Number">
+          <TableColumn editable="false" text="Number">
               <cellValueFactory>
                 <javafx.scene.control.cell.PropertyValueFactory 
                     property="issueNumber" />
               </cellValueFactory>
           </TableColumn>
-          <TableColumn text="Variant desription">
+          <TableColumn editable="false" text="Variant desription">
               <cellValueFactory>
                 <javafx.scene.control.cell.PropertyValueFactory 
                     property="variantDescription" />
               </cellValueFactory>
           </TableColumn>
-          <TableColumn text="Format">
+          <TableColumn editable="false" text="Format">
               <cellValueFactory>
                 <javafx.scene.control.cell.PropertyValueFactory 
                     property="format" />
               </cellValueFactory>
           </TableColumn>
-          <TableColumn text="Page Count">
+          <TableColumn editable="false" text="Page Count">
               <cellValueFactory>
                 <javafx.scene.control.cell.PropertyValueFactory 
                     property="pageCount" />
               </cellValueFactory>
           </TableColumn>
-          <TableColumn text="Description">
+          <TableColumn editable="false" text="Description">
               <cellValueFactory>
                 <javafx.scene.control.cell.PropertyValueFactory 
                     property="description" />
               </cellValueFactory>
           </TableColumn>
-     </columns>    
-    </TableView>
-</GridPane>
+        </columns>  
+       </TableView>
+      <TextField fx:id="name" promptText="Name" />
+      <TextField fx:id="nameStartsWith" promptText="Name starts with" />
+      <Button minWidth="-Infinity" mnemonicParsing="false" prefWidth="200.0" text="Find" />
+   </items>
+   <padding>
+      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+   </padding>
+</SplitPane>
