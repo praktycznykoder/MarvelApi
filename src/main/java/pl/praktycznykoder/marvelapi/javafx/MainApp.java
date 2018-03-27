@@ -17,10 +17,11 @@ public class MainApp extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/App.fxml"));
-        
+                
         Scene scene = new Scene(root);
         scene.getStylesheets().add("/styles/Styles.css");        
         stage.setTitle("Marvel API Apps");
+        
         stage.setScene(scene);
         stage.show();
     }

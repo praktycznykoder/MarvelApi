@@ -12,7 +12,7 @@
    <items>
        <Label style="-fx-font: NORMAL 20 Tahoma;" text="Characters">
     </Label>
-       <TableView fx:id="tableView">
+       <TableView fx:id="tableView" onMouseClicked="#showDetailsTableViewSelectAction">
         <columns>
              <TableColumn editable="false" text="Id">
                  <cellValueFactory>

@@ -9,55 +9,27 @@ import java.util.Collections;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.application.Application;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.TableView;
-import javafx.stage.Stage;
 import pl.praktycznykoder.marvelapi.model.services.CharacterAbstractServiceImpl;
 import pl.praktycznykoder.marvelapi.model.services.Service;
 
-public class CharacterFXMLController implements Initializable {
+public class CharacterFXMLDetailsViewController implements Initializable {
     
+    
+    @FXML
+    
+    
+    Character character;
     Service service = new CharacterAbstractServiceImpl();
     
     @FXML
     private TableView<Character> tableView;
     
-    @FXML protected void showDetailsTableViewSelectAction(ActionEvent event){
-        final Character character = tableView.getSelectionModel().getSelectedItem();
-        Parent root = null;
-        try {
-            root = FXMLLoader.load(getClass().getResource("/fxml/App.fxml"));
-        } catch (IOException ex) {
-            Logger.getLogger(CharacterFXMLController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        Application app =  new Application() {
-            @Override
-            public void start(Stage primaryStage) throws Exception {
-                
-                FXMLLoader fxmlLoader = new FXMLLoader(getClass().
-                        getResource("/fxml/CharacterDetails.fxml"));     
-
-                Parent root = (Parent)fxmlLoader.load();                       
-            
-                Scene scene = new Scene(root);
-                scene.getStylesheets().add("/styles/Styless.css");        
-                primaryStage.setTitle("Characters");
-
-                primaryStage.setScene(scene);
-                primaryStage.show();
-                CharacterFXMLDetailsViewController controller = 
-                        fxmlLoader.<CharacterFXMLDetailsViewController>getController();
-                controller.setData(character);
-            
-            }
-        };
+    public void setData(Character character){
+        this.character = character;
     }
     
     @Override
