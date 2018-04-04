@@ -5,11 +5,13 @@
  */
 package pl.praktycznykoder.marvelapi.model.domain.others;
 
+import pl.praktycznykoder.marvelapi.model.domain.remote.RemoteResource;
+
 /**
  *
  * @author praktycznykoder.pl
  */
-public class Url {
+public class Url implements RemoteResource{
 
     private String type;	
     private String url;

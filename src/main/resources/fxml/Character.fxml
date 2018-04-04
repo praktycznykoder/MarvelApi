@@ -10,9 +10,21 @@
 
 <SplitPane dividerPositions="0.5, 0.5, 0.5, 0.5" orientation="VERTICAL" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.praktycznykoder.marvelapi.javafx.CharacterFXMLController">
    <items>
-       <Label style="-fx-font: NORMAL 20 Tahoma;" text="Characters">
+      <GridPane maxHeight="-Infinity" prefHeight="30.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+             <Label style="-fx-font: NORMAL 20 Tahoma;" text="Characters">
     </Label>
-       <TableView fx:id="tableView" onMouseClicked="#showDetailsTableViewSelectAction">
+            <Button fx:id="showSelectedButton" mnemonicParsing="false" onAction="#showSelectedButtonAction" text="Show Selected" GridPane.columnIndex="1" />
+         </children>
+      </GridPane>
+       <TableView fx:id="tableView">
         <columns>
              <TableColumn editable="false" text="Id">
                  <cellValueFactory>

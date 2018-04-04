@@ -11,7 +11,7 @@ package pl.praktycznykoder.marvelapi.model.domain.remote;
  * podrzędnym oraz umożliwia pobranie go, dzięki zawartemu adresowi Url
  * prowadzącego do danego zasobu
  */
-public class RemoteDomain {
+public class RemoteDomain implements RemoteResource{
     
     private String name;
     private String type;
@@ -24,6 +24,13 @@ public class RemoteDomain {
         this.role = role;
         this.resourceURI = resourceURI;
     }
+
+    @Override
+    public String toString() {
+        return name;
+    }
+    
+    
 
     public String getName() {
         return name;
@@ -48,5 +55,10 @@ public class RemoteDomain {
     }
     public void setResourceURI(String resourceURI) {
         this.resourceURI = resourceURI;
+    }
+
+    @Override
+    public String getUrl() {
+        return this.getResourceURI();
     }
 }

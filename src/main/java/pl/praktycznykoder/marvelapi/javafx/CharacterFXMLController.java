@@ -4,12 +4,9 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.security.NoSuchAlgorithmException;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.application.Application;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -21,54 +18,47 @@ import javafx.scene.control.TableView;
 import javafx.stage.Stage;
 import pl.praktycznykoder.marvelapi.model.services.CharacterAbstractServiceImpl;
 import pl.praktycznykoder.marvelapi.model.services.Service;
+import pl.praktycznykoder.marvelapi.model.domain.Character;
 
 public class CharacterFXMLController implements Initializable {
     
-    Service service = new CharacterAbstractServiceImpl();
+    private final Service service = new CharacterAbstractServiceImpl();
     
-    @FXML
-    private TableView<Character> tableView;
+    @FXML private TableView<Character> tableView;
     
-    @FXML protected void showDetailsTableViewSelectAction(ActionEvent event){
-        final Character character = tableView.getSelectionModel().getSelectedItem();
-        Parent root = null;
+    @FXML protected void showSelectedButtonAction(ActionEvent event){        
+       
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().
+            getResource("/fxml/CharacterDetails.fxml"));     
+        Stage stage = new Stage();
+        Parent root = null;                       
         try {
-            root = FXMLLoader.load(getClass().getResource("/fxml/App.fxml"));
+            root = (Parent)fxmlLoader.load();
         } catch (IOException ex) {
             Logger.getLogger(CharacterFXMLController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        Application app =  new Application() {
-            @Override
-            public void start(Stage primaryStage) throws Exception {
-                
-                FXMLLoader fxmlLoader = new FXMLLoader(getClass().
-                        getResource("/fxml/CharacterDetails.fxml"));     
 
-                Parent root = (Parent)fxmlLoader.load();                       
-            
-                Scene scene = new Scene(root);
-                scene.getStylesheets().add("/styles/Styless.css");        
-                primaryStage.setTitle("Characters");
+        Scene scene = new Scene(root);
+        //scene.getStylesheets().add("/styles/Styless.css");        
+        
+        final Character character = tableView.getSelectionModel().getSelectedItem(); 
+        stage.setTitle("Characters - "+character.getName());
+        stage.setScene(scene);       
 
-                primaryStage.setScene(scene);
-                primaryStage.show();
-                CharacterFXMLDetailsViewController controller = 
-                        fxmlLoader.<CharacterFXMLDetailsViewController>getController();
-                controller.setData(character);
-            
-            }
-        };
+        CharacterFXMLDetailsController controller = 
+        fxmlLoader.<CharacterFXMLDetailsController>getController();
+        controller.initData(character);
+        
+        stage.show();        
     }
     
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        
+    public void initialize(URL url, ResourceBundle rb) {        
         ObservableList<Character> items = tableView.getItems();
         if(items.isEmpty()){
             new Runnable() {
                 @Override
-                public void run() {                
-                    System.out.println("1");
+                public void run() {          
                     try {
                         tableView.getItems().addAll(service.getObjects(null, 0));
                     } catch (NoSuchAlgorithmException ex) {
@@ -78,11 +68,9 @@ public class CharacterFXMLController implements Initializable {
                     } catch (IOException ex) {
                         org.apache.log4j.Logger.getLogger(ComicsFXMLController.class.getName()).error("GET_ITEMS", ex);
                     }
-                    System.out.println("2");
                     tableView.refresh();
                 }
             }.run();
-        }
-        
+        }        
     }    
 }

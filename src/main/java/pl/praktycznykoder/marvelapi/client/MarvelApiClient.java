@@ -79,8 +79,8 @@ public class MarvelApiClient extends ApiClient{
         } catch (FileNotFoundException ex) {
             file = new FileReader(
                 "src\\main\\resources\\properties\\api-connect.properties");
-            org.apache.log4j.Logger.getLogger(MarvelApiClient.class.getName()).
-                    error("GET_ITEMS", ex);
+            //org.apache.log4j.Logger.getLogger(MarvelApiClient.class.getName()).
+                    //error("GET_PROPERTIES", ex);
         }
         props.load(file);
         return props;
