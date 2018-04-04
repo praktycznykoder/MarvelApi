@@ -9,10 +9,12 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<GridPane hgap="5.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="363.0" prefWidth="639.0" vgap="5.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.praktycznykoder.marvelapi.javafx.CharacterFXMLDetailsController">
+<GridPane hgap="5.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="363.0" prefWidth="1200.0" vgap="5.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.praktycznykoder.marvelapi.javafx.CharacterFXMLDetailsController">
   <columnConstraints>
       <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
     <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+      <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+      <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
     <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
   </columnConstraints>
   <rowConstraints>
@@ -22,19 +24,19 @@
       <ImageView fx:id="thumbnailImageView" fitHeight="156.0" fitWidth="190.0" pickOnBounds="true" preserveRatio="true" />
       <SplitPane dividerPositions="0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5" orientation="VERTICAL" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
          <items>
-            <Label maxWidth="-Infinity" minHeight="-Infinity" prefHeight="26.0" prefWidth="11.0" text="Id" />
+            <Label maxWidth="-Infinity" minHeight="-Infinity" prefHeight="26.0" text="Id" />
             <TextField fx:id="idTextField" editable="false" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="33.0" prefWidth="204.0" />
-            <Label maxHeight="-Infinity" minHeight="-Infinity" prefHeight="25.0" text="Name" />
+            <Label maxHeight="-Infinity" minHeight="-Infinity" prefHeight="25.0" text="Title" />
             <TextField fx:id="nameTextField" editable="false" focusTraversable="false" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="33.0" />
-            <Label maxHeight="-Infinity" minHeight="-Infinity" prefHeight="25.0" text="Modyfied" />
+            <Label maxHeight="-Infinity" minHeight="-Infinity" prefHeight="25.0" text="ISBN" />
             <TextField fx:id="modyfiedTextField" editable="false" focusTraversable="false" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="33.0" />
-            <Label maxHeight="-Infinity" minHeight="-Infinity" prefHeight="25.0" text="ResourceURI" />
+            <Label maxHeight="-Infinity" minHeight="-Infinity" prefHeight="25.0" text="EAN" />
             <Button fx:id="resourceURIButton" minHeight="-Infinity" minWidth="200.0" mnemonicParsing="false" onAction="#getResourceButtonOnAction" prefHeight="35.0" text="Go" textAlignment="CENTER" />
-            <Label maxHeight="-Infinity" minHeight="-Infinity" prefHeight="25.0" text="Description" />
+            <Label maxHeight="-Infinity" minHeight="-Infinity" prefHeight="25.0" text="Page Count" />
             <TextArea fx:id="descriptionTextArea" editable="false" focusTraversable="false" prefHeight="196.0" prefWidth="198.0" wrapText="true" />
          </items>
       </SplitPane>
-      <SplitPane dividerPositions="0.5, 0.5, 0.5, 0.5" orientation="VERTICAL" prefHeight="358.0" prefWidth="221.0" GridPane.columnIndex="2">
+      <SplitPane dividerPositions="0.5, 0.5, 0.5, 0.5" orientation="VERTICAL" prefHeight="358.0" prefWidth="221.0" GridPane.columnIndex="4">
          <items>
             <TitledPane animated="false" text="Urls">
               <content>
@@ -86,6 +88,34 @@
                   </AnchorPane>
                </content>
             </TitledPane>
+         </items>
+      </SplitPane>
+      <SplitPane dividerPositions="0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5" orientation="VERTICAL" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2">
+         <items>
+            <Label maxWidth="-Infinity" minHeight="-Infinity" prefHeight="26.0" text="Digital Id" />
+            <TextField fx:id="idTextField1" editable="false" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="33.0" prefWidth="204.0" />
+            <Label maxHeight="-Infinity" minHeight="-Infinity" prefHeight="25.0" text="Variant description" />
+            <TextField fx:id="nameTextField1" editable="false" focusTraversable="false" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="33.0" />
+            <Label maxHeight="-Infinity" minHeight="-Infinity" prefHeight="25.0" text="UPC" />
+            <TextField fx:id="modyfiedTextField1" editable="false" focusTraversable="false" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="33.0" />
+            <Label maxHeight="-Infinity" minHeight="-Infinity" prefHeight="25.0" text="ISSN" />
+            <Button fx:id="resourceURIButton1" minHeight="-Infinity" minWidth="200.0" mnemonicParsing="false" onAction="#getResourceButtonOnAction" prefHeight="35.0" text="Go" textAlignment="CENTER" />
+            <Label maxHeight="-Infinity" minHeight="-Infinity" prefHeight="25.0" text="Resource URI" />
+            <TextArea fx:id="descriptionTextArea1" editable="false" focusTraversable="false" prefHeight="196.0" prefWidth="198.0" wrapText="true" />
+         </items>
+      </SplitPane>
+      <SplitPane dividerPositions="0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5" orientation="VERTICAL" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3">
+         <items>
+            <Label maxWidth="-Infinity" minHeight="-Infinity" prefHeight="26.0" text="Issue Number" />
+            <TextField fx:id="idTextField2" editable="false" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="33.0" prefWidth="204.0" />
+            <Label maxHeight="-Infinity" minHeight="-Infinity" prefHeight="25.0" text="Modyfied" />
+            <TextField fx:id="nameTextField2" editable="false" focusTraversable="false" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="33.0" />
+            <Label maxHeight="-Infinity" minHeight="-Infinity" prefHeight="25.0" text="Diamond code" />
+            <TextField fx:id="modyfiedTextField2" editable="false" focusTraversable="false" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="33.0" />
+            <Label maxHeight="-Infinity" minHeight="-Infinity" prefHeight="25.0" text="Format" />
+            <Button fx:id="resourceURIButton2" minHeight="-Infinity" minWidth="200.0" mnemonicParsing="false" onAction="#getResourceButtonOnAction" prefHeight="35.0" text="Go" textAlignment="CENTER" />
+            <Label maxHeight="-Infinity" minHeight="-Infinity" prefHeight="25.0" text="Description" />
+            <TextArea fx:id="descriptionTextArea2" editable="false" focusTraversable="false" prefHeight="196.0" prefWidth="198.0" wrapText="true" />
          </items>
       </SplitPane>
    </children>
