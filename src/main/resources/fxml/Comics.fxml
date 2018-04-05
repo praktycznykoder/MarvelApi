@@ -8,64 +8,66 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<SplitPane dividerPositions="0.5, 0.5, 0.5, 0.5" orientation="VERTICAL" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.praktycznykoder.marvelapi.javafx.CharacterFXMLController">
+<SplitPane dividerPositions="0.5, 0.5, 0.5, 0.5" orientation="VERTICAL" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.praktycznykoder.marvelapi.javafx.ComicsFXMLController">
    <items>
-       <Label style="-fx-font: NORMAL 20 Tahoma;" text="Characters">
-    </Label>
+      <GridPane maxHeight="-Infinity" prefHeight="30.0">
+         <children>
+            <Label style="-fx-font: NORMAL 20 Tahoma;" text="Comics" />
+            <Button fx:id="showSelectedButton" mnemonicParsing="false" onAction="#showSelectedButtonAction" text="Show Selected" GridPane.columnIndex="1" />
+         </children>
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+      </GridPane>
        <TableView fx:id="tableView">
         <columns>
              <TableColumn editable="false" text="Id">
               <cellValueFactory>
-                <javafx.scene.control.cell.PropertyValueFactory 
-                    property="id" />
+                <javafx.scene.control.cell.PropertyValueFactory property="id" />
               </cellValueFactory>
           </TableColumn>
           <TableColumn editable="false" text="Modyfied">
               <cellValueFactory>
-                <javafx.scene.control.cell.PropertyValueFactory 
-                    property="modyfied" />
+                <javafx.scene.control.cell.PropertyValueFactory property="modyfied" />
               </cellValueFactory>
           </TableColumn>
           <TableColumn editable="false" text="Title">
               <cellValueFactory>
-                <javafx.scene.control.cell.PropertyValueFactory 
-                    property="title" />
+                <javafx.scene.control.cell.PropertyValueFactory property="title" />
               </cellValueFactory>
           </TableColumn>
           <TableColumn editable="false" text="Digital id">
               <cellValueFactory>
-                <javafx.scene.control.cell.PropertyValueFactory 
-                    property="digitalId" />
+                <javafx.scene.control.cell.PropertyValueFactory property="digitalId" />
               </cellValueFactory>
           </TableColumn>
           <TableColumn editable="false" text="Number">
               <cellValueFactory>
-                <javafx.scene.control.cell.PropertyValueFactory 
-                    property="issueNumber" />
+                <javafx.scene.control.cell.PropertyValueFactory property="issueNumber" />
               </cellValueFactory>
           </TableColumn>
           <TableColumn editable="false" text="Variant desription">
               <cellValueFactory>
-                <javafx.scene.control.cell.PropertyValueFactory 
-                    property="variantDescription" />
+                <javafx.scene.control.cell.PropertyValueFactory property="variantDescription" />
               </cellValueFactory>
           </TableColumn>
           <TableColumn editable="false" text="Format">
               <cellValueFactory>
-                <javafx.scene.control.cell.PropertyValueFactory 
-                    property="format" />
+                <javafx.scene.control.cell.PropertyValueFactory property="format" />
               </cellValueFactory>
           </TableColumn>
           <TableColumn editable="false" text="Page Count">
               <cellValueFactory>
-                <javafx.scene.control.cell.PropertyValueFactory 
-                    property="pageCount" />
+                <javafx.scene.control.cell.PropertyValueFactory property="pageCount" />
               </cellValueFactory>
           </TableColumn>
           <TableColumn editable="false" text="Description">
               <cellValueFactory>
-                <javafx.scene.control.cell.PropertyValueFactory 
-                    property="description" />
+                <javafx.scene.control.cell.PropertyValueFactory property="description" />
               </cellValueFactory>
           </TableColumn>
         </columns>  

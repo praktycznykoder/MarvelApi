@@ -70,7 +70,7 @@ public abstract class AbstractRepository<RESPONSE_TYPE> implements Repository<RE
         try {
             return (RESPONSE_TYPE) getClient().getObjectFromJsonString(
                 getClient().getPaggingResponseFromMarvelApi(
-                        url, true, null, 0), ComicsMarvelApiResponse.class);
+                        url, true, null, 0), getClazz());
         } catch (NoSuchAlgorithmException | URISyntaxException | IOException ex) {
             Logger.getLogger(ComicsAbstractRepositoryImpl.class.getName()).
                     log(Level.SEVERE, null, ex);

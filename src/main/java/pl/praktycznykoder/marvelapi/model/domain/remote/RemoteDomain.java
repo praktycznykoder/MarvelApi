@@ -29,7 +29,12 @@ public class RemoteDomain implements RemoteResource{
     public String toString() {
         return name;
     }
-    
+
+//    @Override
+//    public String toString() {
+//        return "RemoteDomain{" + "name=" + name + ", type=" + type + ", role=" + role + ", resourceURI=" + resourceURI + '}';
+//    }
+//    
     
 
     public String getName() {

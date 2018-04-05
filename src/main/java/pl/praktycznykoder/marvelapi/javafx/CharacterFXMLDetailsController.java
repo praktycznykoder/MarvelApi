@@ -1,11 +1,13 @@
 package pl.praktycznykoder.marvelapi.javafx;
 
 import java.awt.Desktop;
+import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.security.NoSuchAlgorithmException;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -17,6 +19,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.scene.image.WritableImage;
 import pl.praktycznykoder.marvelapi.model.services.CharacterAbstractServiceImpl;
 import pl.praktycznykoder.marvelapi.model.services.Service;
 import pl.praktycznykoder.marvelapi.model.domain.Character;
@@ -25,7 +28,13 @@ import pl.praktycznykoder.marvelapi.model.domain.remote.RemoteDomain;
 
 public class CharacterFXMLDetailsController extends FXMLDetailsController<Character> {
     
-    private final Service service = new CharacterAbstractServiceImpl();     
+    private final Service<Character> service = new CharacterAbstractServiceImpl();     
+    
+    @Override
+    protected Service getService() {
+        return service;
+    }
+    
     private Character character;
         
     @FXML private ImageView thumbnailImageView;
@@ -39,13 +48,6 @@ public class CharacterFXMLDetailsController extends FXMLDetailsController<Charac
     @FXML private ComboBox<RemoteDomain> eventsComboBox;
     @FXML private ComboBox<RemoteDomain> storiesComboBox;
     
-    private final int EMPTY_ITEMS = 0;
-    private void disableComboBoxWhereIsEmpty(ComboBox comboBox){
-        if(comboBox.getItems().size()<=EMPTY_ITEMS){
-            comboBox.setDisable(true);
-        }
-    }
-    
     /**
      *
      * @throws NullPointerException
@@ -53,16 +55,12 @@ public class CharacterFXMLDetailsController extends FXMLDetailsController<Charac
     @Override
     protected void initFields() throws java.lang.NullPointerException{
         
-        try {
-            BufferedImage image = service.getImage(character.getThumbnail().toString());
-            thumbnailImageView.setImage(SwingFXUtils.toFXImage(image, null));
-        } catch (IOException ex) {
-            Logger.getLogger(CharacterFXMLDetailsController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        thumbnailImageView.setImage(
+                getImage(character.getThumbnail().toString()));
         idTextField.setText(character.getId()+"");
         nameTextField.setText(character.getName());
         modyfiedTextField.setText(character.getModified());
-        descriptionTextArea.setText(character.getDecription());
+        descriptionTextArea.setText(character.getDescription());
         
         urlsComboBox.getItems().addAll(character.getUrls());
         disableComboBoxWhereIsEmpty(urlsComboBox);
@@ -90,6 +88,19 @@ public class CharacterFXMLDetailsController extends FXMLDetailsController<Charac
         initFields();
     }
  
+    @Override
+    public void initData(RemoteDomain remoteDomain) {
+        try {
+            this.character = service.getObjectWithUrl(remoteDomain.getResourceURI(), null);
+        } catch (NoSuchAlgorithmException ex) {
+            Logger.getLogger(CharacterFXMLDetailsController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (URISyntaxException ex) {
+            Logger.getLogger(CharacterFXMLDetailsController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(CharacterFXMLDetailsController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        initFields();
+    }
     /**
      *
      * @param event
@@ -134,4 +145,5 @@ public class CharacterFXMLDetailsController extends FXMLDetailsController<Charac
             
     @Override
     public void initialize(URL url, ResourceBundle rb) { }    
+
 }

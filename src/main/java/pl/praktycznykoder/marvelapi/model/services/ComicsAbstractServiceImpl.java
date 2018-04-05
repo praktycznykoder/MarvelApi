@@ -14,7 +14,8 @@ import pl.praktycznykoder.marvelapi.model.repositories.Repository;
  *
  * @author User
  */
-public class ComicsAbstractServiceImpl extends AbstractService<Comics> {
+public class ComicsAbstractServiceImpl 
+        extends AbstractService<Comics> {
 
     private final ComicsAbstractRepositoryImpl repository = 
             new ComicsAbstractRepositoryImpl();

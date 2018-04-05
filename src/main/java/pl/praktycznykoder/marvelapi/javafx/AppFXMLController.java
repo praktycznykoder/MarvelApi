@@ -16,12 +16,12 @@ public class AppFXMLController implements Initializable {
     BorderPane appBorderPane;
      
     @FXML protected void handleDataCharacterMenuItem(ActionEvent event) throws IOException {
-        Node comicsNode = FXMLLoader.load(getClass().getResource("/fxml/Character.fxml"));        
-        appBorderPane.setCenter(comicsNode);
+        Node charactersNode = FXMLLoader.load(getClass().getResource("/fxml/Character.fxml"));        
+        appBorderPane.setCenter(charactersNode);
     }
     @FXML protected void handleDataComicsMenuItem(ActionEvent event) throws IOException {
-        Node charactersNode = FXMLLoader.load(getClass().getResource("/fxml/Comics.fxml"));        
-        appBorderPane.setCenter(charactersNode);
+        Node comicsNode = FXMLLoader.load(getClass().getResource("/fxml/Comics.fxml"));        
+        appBorderPane.setCenter(comicsNode);
     }    
     @FXML protected void handleDataCreatorMenuItem(ActionEvent event) throws IOException {
         Node creatorsNode = FXMLLoader.load(getClass().getResource("/fxml/Creator.fxml"));        

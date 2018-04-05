@@ -22,25 +22,28 @@ public class Comics implements Domain {
     private int digitalId;
     private String title;
     private int issueNumber;
-    private String variantDescription;
+    
+    private String variantDescription;    
     private String description;
+    
     private String modified;
     private String isbn;
     private String upc;
-    private String diamondCode;
     private String ean;
     private String issn;
+    private String diamondCode;
     private String format;
     private int pageCount;
     private String resourceURI;
     private Image thumbnail;
     private RemoteDomain series;
 
-    private RemoteDomain[] textObjects;
-    private Url[] urls;
+    
+    private TextObject[] textObjects;
     private RemoteDomain[] variants;
     private RemoteDomain[] collections;
     private RemoteDomain[] collectedIssues;
+    private Url[] urls;
     private Date[] dates;
     private Price[] prices;
     private Image[] images;
@@ -50,7 +53,7 @@ public class Comics implements Domain {
     private RemoteDomainList stories;
     private RemoteDomainList events;
 
-    public Comics(int id, int digitalId, String title, int issueNumber, String variantDescription, String description, String modified, String isbn, String upc, String diamondCode, String ean, String issn, String format, int pageCount, String resourceURI, Image thumbnail, RemoteDomain series, RemoteDomain[] textObjects, Url[] urls, RemoteDomain[] variants, RemoteDomain[] collections, RemoteDomain[] collectedIssues, Date[] dates, Price[] prices, Image[] images, RemoteDomainList creators, RemoteDomainList characters, RemoteDomainList stories, RemoteDomainList events) {
+    public Comics(int id, int digitalId, String title, int issueNumber, String variantDescription, String description, String modified, String isbn, String upc, String diamondCode, String ean, String issn, String format, int pageCount, String resourceURI, Image thumbnail, RemoteDomain series, TextObject[] textObjects, Url[] urls, RemoteDomain[] variants, RemoteDomain[] collections, RemoteDomain[] collectedIssues, Date[] dates, Price[] prices, Image[] images, RemoteDomainList creators, RemoteDomainList characters, RemoteDomainList stories, RemoteDomainList events) {
         this.id = id;
         this.digitalId = digitalId;
         this.title = title;
@@ -219,11 +222,11 @@ public class Comics implements Domain {
         this.series = series;
     }
 
-    public RemoteDomain[] getTextObjects() {
+    public TextObject[] getTextObjects() {
         return textObjects;
     }
 
-    public void setTextObjects(RemoteDomain[] textObjects) {
+    public void setTextObjects(TextObject[] textObjects) {
         this.textObjects = textObjects;
     }
 

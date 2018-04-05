@@ -12,7 +12,8 @@ import pl.praktycznykoder.marvelapi.client.response.ComicsMarvelApiResponse;
  *
  * @author praktycznykoder.pl
  */
-public class ComicsAbstractRepositoryImpl extends AbstractRepository<ComicsMarvelApiResponse> {
+public class ComicsAbstractRepositoryImpl 
+        extends AbstractRepository<ComicsMarvelApiResponse> {
     
     private final String path = "v1/public/comics";
     @Override

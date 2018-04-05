@@ -5,8 +5,22 @@
  */
 package pl.praktycznykoder.marvelapi.javafx;
 
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.ComboBox;
+import javafx.scene.image.WritableImage;
+import javafx.stage.Stage;
+import pl.praktycznykoder.marvelapi.model.domain.remote.RemoteDomain;
+import pl.praktycznykoder.marvelapi.model.services.Service;
 
 /**
  *
@@ -15,6 +29,54 @@ import javafx.fxml.Initializable;
  */
 public abstract class FXMLDetailsController<DomainType> implements Initializable{
     public abstract void initData(DomainType character);
+    public abstract void initData(RemoteDomain remoteDomain);
     protected abstract void initFields();
     protected abstract void getResourceButtonOnAction(ActionEvent event);
+    
+    protected final int EMPTY_ITEMS = 0;
+    protected void disableComboBoxWhereIsEmpty(ComboBox comboBox){
+        if(comboBox.getItems().size()<= EMPTY_ITEMS){
+            comboBox.setDisable(true);
+        }
+    }
+    protected WritableImage getImage(String url){
+        try {
+            BufferedImage image = getService().getImage(url);
+            return SwingFXUtils.toFXImage(image, null);
+        } catch (IOException ex) {
+            Logger.getLogger(CharacterFXMLDetailsController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+    protected void openNewScene(String resource, String titeScene, 
+               RemoteDomain remoteDomain){
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().
+        getResource(resource));     
+        Stage stage = new Stage();
+        Parent root = null;                       
+        try {
+            root = (Parent)fxmlLoader.load();
+        } catch (IOException ex) {
+            Logger.getLogger(CharacterFXMLController.class.getName()).
+                    log(Level.SEVERE, null, ex);
+        }
+
+        Scene scene = new Scene(root);
+        //scene.getStylesheets().add("/styles/Styless.css");
+        stage.setTitle(titeScene +" - "+remoteDomain.getName());
+        stage.setScene(scene);       
+
+        FXMLDetailsController controller = 
+        fxmlLoader.<FXMLDetailsController>getController();
+        controller.initData(remoteDomain);
+        stage.show();        
+    }
+    protected void openNewScene(String resource, String titeScene, 
+            ComboBox<RemoteDomain> comboBox){        
+        final RemoteDomain remoteDomain = comboBox.getSelectionModel().
+                getSelectedItem();
+        openNewScene(resource, titeScene, remoteDomain); 
+    }
+    
+    protected abstract Service getService();
 }
