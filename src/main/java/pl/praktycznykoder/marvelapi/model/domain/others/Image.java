@@ -9,7 +9,7 @@ package pl.praktycznykoder.marvelapi.model.domain.others;
  *
  * @author praktycznykoder.pl
  */
-public class Image implements ImageDetails {
+public class Image {
     
     public String path;
     public String extension;
@@ -22,20 +22,5 @@ public class Image implements ImageDetails {
     @Override
     public String toString() {
         return path+"."+extension;
-    }
-    
-    @Override
-    public String getAddressImageDetails() {
-        return toString();
-    }
-
-    @Override
-    public String getNameImageDetails() {
-        return toString();
-    }
-
-    @Override
-    public String getExtensionImageDetails() {
-        return extension;
-    }    
+    }  
 }

@@ -21,6 +21,11 @@ public class TextObject {
         this.text = text;
     }
 
+    @Override
+    public String toString() {
+        return "type: " + type + " | language: " + language + " | " + text;
+    }
+    
     public String getType() {
         return type;
     }
@@ -44,6 +49,5 @@ public class TextObject {
     public void setText(String text) {
         this.text = text;
     }
-    
     
 }

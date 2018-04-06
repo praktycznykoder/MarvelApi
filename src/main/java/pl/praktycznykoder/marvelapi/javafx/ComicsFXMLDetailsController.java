@@ -10,31 +10,23 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.security.NoSuchAlgorithmException;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
-import javafx.stage.Stage;
 import pl.praktycznykoder.marvelapi.model.domain.Comics;
-import pl.praktycznykoder.marvelapi.model.domain.TextObject;
-import pl.praktycznykoder.marvelapi.model.domain.others.Date;
 import pl.praktycznykoder.marvelapi.model.domain.others.Image;
-import pl.praktycznykoder.marvelapi.model.domain.others.Price;
 import pl.praktycznykoder.marvelapi.model.domain.others.Url;
 import pl.praktycznykoder.marvelapi.model.domain.remote.RemoteDomain;
 import pl.praktycznykoder.marvelapi.model.services.ComicsAbstractServiceImpl;
 import pl.praktycznykoder.marvelapi.model.services.Service;
-import pl.praktycznykoder.marvelapi.model.domain.Character;
-import pl.praktycznykoder.marvelapi.javafx.CharacterFXMLDetailsController;
 
 /**
  *
@@ -64,23 +56,25 @@ public class ComicsFXMLDetailsController extends FXMLDetailsController<Comics> {
     @FXML private TextField pageCountTextField;
     @FXML private TextField isbnTextField;
     @FXML private TextArea variantDescriptionTextArea;
+    @FXML private TextField resourceURITextField;
     @FXML private TextArea descriptionTextArea;
     
-    @FXML private ComboBox<TextObject> textObjectsComboBox;
+    @FXML private TextArea textObjectsTextArea;
+    @FXML private TextArea pricesTextArea;
+    @FXML private TextArea datesTextArea;
+    
     //Comics
     @FXML private ComboBox<RemoteDomain> variantsComboBox;
     //Comics
     @FXML private ComboBox<RemoteDomain> collectionsComboBox;
     //Comics
     @FXML private ComboBox<RemoteDomain> collectedIssuesComboBox;
-    @FXML private ComboBox<Url> urlsComboBox;
-    @FXML private ComboBox<Date> datesComboBox;
-    @FXML private ComboBox<Price> pricesComboBox;
     @FXML private ComboBox<Image> imagesComboBox;
     @FXML private ComboBox<RemoteDomain> creatorsComboBox;
     @FXML private ComboBox<RemoteDomain> charactersComboBox;
     @FXML private ComboBox<RemoteDomain> storiesComboBox;
     @FXML private ComboBox<RemoteDomain> eventsComboBox;
+    @FXML private ComboBox<Url> urlsComboBox;
 
     
         
@@ -98,15 +92,17 @@ public class ComicsFXMLDetailsController extends FXMLDetailsController<Comics> {
         issnTextField.setText(comics.getIssn());
         diamondCodeTextField.setText(comics.getDiamondCode());
         formatTextField.setText(comics.getFormat());
+        resourceURITextField.setText(comics.getResourceURI());
         pageCountTextField.setText(comics.getPageCount()+"");
         isbnTextField.setText(comics.getIsbn());
         
         variantDescriptionTextArea.setText(comics.getVariantDescription());
         descriptionTextArea.setText(comics.getDescription());
         
-        
-        textObjectsComboBox.getItems().addAll(comics.getTextObjects());
-        disableComboBoxWhereIsEmpty(textObjectsComboBox);
+        setArrayObjectToTextArea(comics.getTextObjects(), textObjectsTextArea);
+        setArrayObjectToTextArea(comics.getPrices(), pricesTextArea);
+        setArrayObjectToTextArea(comics.getDates(), datesTextArea);
+                
         variantsComboBox.getItems().addAll(comics.getVariants());
         disableComboBoxWhereIsEmpty(variantsComboBox);
         collectionsComboBox.getItems().addAll(comics.getCollections());
@@ -114,11 +110,7 @@ public class ComicsFXMLDetailsController extends FXMLDetailsController<Comics> {
         collectedIssuesComboBox.getItems().addAll(comics.getCollectedIssues());
         disableComboBoxWhereIsEmpty(collectedIssuesComboBox);
         urlsComboBox.getItems().addAll(comics.getUrls());
-        disableComboBoxWhereIsEmpty(urlsComboBox);
-        datesComboBox.getItems().addAll(comics.getDates());        
-        disableComboBoxWhereIsEmpty(datesComboBox);
-        pricesComboBox.getItems().addAll(comics.getPrices());        
-        disableComboBoxWhereIsEmpty(pricesComboBox);
+        disableComboBoxWhereIsEmpty(urlsComboBox);   
         imagesComboBox.getItems().addAll(comics.getImages());        
         disableComboBoxWhereIsEmpty(imagesComboBox);
         
@@ -144,7 +136,12 @@ public class ComicsFXMLDetailsController extends FXMLDetailsController<Comics> {
     
     @Override
     public void initData(RemoteDomain remoteDomain) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            this.comics = service.getObjectWithUrl(remoteDomain.getResourceURI(), null);
+        } catch (NoSuchAlgorithmException | URISyntaxException | IOException ex) {
+            Logger.getLogger(CharacterFXMLDetailsController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        initFields();
     }
     /**
      *
@@ -187,16 +184,6 @@ public class ComicsFXMLDetailsController extends FXMLDetailsController<Comics> {
                 }
             break;
             
-            case "textObjectsButton":  
-                
-            break;
-            case "datesButton":  
-                
-            break;
-            case "pricesButton":  
-                
-            break;
-            
             case "variantsButton":   
                 openNewScene("/fxml/ComicsDetails.fxml", "Comics - variant",
                         variantsComboBox);
@@ -209,23 +196,20 @@ public class ComicsFXMLDetailsController extends FXMLDetailsController<Comics> {
                 openNewScene("/fxml/ComicsDetails.fxml", "Comics - collected issue",
                         collectedIssuesComboBox);
             break;
-            case "urlsComboBox":   
-                Url url = urlsComboBox.getSelectionModel().getSelectedItem();
-                try {
-                    Desktop.getDesktop().browse(new URI(url.getUrl()));
-                } catch (IOException | URISyntaxException ex) {
-                    Logger.getLogger(CharacterFXMLDetailsController.class.getName()).log(Level.SEVERE, null, ex);
-                }
+            case "urlsButton":   
+                openDesktopBrowserFromComboBoxUrl(urlsComboBox);
             break;
             
             
-            case "imagesButton":  
-                
+            case "imagesButton":
+                Image image = imagesComboBox.getSelectionModel().getSelectedItem();
+                openImageScene(image);
             break;
                 
                 
                 
             default:
+                System.out.println("switch dont have this id");
                 break;
         }
     }

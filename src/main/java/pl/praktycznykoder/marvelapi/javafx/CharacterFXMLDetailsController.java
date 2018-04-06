@@ -41,6 +41,7 @@ public class CharacterFXMLDetailsController extends FXMLDetailsController<Charac
     @FXML private TextField idTextField;
     @FXML private TextField nameTextField;
     @FXML private TextField modyfiedTextField;
+    @FXML private TextField resourceURITextField;
     @FXML private TextArea descriptionTextArea;
     @FXML private ComboBox<Url> urlsComboBox;
     @FXML private ComboBox<RemoteDomain> comicsComboBox;
@@ -60,6 +61,7 @@ public class CharacterFXMLDetailsController extends FXMLDetailsController<Charac
         idTextField.setText(character.getId()+"");
         nameTextField.setText(character.getName());
         modyfiedTextField.setText(character.getModified());
+        resourceURITextField.setText(character.getResourceURI());
         descriptionTextArea.setText(character.getDescription());
         
         urlsComboBox.getItems().addAll(character.getUrls());
@@ -92,11 +94,7 @@ public class CharacterFXMLDetailsController extends FXMLDetailsController<Charac
     public void initData(RemoteDomain remoteDomain) {
         try {
             this.character = service.getObjectWithUrl(remoteDomain.getResourceURI(), null);
-        } catch (NoSuchAlgorithmException ex) {
-            Logger.getLogger(CharacterFXMLDetailsController.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (URISyntaxException ex) {
-            Logger.getLogger(CharacterFXMLDetailsController.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
+        } catch (NoSuchAlgorithmException | URISyntaxException | IOException ex) {
             Logger.getLogger(CharacterFXMLDetailsController.class.getName()).log(Level.SEVERE, null, ex);
         }
         initFields();
@@ -112,13 +110,12 @@ public class CharacterFXMLDetailsController extends FXMLDetailsController<Charac
         String id = btn.getId();
         
         switch (id) {
-            case "urlsButton":
-                System.out.println(urlsComboBox.getSelectionModel().
-                        getSelectedItem());
+            case "urlsButton":                
+                    openDesktopBrowserFromComboBoxUrl(urlsComboBox);
                 break;
             case "comicsButton":
-                System.out.println(comicsComboBox.getSelectionModel().
-                        getSelectedItem());
+                openNewScene("/fxml/ComicstDetails.fxml", "Comics",
+                        comicsComboBox);
                 break;
             case "seriesButton":
                 System.out.println(seriesComboBox.getSelectionModel().
@@ -132,12 +129,6 @@ public class CharacterFXMLDetailsController extends FXMLDetailsController<Charac
                 System.out.println(storiesComboBox.getSelectionModel().
                         getSelectedItem());
                 break;
-            case "resourceURIButton":
-                try {
-                    Desktop.getDesktop().browse(new URI(character.getResourceURI()));
-                } catch (IOException | URISyntaxException ex) {
-                    Logger.getLogger(CharacterFXMLDetailsController.class.getName()).log(Level.SEVERE, null, ex);
-                }   break;
             default:
                 break;
         }

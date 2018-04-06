@@ -42,18 +42,58 @@
             <TextArea fx:id="variantDescriptionTextArea" editable="false" focusTraversable="false" prefHeight="196.0" prefWidth="198.0" wrapText="true" />
          </items>
       </SplitPane>
-      <SplitPane dividerPositions="0.5, 0.5, 0.5, 0.5, 0.5" orientation="VERTICAL" prefHeight="358.0" prefWidth="221.0" GridPane.columnIndex="3">
+      <SplitPane dividerPositions="0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5" orientation="VERTICAL" prefHeight="499.0" prefWidth="234.0" GridPane.columnIndex="3">
          <items>
-            <TitledPane animated="false" text="Text objects">
-               <content>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="40.0" prefWidth="200.0">
+            <TitledPane animated="false" minHeight="-Infinity" text="Urls">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="40.0" prefWidth="200.0">
                      <children>
-                        <Button fx:id="textObjectsButton" layoutX="161.0" mnemonicParsing="false" onAction="#getResourceButtonOnAction" prefHeight="39.0" prefWidth="40.0" text="Go" />
-                        <ComboBox fx:id="textObjectsComboBox" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="39.0" prefWidth="161.0" promptText="Choose Text object" />
+                        <Button fx:id="urlsButton" layoutX="161.0" mnemonicParsing="false" onAction="#getResourceButtonOnAction" prefHeight="39.0" prefWidth="40.0" text="Go" />
+                        <ComboBox fx:id="urlsComboBox" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="39.0" prefWidth="161.0" promptText="Choose URL" />
+                     </children>
+                  </AnchorPane>
+              </content>
+            </TitledPane>
+            <TitledPane animated="false" maxHeight="-Infinity" minHeight="-Infinity" text="Images">
+               <content>
+                  <AnchorPane minHeight="-Infinity" minWidth="0.0" prefHeight="40.0" prefWidth="200.0">
+                     <children>
+                        <Button fx:id="imagesButton" layoutX="161.0" mnemonicParsing="false" onAction="#getResourceButtonOnAction" prefHeight="39.0" prefWidth="40.0" text="Go" />
+                        <ComboBox fx:id="imagesComboBox" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="39.0" prefWidth="161.0" promptText="Choose Image" />
                      </children>
                   </AnchorPane>
                </content>
             </TitledPane>
+            <Label maxHeight="-Infinity" minHeight="-Infinity" prefHeight="25.0" text="Dates" />
+            <TextArea fx:id="datesTextArea" editable="false" focusTraversable="false" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="90.0" prefWidth="230.0" wrapText="true" />
+            <Label maxHeight="-Infinity" minHeight="-Infinity" prefHeight="25.0" text="Prices" />
+            <TextArea fx:id="pricesTextArea" editable="false" focusTraversable="false" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="90.0" prefWidth="230.0" wrapText="true" />
+            <Label maxHeight="-Infinity" minHeight="-Infinity" prefHeight="25.0" text="Text objects" />
+            <TextArea fx:id="textObjectsTextArea" editable="false" focusTraversable="false" prefHeight="160.0" prefWidth="230.0" wrapText="true" />
+         </items>
+      </SplitPane>
+      <SplitPane dividerPositions="0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5" orientation="VERTICAL" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2">
+         <items>
+            <Label maxHeight="-Infinity" minHeight="-Infinity" prefHeight="25.0" text="ISSN" />
+            <TextField fx:id="issnTextField" editable="false" focusTraversable="false" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="33.0" />
+            <Label maxHeight="-Infinity" minHeight="-Infinity" prefHeight="25.0" text="Diamond code" />
+            <TextField fx:id="diamondCodeTextField" editable="false" focusTraversable="false" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="33.0" />
+            <Label maxHeight="-Infinity" minHeight="-Infinity" prefHeight="25.0" text="Format" />
+            <TextField fx:id="formatTextField" editable="false" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="33.0" prefWidth="204.0" />
+            <Label maxHeight="-Infinity" minHeight="-Infinity" prefHeight="25.0" text="Page count" />
+            <TextField fx:id="pageCountTextField" editable="false" focusTraversable="false" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="33.0" />
+            <Label maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" text="Resource URI" />
+            <TextField fx:id="resourceURITextField" editable="false" focusTraversable="false" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="33.0" />
+            <Label maxHeight="-Infinity" minHeight="-Infinity" prefHeight="25.0" text="ISBN" />
+            <TextField fx:id="isbnTextField" editable="false" focusTraversable="false" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="33.0" />
+            <Label maxHeight="-Infinity" minHeight="-Infinity" prefHeight="25.0" text="Series" />
+            <Button fx:id="seriesButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#getResourceButtonOnAction" prefHeight="33.0" prefWidth="200.0" text="Go" />
+            <Label maxHeight="-Infinity" minHeight="-Infinity" prefHeight="25.0" text="Description" />
+            <TextArea fx:id="descriptionTextArea" editable="false" focusTraversable="false" prefHeight="196.0" prefWidth="198.0" wrapText="true" />
+         </items>
+      </SplitPane>
+      <SplitPane dividerPositions="0.5, 0.5, 0.5, 0.5, 0.5, 0.5" orientation="VERTICAL" prefHeight="358.0" prefWidth="221.0" GridPane.columnIndex="4">
+         <items>
             <TitledPane animated="false" text="Variants">
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="40.0" prefWidth="200.0">
@@ -80,70 +120,6 @@
                      <children>
                         <Button fx:id="collectedIssuesButton" layoutX="165.0" layoutY="1.0" mnemonicParsing="false" onAction="#getResourceButtonOnAction" prefHeight="39.0" prefWidth="40.0" text="Go" />
                         <ComboBox fx:id="collectedIssuesComboBox" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="39.0" prefWidth="165.0" promptText="Choose Collected issue" />
-                     </children>
-                  </AnchorPane>
-               </content>
-            </TitledPane>
-            <TitledPane animated="false" text="Urls">
-              <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="40.0" prefWidth="200.0">
-                     <children>
-                        <Button fx:id="urlsButton" layoutX="161.0" mnemonicParsing="false" onAction="#getResourceButtonOnAction" prefHeight="39.0" prefWidth="40.0" text="Go" />
-                        <ComboBox fx:id="urlsComboBox" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="39.0" prefWidth="161.0" promptText="Choose URL" />
-                     </children>
-                  </AnchorPane>
-              </content>
-            </TitledPane>
-            <TitledPane animated="false" text="Dates">
-               <content>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="40.0" prefWidth="200.0">
-                     <children>
-                        <Button fx:id="datesButton" layoutX="161.0" mnemonicParsing="false" onAction="#getResourceButtonOnAction" prefHeight="39.0" prefWidth="40.0" text="Go" />
-                        <ComboBox fx:id="datesComboBox" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="39.0" prefWidth="161.0" promptText="Choose Date" />
-                     </children>
-                  </AnchorPane>
-               </content>
-            </TitledPane>
-         </items>
-      </SplitPane>
-      <SplitPane dividerPositions="0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5" orientation="VERTICAL" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2">
-         <items>
-            <Label maxHeight="-Infinity" minHeight="-Infinity" prefHeight="25.0" text="ISSN" />
-            <TextField fx:id="issnTextField" editable="false" focusTraversable="false" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="33.0" />
-            <Label maxHeight="-Infinity" minHeight="-Infinity" prefHeight="25.0" text="Diamond code" />
-            <TextField fx:id="diamondCodeTextField" editable="false" focusTraversable="false" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="33.0" />
-            <Label maxHeight="-Infinity" minHeight="-Infinity" prefHeight="25.0" text="Format" />
-            <TextField fx:id="formatTextField" editable="false" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="33.0" prefWidth="204.0" />
-            <Label maxHeight="-Infinity" minHeight="-Infinity" prefHeight="25.0" text="Page count" />
-            <TextField fx:id="pageCountTextField" editable="false" focusTraversable="false" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="33.0" />
-            <Label maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" text="Resource URI" />
-            <Button fx:id="resourceURIButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#getResourceButtonOnAction" prefHeight="33.0" prefWidth="200.0" text="Go" />
-            <Label maxHeight="-Infinity" minHeight="-Infinity" prefHeight="25.0" text="ISBN" />
-            <TextField fx:id="isbnTextField" editable="false" focusTraversable="false" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="33.0" />
-            <Label maxHeight="-Infinity" minHeight="-Infinity" prefHeight="25.0" text="Series" />
-            <Button fx:id="seriesButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#getResourceButtonOnAction" prefHeight="33.0" prefWidth="200.0" text="Go" />
-            <Label maxHeight="-Infinity" minHeight="-Infinity" prefHeight="25.0" text="Description" />
-            <TextArea fx:id="descriptionTextArea" editable="false" focusTraversable="false" prefHeight="196.0" prefWidth="198.0" wrapText="true" />
-         </items>
-      </SplitPane>
-      <SplitPane dividerPositions="0.5, 0.5, 0.5, 0.5, 0.5" orientation="VERTICAL" prefHeight="358.0" prefWidth="221.0" GridPane.columnIndex="4">
-         <items>
-            <TitledPane animated="false" text="Prices">
-               <content>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="40.0" prefWidth="200.0">
-                     <children>
-                        <Button fx:id="pricesButton" layoutX="161.0" mnemonicParsing="false" onAction="#getResourceButtonOnAction" prefHeight="39.0" prefWidth="40.0" text="Go" />
-                        <ComboBox fx:id="pricesComboBox" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="39.0" prefWidth="161.0" promptText="Choose Price" />
-                     </children>
-                  </AnchorPane>
-               </content>
-            </TitledPane>
-            <TitledPane animated="false" text="Images">
-               <content>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="40.0" prefWidth="200.0">
-                     <children>
-                        <Button fx:id="imagesButton" layoutX="161.0" mnemonicParsing="false" onAction="#getResourceButtonOnAction" prefHeight="39.0" prefWidth="40.0" text="Go" />
-                        <ComboBox fx:id="imagesComboBox" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="39.0" prefWidth="161.0" promptText="Choose Image" />
                      </children>
                   </AnchorPane>
                </content>

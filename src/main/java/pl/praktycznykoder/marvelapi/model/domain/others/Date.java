@@ -26,9 +26,6 @@ public class Date {
             return "";
         }
     }	
-    public final static String[] FIELD_NAMES = new String[]{
-        "Typ", "Data"};
-
     private String type;
     private String date;
 
@@ -37,6 +34,11 @@ public class Date {
         this.date = date;
     }
 
+    @Override
+    public String toString() {
+        return type + " : " + getDate();
+    }
+    
     public String getType() {
             return type;
     }
@@ -51,11 +53,5 @@ public class Date {
 
     public void setDate(String date) {
             this.date = date;
-    }
-
-    @Override
-    public String toString() {
-            return FIELD_NAMES[0] +": "+ type +", "+ FIELD_NAMES[1] +": "+
-                            getDate();
-    }
+    }   
 }

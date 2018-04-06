@@ -29,7 +29,7 @@
             <Label maxHeight="-Infinity" minHeight="-Infinity" prefHeight="25.0" text="Modyfied" />
             <TextField fx:id="modyfiedTextField" editable="false" focusTraversable="false" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="33.0" />
             <Label maxHeight="-Infinity" minHeight="-Infinity" prefHeight="25.0" text="ResourceURI" />
-            <Button fx:id="resourceURIButton" minHeight="-Infinity" minWidth="200.0" mnemonicParsing="false" onAction="#getResourceButtonOnAction" prefHeight="35.0" text="Go" textAlignment="CENTER" />
+            <TextField fx:id="resourceURITextField" editable="false" focusTraversable="false" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="33.0" />
             <Label maxHeight="-Infinity" minHeight="-Infinity" prefHeight="25.0" text="Description" />
             <TextArea fx:id="descriptionTextArea" editable="false" focusTraversable="false" prefHeight="196.0" prefWidth="198.0" wrapText="true" />
          </items>

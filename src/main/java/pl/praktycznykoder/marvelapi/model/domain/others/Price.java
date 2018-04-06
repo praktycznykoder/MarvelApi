@@ -19,6 +19,11 @@ public class Price {
         this.price = price;
     }
 
+    @Override
+    public String toString() {
+        return type + " : "+ price;
+    }
+
     public String getType() {
         return type;
     }

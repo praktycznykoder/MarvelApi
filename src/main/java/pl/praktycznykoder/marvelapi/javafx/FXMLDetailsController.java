@@ -5,9 +5,11 @@
  */
 package pl.praktycznykoder.marvelapi.javafx;
 
-import java.awt.Image;
+import java.awt.Desktop;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.embed.swing.SwingFXUtils;
@@ -17,8 +19,12 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.TextArea;
 import javafx.scene.image.WritableImage;
 import javafx.stage.Stage;
+import pl.praktycznykoder.marvelapi.model.domain.TextObject;
+import pl.praktycznykoder.marvelapi.model.domain.others.Image;
+import pl.praktycznykoder.marvelapi.model.domain.others.Url;
 import pl.praktycznykoder.marvelapi.model.domain.remote.RemoteDomain;
 import pl.praktycznykoder.marvelapi.model.services.Service;
 
@@ -48,6 +54,31 @@ public abstract class FXMLDetailsController<DomainType> implements Initializable
         }
         return null;
     }
+    protected void openImageScene(Image image){
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().
+        getResource("/fxml/ShowImage.fxml"));     
+        Stage stage = new Stage();
+        Parent root = null;                       
+        try {
+            root = (Parent)fxmlLoader.load();
+        } catch (IOException ex) {
+            Logger.getLogger(ImageFXMLDetailsController.class.getName()).
+                    log(Level.SEVERE, null, ex);
+        }
+        Scene scene = new Scene(root);
+        stage.setTitle("Image" +" - "+image);
+        stage.setScene(scene);       
+        
+        WritableImage fxImage = getImage(image.toString());
+
+        ImageFXMLDetailsController controller = 
+        fxmlLoader.<ImageFXMLDetailsController>getController();
+        
+        controller.setImage(fxImage);        
+        stage.setMaximized(true);
+        stage.show();        
+       
+    }
     protected void openNewScene(String resource, String titeScene, 
                RemoteDomain remoteDomain){
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().
@@ -76,6 +107,26 @@ public abstract class FXMLDetailsController<DomainType> implements Initializable
         final RemoteDomain remoteDomain = comboBox.getSelectionModel().
                 getSelectedItem();
         openNewScene(resource, titeScene, remoteDomain); 
+    }
+    
+    protected void setArrayObjectToTextArea(Object[] objs, TextArea textArea){
+        String tmpText = "";        
+        for (Object textObject : objs) {
+            tmpText += textObject+ "\n";
+        }
+        textArea.setText(tmpText);
+    }
+    
+    protected void openDesktopBrowserWithUrl(Url url){
+        try {
+            Desktop.getDesktop().browse(new URI(url.getUrl()));
+        } catch (IOException | URISyntaxException ex) {
+            Logger.getLogger(CharacterFXMLDetailsController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    protected void openDesktopBrowserFromComboBoxUrl(ComboBox<Url> comboBox){
+        Url url = comboBox.getSelectionModel().getSelectedItem();
+        openDesktopBrowserWithUrl(url);
     }
     
     protected abstract Service getService();
