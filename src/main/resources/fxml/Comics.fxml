@@ -8,22 +8,24 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<SplitPane dividerPositions="0.5, 0.5, 0.5, 0.5" orientation="VERTICAL" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.praktycznykoder.marvelapi.javafx.ComicsFXMLController">
+<SplitPane dividerPositions="0.5, 0.5, 0.5" orientation="VERTICAL" prefHeight="566.0" prefWidth="730.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.praktycznykoder.marvelapi.javafx.ComicsFXMLController">
    <items>
       <GridPane maxHeight="-Infinity" prefHeight="30.0">
          <children>
             <Label style="-fx-font: NORMAL 20 Tahoma;" text="Comics" />
             <Button fx:id="showSelectedButton" mnemonicParsing="false" onAction="#showSelectedButtonAction" text="Show Selected" GridPane.columnIndex="1" />
+            <ComboBox fx:id="orderByComboBox" onAction="#findButtonAction" prefWidth="150.0" GridPane.columnIndex="2" />
          </children>
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
             <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints />
          </columnConstraints>
          <rowConstraints>
             <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
          </rowConstraints>
       </GridPane>
-       <TableView fx:id="tableView">
+       <TableView fx:id="tableView" prefHeight="596.0" prefWidth="720.0">
         <columns>
              <TableColumn editable="false" text="Id">
               <cellValueFactory>
@@ -72,9 +74,27 @@
           </TableColumn>
         </columns>  
        </TableView>
-      <TextField fx:id="name" promptText="Name" />
-      <TextField fx:id="nameStartsWith" promptText="Name starts with" />
-      <Button onAction="#findButtonAction" minWidth="-Infinity" mnemonicParsing="false" prefWidth="200.0" text="Find" />
+      <FlowPane alignment="CENTER" columnHalignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="147.0" prefWidth="720.0">
+         <children>
+            <TextField fx:id="titleTextFieldTextField" prefHeight="25.0" prefWidth="200.0" promptText="Title" />
+            <TextField fx:id="titleStartsWithTextField" prefWidth="200.0" promptText="Title starts with" />
+            <TextField fx:id="startYearTextField" prefHeight="25.0" prefWidth="200.0" promptText="Start year" />
+            <TextField fx:id="issueNumberTextField" prefHeight="25.0" prefWidth="200.0" promptText="Issue number" />
+            <TextField fx:id="diamondCodeTextField" prefHeight="25.0" prefWidth="200.0" promptText="Diamond code" />
+            <ComboBox fx:id="formatComboBox" onAction="#resetFormComboBoxOnAction" prefWidth="200.0" promptText="Format" />
+            <ComboBox fx:id="formatTypeComboBox" onAction="#resetFormComboBoxOnAction" prefWidth="200.0" promptText="Format type" />
+            <ComboBox fx:id="noVariantsComboBox" onAction="#resetFormComboBoxOnAction" prefWidth="200.0" promptText="No variants" />
+            <ComboBox fx:id="dateDescriptorComboBox" onAction="#resetFormComboBoxOnAction" prefWidth="200.0" promptText="Date descriptor" />
+            <TextField fx:id="digitalIdTextField" prefHeight="25.0" prefWidth="200.0" promptText="Digital id" />
+            <TextField fx:id="upcTextField" prefHeight="25.0" prefWidth="200.0" promptText="UPC" />
+            <TextField fx:id="isbnTextField" prefHeight="25.0" prefWidth="200.0" promptText="ISBN" />
+            <TextField fx:id="eanTextField" prefHeight="25.0" prefWidth="200.0" promptText="EAN" />
+            <TextField fx:id="issnTextField" prefHeight="25.0" prefWidth="200.0" promptText="ISSN" />
+            <ComboBox fx:id="hasDigitalIssueComboBox" onAction="#resetFormComboBoxOnAction" prefWidth="200.0" promptText="Has digital issue" />
+            <DatePicker fx:id="modifiedSinceDatePicker" prefWidth="200.0" promptText="Modified since" />
+         </children>
+      </FlowPane>
+      <Button minWidth="-Infinity" mnemonicParsing="false" onAction="#findButtonAction" prefWidth="200.0" text="Find" />
    </items>
    <padding>
       <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />

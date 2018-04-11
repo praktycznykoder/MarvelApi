@@ -11,7 +11,7 @@ import java.util.List;
 
 /**
  *
- * @author User
+ * @author praktycznykoder.pl
  */
 public class Pagging {
     private int offset;    
@@ -54,8 +54,4 @@ public class Pagging {
     public void setTotal(int total) {
         this.total = total;
     }
-
-    
-    
-    
 }

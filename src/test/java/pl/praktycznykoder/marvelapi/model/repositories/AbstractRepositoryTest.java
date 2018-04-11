@@ -16,13 +16,12 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import org.junit.Ignore;
-import pl.praktycznykoder.api.domain.Param;
 import pl.praktycznykoder.marvelapi.client.MarvelApiClient;
 import pl.praktycznykoder.marvelapi.client.response.ComicsMarvelApiResponse;
 
 /**
  *
- * @author User
+ * @author praktycznykoder.pl
  */
 public class AbstractRepositoryTest {
     

@@ -10,6 +10,10 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.layout.BorderPane;
 
+/**
+ *
+ * @author praktycznykoder.pl
+ */
 public class AppFXMLController implements Initializable {
     
     @FXML

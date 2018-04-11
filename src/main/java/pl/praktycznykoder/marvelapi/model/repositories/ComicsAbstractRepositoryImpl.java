@@ -5,7 +5,6 @@
  */
 package pl.praktycznykoder.marvelapi.model.repositories;
 
-import pl.praktycznykoder.marvelapi.client.MarvelApiClient;
 import pl.praktycznykoder.marvelapi.client.response.ComicsMarvelApiResponse;
 
 /**

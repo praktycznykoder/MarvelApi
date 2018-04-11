@@ -15,7 +15,6 @@ import java.io.UnsupportedEncodingException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.security.NoSuchAlgorithmException;
-import java.time.Clock;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -31,7 +30,7 @@ import pl.praktycznykoder.api.domain.Param;
 
 /**
  *
- * @author User
+ * @author praktycznykoder.pl
  */
 public class ApiClientTest {
     

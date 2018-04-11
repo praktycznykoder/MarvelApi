@@ -30,7 +30,7 @@ import pl.praktycznykoder.marvelapi.model.services.Service;
 
 /**
  *
- * @author User
+ * @author praktycznykoder.pl
  */
 public class ComicsFXMLDetailsController extends FXMLDetailsController<Comics> {
 

@@ -26,4 +26,7 @@ public interface Service<OBJECT_TYPE> {
             throws NoSuchAlgorithmException, URISyntaxException,IOException;
     BufferedImage getImage(String url) throws IOException;
     String[] getOrderByParamNodes();
+    String[] getThreeBooleanState();
+    
+    
 }

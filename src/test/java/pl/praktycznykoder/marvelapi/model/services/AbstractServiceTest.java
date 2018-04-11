@@ -22,7 +22,7 @@ import pl.praktycznykoder.marvelapi.model.repositories.Repository;
 
 /**
  *
- * @author User
+ * @author praktycznykoder.pl
  */
 public class AbstractServiceTest {
     

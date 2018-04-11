@@ -21,12 +21,8 @@ import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.apache.http.HttpResponse;
-import org.apache.log4j.chainsaw.Main;
 import pl.praktycznykoder.api.ApiClient;
 import pl.praktycznykoder.api.domain.Param;
-import pl.praktycznykoder.marvelapi.client.response.MarvelApiResponse;
-import pl.praktycznykoder.marvelapi.javafx.MainApp;
-import pl.praktycznykoder.marvelapi.model.domain.Comics;
 
 /**
  *

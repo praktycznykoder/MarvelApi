@@ -49,5 +49,9 @@ public abstract class AbstractService<OBJECT_TYPE> implements Service<OBJECT_TYP
     public BufferedImage getImage(String url) throws IOException {
         return getRepository().getImage(url);
     }
-    
+
+    @Override
+    public String[] getThreeBooleanState() {
+        return new String[]{"true", "false"};
+    }
 }

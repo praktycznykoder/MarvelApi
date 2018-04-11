@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -25,27 +26,40 @@ import pl.praktycznykoder.marvelapi.model.services.Service;
  */
 public abstract class FXMLController implements Initializable{
     
+    protected int orderByIndex = 0;
+    
     protected abstract Service getService();
     protected abstract TableView getTableView();
-    protected abstract ComboBox<String> getOrderByComboBox();
     
     protected abstract List<Param> getParamsFromForm();
     
     protected abstract void showSelectedButtonAction(ActionEvent event);
     
+    @FXML protected ComboBox<String> orderByComboBox;
     @FXML protected void findButtonAction(ActionEvent event){                  
         loadObjectsToTableView(true);
     }
-    
-    protected void addOrdersToOrderByComboBox(String[] orders, int selectedIndex){
-        if(selectedIndex >= orders.length*2){
-            selectedIndex = 0;
+    @FXML protected void resetFormComboBoxOnAction(ActionEvent event){                  
+        ComboBox comboBox = (ComboBox) event.getSource();
+        String tmpString = (String) comboBox.getSelectionModel().getSelectedItem();
+        if(tmpString.isEmpty()){
+            comboBox.getSelectionModel().clearSelection();
         }
-        getOrderByComboBox().getItems().addAll(orders); 
+    }
+    
+    protected List<Param> getNewListParamWithOrderBy(){
+        List<Param> params = new ArrayList();
+        String orderBy = orderByComboBox.getSelectionModel().getSelectedItem();        
+        if(!orderBy.isEmpty()) params.add(new Param("orderBy", orderBy));
+        return params;
+    }
+    
+    protected void addOrdersToOrderByComboBox(String[] orders){
+        orderByComboBox.getItems().addAll(orders); 
         for(String order : orders){
-            getOrderByComboBox().getItems().add("-"+order);
+            orderByComboBox.getItems().add("-"+order);
         }               
-        getOrderByComboBox().getSelectionModel().select(selectedIndex);
+        orderByComboBox.getSelectionModel().select(orderByIndex);
     }
     
     protected void loadObjectsToTableView(final boolean clear){
@@ -70,10 +84,11 @@ public abstract class FXMLController implements Initializable{
             }
         }.run();     
     }
+    protected abstract void beforeInit();
     
     protected void initOrderByComboBox() {        
         String[] orders = getService().getOrderByParamNodes();
-        addOrdersToOrderByComboBox(orders, 3);
+        addOrdersToOrderByComboBox(orders);
     }
     protected void initTableView() {        
        if(getTableView().getItems().isEmpty()){
@@ -83,6 +98,7 @@ public abstract class FXMLController implements Initializable{
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        beforeInit();
         initOrderByComboBox();
         initTableView(); 
     }

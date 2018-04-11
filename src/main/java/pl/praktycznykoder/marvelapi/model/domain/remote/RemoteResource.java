@@ -7,7 +7,7 @@ package pl.praktycznykoder.marvelapi.model.domain.remote;
 
 /**
  *
- * @author User
+ * @author praktycznykoder.pl
  */
 public interface RemoteResource {
     String getType();

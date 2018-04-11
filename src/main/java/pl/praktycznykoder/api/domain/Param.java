@@ -7,7 +7,7 @@ package pl.praktycznykoder.api.domain;
 
 /**
  *
- * @author praktycznykoder
+ * @author praktycznykoder.pl
  */
 public class Param {
     

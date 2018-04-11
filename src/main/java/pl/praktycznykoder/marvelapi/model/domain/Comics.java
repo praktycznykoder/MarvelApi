@@ -18,13 +18,18 @@ import pl.praktycznykoder.marvelapi.model.domain.remote.RemoteDomainList;
  */
 public class Comics implements Domain {
     
-    public static String[] FORM_PARAM_NAMES = new String[]{
-        "format", "formatType", "noVariants", "dateDescriptor", "title", 
-        "titleStartsWith", "startYear", "issueNumber", "diamondCode",
-        "digitalId", "upc", "isbn", "ean", "issn", "hasDigitalIssue"
-    };
     public static String[] ORDERBY_PARAM_NAMES = new String[]{
         "focDate", "onsaleDate", "title", "issueNumber", "modified"
+    };
+    public static String[] FORMAT_PARAM_NAMES = new String[]{
+        "", "comic", "magazine", "trade paperback", "hardcover", "digest",
+        "graphic novel", "digital comic", "infinite comic"
+    };
+    public static String[] FORMAT_TYPE_PARAM_NAMES = new String[]{
+        "", "comic", "collection"
+    };
+    public static String[] DATE_DESCRIPTOR_PARAM_NAMES = new String[]{
+        "", "lastWeek", "thisWeek", "nextWeek", "thisMonth"
     };
     
     private int id;

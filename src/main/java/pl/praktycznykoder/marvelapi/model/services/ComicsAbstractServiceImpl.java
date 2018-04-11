@@ -5,14 +5,13 @@
  */
 package pl.praktycznykoder.marvelapi.model.services;
 
-import pl.praktycznykoder.marvelapi.client.response.MarvelApiResponse;
 import pl.praktycznykoder.marvelapi.model.domain.Comics;
 import pl.praktycznykoder.marvelapi.model.repositories.ComicsAbstractRepositoryImpl;
 import pl.praktycznykoder.marvelapi.model.repositories.Repository;
 
 /**
  *
- * @author User
+ * @author praktycznykoder.pl
  */
 public class ComicsAbstractServiceImpl 
         extends AbstractService<Comics> {
@@ -27,7 +26,19 @@ public class ComicsAbstractServiceImpl
 
     @Override
     public String[] getOrderByParamNodes() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return Comics.ORDERBY_PARAM_NAMES;
+    }
+    
+    public String[] getFormatParamNodes() {
+        return Comics.FORMAT_PARAM_NAMES;
+    }
+    
+    public String[] getFormatTypeParamNodes() {
+        return Comics.FORMAT_TYPE_PARAM_NAMES;
+    }
+    
+    public String[] getDateDescriptorParamNodes() {
+        return Comics.DATE_DESCRIPTOR_PARAM_NAMES;
     }
     
 }

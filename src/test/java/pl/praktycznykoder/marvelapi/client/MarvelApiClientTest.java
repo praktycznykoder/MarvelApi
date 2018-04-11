@@ -10,7 +10,6 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URISyntaxException;
 import java.security.NoSuchAlgorithmException;
-import java.util.Date;
 import java.util.List;
 import java.util.Properties;
 import org.junit.After;
@@ -21,12 +20,10 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 import org.junit.Ignore;
 import pl.praktycznykoder.api.domain.Param;
-import pl.praktycznykoder.marvelapi.client.response.MarvelApiResponse;
-import pl.praktycznykoder.marvelapi.model.domain.Comics;
 
 /**
  *
- * @author User
+ * @author praktycznykoder.pl
  */
 public class MarvelApiClientTest {
     

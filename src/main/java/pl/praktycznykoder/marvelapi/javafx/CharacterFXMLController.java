@@ -11,7 +11,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -21,6 +20,10 @@ import pl.praktycznykoder.marvelapi.model.services.CharacterAbstractServiceImpl;
 import pl.praktycznykoder.marvelapi.model.services.Service;
 import pl.praktycznykoder.marvelapi.model.domain.Character;
 
+/**
+ *
+ * @author praktycznykoder.pl
+ */
 public class CharacterFXMLController extends FXMLController {
     
     private final Service service = new CharacterAbstractServiceImpl();
@@ -29,7 +32,6 @@ public class CharacterFXMLController extends FXMLController {
     @FXML private TextField nameTextField;
     @FXML private TextField nameStartsWithTextField;
     @FXML private DatePicker modifiedSinceDatePicker;
-    @FXML private ComboBox<String> orderByComboBox;
     
     @Override
     protected Service getService() {
@@ -41,19 +43,16 @@ public class CharacterFXMLController extends FXMLController {
     }
     
     @Override
-    protected ComboBox<String> getOrderByComboBox() {
-        return orderByComboBox;
+    protected void beforeInit() {
+        orderByIndex = 3;
     }
     
     @Override
     protected List<Param> getParamsFromForm(){
-        List<Param> params = new ArrayList();
-        String orderBy = orderByComboBox.getSelectionModel().getSelectedItem();        
-        if(!orderBy.isEmpty()) params.add(new Param("orderBy", orderBy));
+        List<Param> params = getNewListParamWithOrderBy();
         
         String name = nameTextField.getText();
         String nameStartsWith = nameStartsWithTextField.getText();
-        System.out.println(modifiedSinceDatePicker.getValue());
         LocalDate modifiedSince = modifiedSinceDatePicker.getValue();
         
         if(!name.isEmpty()) params.add(new Param("name", name));
@@ -65,8 +64,7 @@ public class CharacterFXMLController extends FXMLController {
     }
     
     @Override 
-    @FXML protected void showSelectedButtonAction(ActionEvent event){        
-        
+    @FXML protected void showSelectedButtonAction(ActionEvent event){
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().
             getResource("/fxml/CharacterDetails.fxml"));     
         Stage stage = new Stage();
@@ -76,10 +74,8 @@ public class CharacterFXMLController extends FXMLController {
         } catch (IOException ex) {
             Logger.getLogger(CharacterFXMLController.class.getName()).log(Level.SEVERE, null, ex);
         }
-
         Scene scene = new Scene(root);
         //scene.getStylesheets().add("/styles/Styless.css");        
-        
         final Character character = tableView.getSelectionModel().getSelectedItem(); 
         stage.setTitle("Characters - "+character.getName());
         stage.setScene(scene);       

@@ -20,7 +20,7 @@ import pl.praktycznykoder.marvelapi.model.domain.Character;
 
 /**
  *
- * @author User
+ * @author praktycznykoder.pl
  */
 public class CharacterAbstractServiceImplTest {
     

@@ -7,7 +7,7 @@ package pl.praktycznykoder.api;
 
 /**
  *
- * @author User
+ * @author praktycznykoder.pl
  */
 public class TestJson {
     

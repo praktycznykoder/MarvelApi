@@ -1,17 +1,12 @@
 package pl.praktycznykoder.marvelapi.javafx;
 
-import java.awt.Desktop;
-import java.awt.Image;
-import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.security.NoSuchAlgorithmException;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -19,13 +14,16 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
-import javafx.scene.image.WritableImage;
 import pl.praktycznykoder.marvelapi.model.services.CharacterAbstractServiceImpl;
 import pl.praktycznykoder.marvelapi.model.services.Service;
 import pl.praktycznykoder.marvelapi.model.domain.Character;
 import pl.praktycznykoder.marvelapi.model.domain.others.Url;
 import pl.praktycznykoder.marvelapi.model.domain.remote.RemoteDomain;
 
+/**
+ *
+ * @author praktycznykoder.pl
+ */
 public class CharacterFXMLDetailsController extends FXMLDetailsController<Character> {
     
     private final Service<Character> service = new CharacterAbstractServiceImpl();     
