@@ -41,7 +41,7 @@ public abstract class AbstractService<OBJECT_TYPE> implements Service<OBJECT_TYP
     @Override
     public List<OBJECT_TYPE> getObjects(List<Param> params, int page)
             throws NoSuchAlgorithmException, URISyntaxException,IOException {
-        MarvelApiResponse mar = getRepository().getObjects(params, 0);
+        MarvelApiResponse mar = getRepository().getObjects(params, page);
         return (List<OBJECT_TYPE>) Arrays.asList(mar.getData().getResults());
     }
 

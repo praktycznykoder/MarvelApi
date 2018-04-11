@@ -22,5 +22,10 @@ public class CharacterAbstractServiceImpl extends AbstractService<Character> {
     protected Repository getRepository() {
         return repository;
     }
+
+    @Override
+    public String[] getOrderByParamNodes() {
+        return Character.ORDERBY_PARAM_NAMES;
+    }
     
 }

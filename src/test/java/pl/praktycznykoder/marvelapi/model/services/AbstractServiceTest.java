@@ -92,5 +92,10 @@ public class AbstractServiceTest {
         protected Repository getRepository() {
             return new ComicsAbstractRepositoryImpl();
         }        
+
+        @Override
+        public String[] getOrderByParamNodes() {
+            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        }
     }    
 }

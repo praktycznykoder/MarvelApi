@@ -25,4 +25,5 @@ public interface Service<OBJECT_TYPE> {
     OBJECT_TYPE getObjectWithUrl(String url, List<Param> params)
             throws NoSuchAlgorithmException, URISyntaxException,IOException;
     BufferedImage getImage(String url) throws IOException;
+    String[] getOrderByParamNodes();
 }

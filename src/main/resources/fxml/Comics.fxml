@@ -74,7 +74,7 @@
        </TableView>
       <TextField fx:id="name" promptText="Name" />
       <TextField fx:id="nameStartsWith" promptText="Name starts with" />
-      <Button minWidth="-Infinity" mnemonicParsing="false" prefWidth="200.0" text="Find" />
+      <Button onAction="#findButtonAction" minWidth="-Infinity" mnemonicParsing="false" prefWidth="200.0" text="Find" />
    </items>
    <padding>
       <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />

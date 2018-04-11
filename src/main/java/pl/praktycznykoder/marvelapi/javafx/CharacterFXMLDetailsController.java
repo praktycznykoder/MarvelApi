@@ -114,7 +114,7 @@ public class CharacterFXMLDetailsController extends FXMLDetailsController<Charac
                     openDesktopBrowserFromComboBoxUrl(urlsComboBox);
                 break;
             case "comicsButton":
-                openNewScene("/fxml/ComicstDetails.fxml", "Comics",
+                openNewScene("/fxml/ComicsDetails.fxml", "Comics",
                         comicsComboBox);
                 break;
             case "seriesButton":

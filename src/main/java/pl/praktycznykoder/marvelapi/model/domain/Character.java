@@ -14,6 +14,10 @@ import pl.praktycznykoder.marvelapi.model.domain.remote.RemoteDomainList;
  * @author praktycznykoder.pl
  */
 public class Character implements Domain {
+    
+    public final static String[] ORDERBY_PARAM_NAMES = new String[]{
+        "name", "modified"
+    };
 
     private int id;
     private String name;

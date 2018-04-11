@@ -17,7 +17,16 @@ import pl.praktycznykoder.marvelapi.model.domain.remote.RemoteDomainList;
  * @author praktycznykoder.pl
  */
 public class Comics implements Domain {
-
+    
+    public static String[] FORM_PARAM_NAMES = new String[]{
+        "format", "formatType", "noVariants", "dateDescriptor", "title", 
+        "titleStartsWith", "startYear", "issueNumber", "diamondCode",
+        "digitalId", "upc", "isbn", "ean", "issn", "hasDigitalIssue"
+    };
+    public static String[] ORDERBY_PARAM_NAMES = new String[]{
+        "focDate", "onsaleDate", "title", "issueNumber", "modified"
+    };
+    
     private int id;
     private int digitalId;
     private String title;

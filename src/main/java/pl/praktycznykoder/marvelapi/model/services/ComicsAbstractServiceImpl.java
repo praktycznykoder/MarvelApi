@@ -24,5 +24,10 @@ public class ComicsAbstractServiceImpl
     protected Repository getRepository() {
         return repository;
     }
+
+    @Override
+    public String[] getOrderByParamNodes() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }
