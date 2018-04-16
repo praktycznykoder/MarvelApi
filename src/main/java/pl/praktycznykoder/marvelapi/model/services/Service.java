@@ -10,7 +10,10 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
+import pl.praktycznykoder.api.domain.Pagging;
 import pl.praktycznykoder.api.domain.Param;
+import pl.praktycznykoder.marvelapi.client.response.Data;
+import pl.praktycznykoder.marvelapi.client.response.MarvelApiResponse;
 
 /**
  *
@@ -18,8 +21,12 @@ import pl.praktycznykoder.api.domain.Param;
  * @param <OBJECT_TYPE>
  */
 public interface Service<OBJECT_TYPE> {
-    List<OBJECT_TYPE> getObjects(List<Param> params, int page)
+    Data getData(List<Param> params, int page)
             throws NoSuchAlgorithmException, URISyntaxException,IOException;
+    
+//    Pagging getPaggingFromData(Data data);
+//    List<OBJECT_TYPE> getObjectsFromData(Data data);
+    
     OBJECT_TYPE getObjectWithId(String id)
             throws NoSuchAlgorithmException, URISyntaxException,IOException;
     OBJECT_TYPE getObjectWithUrl(String url, List<Param> params)

@@ -11,7 +11,9 @@ import java.net.URISyntaxException;
 import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
 import java.util.List;
+import pl.praktycznykoder.api.domain.Pagging;
 import pl.praktycznykoder.api.domain.Param;
+import pl.praktycznykoder.marvelapi.client.response.Data;
 import pl.praktycznykoder.marvelapi.client.response.MarvelApiResponse;
 import pl.praktycznykoder.marvelapi.model.repositories.Repository;
 
@@ -39,11 +41,20 @@ public abstract class AbstractService<OBJECT_TYPE> implements Service<OBJECT_TYP
     }
 
     @Override
-    public List<OBJECT_TYPE> getObjects(List<Param> params, int page)
+    public Data getData(List<Param> params, int page)
             throws NoSuchAlgorithmException, URISyntaxException,IOException {
-        MarvelApiResponse mar = getRepository().getObjects(params, page);
-        return (List<OBJECT_TYPE>) Arrays.asList(mar.getData().getResults());
+        return getRepository().getObjects(params, page).getData();
     }
+
+//    @Override
+//    public Pagging getPaggingFromData(Data data) {
+//        return new Pagging(data.getOffset(), data.getLimit(), data.getTotal());
+//    }
+//
+//    @Override
+//    public List<OBJECT_TYPE> getObjectsFromData(Data data) {
+//        return (List<OBJECT_TYPE>) Arrays.asList(data.getResults());
+//    }
 
     @Override
     public BufferedImage getImage(String url) throws IOException {

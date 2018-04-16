@@ -18,11 +18,25 @@ public class Pagging {
     private int limit ;
     private int total;
 
+    public Pagging() {
+    
+    }
+
     public Collection toParams() {
         List<Param> params = new ArrayList<>();
         params.add(new Param("offset", offset+""));
         params.add(new Param("limit", limit+""));
         return params;
+    }
+    
+    public int nextPage(){
+        return 0;
+    }
+    public int previousPage(){
+        return 0;
+    }    
+    public int lastPage(){
+        return 0;
     }
     
     public Pagging(int offset, int limit, int total) {

@@ -169,9 +169,7 @@ public class ComicsFXMLDetailsController extends FXMLDetailsController<Comics> {
             case "eventsButton":   
                 openNewScene("/fxml/EventDetails.fxml", "Event",
                         eventsComboBox);
-            break;
-            
-                    
+            break;                   
             case "seriesButton":   
                 openNewScene("/fxml/EventDetails.fxml", "Series",
                         comics.getSeries());

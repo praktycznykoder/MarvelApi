@@ -15,9 +15,13 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
+import pl.praktycznykoder.api.domain.Pagging;
 import pl.praktycznykoder.api.domain.Param;
+import pl.praktycznykoder.marvelapi.client.response.Data;
 import pl.praktycznykoder.marvelapi.model.services.Service;
 
 /**
@@ -70,8 +74,26 @@ public abstract class FXMLController implements Initializable{
                     if(clear){
                         getTableView().getItems().clear();                        
                     }
-                    getTableView().getItems().addAll(
-                        getService().getObjects( getParamsFromForm(), 0));
+                    
+                    
+                    
+                    
+                    Data data = getService().getData(getParamsFromForm(), 0);                
+                    pagging.setLimit(data.getLimit());
+                    pagging.setOffset(data.getOffset());
+                    pagging.setTotal(data.getTotal());
+                    //add data to table
+                    getTableView().getItems().addAll(data.getResults());
+                    setCurrentPage(1);
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
                 } catch (NoSuchAlgorithmException ex) {
                     org.apache.log4j.Logger.getLogger(
                             ComicsFXMLController.class.getName()).error("GET_ITEMS", ex);
@@ -101,5 +123,73 @@ public abstract class FXMLController implements Initializable{
         beforeInit();
         initOrderByComboBox();
         initTableView(); 
+    }
+    
+    //paggination
+    private Pagging pagging = new Pagging();
+
+    public void setPagging(Pagging pagging) {
+        this.pagging = pagging;
+    }
+    
+    
+    @FXML Button firstButton;
+    @FXML Button previousButton;
+    @FXML Button goCurrentPageButton;
+    @FXML Button nextButton;
+    @FXML Button lastButton;
+    
+    @FXML TextField currentPageTextField;
+    public void setCurrentPage(int currentPage){
+        currentPageTextField.setText(currentPage+"");
+    }
+    public int getCurrentPage(){
+        return Integer.parseInt(currentPageTextField.getText());
+    }
+    @FXML protected void paggingButtonAction(ActionEvent actionEvent){
+        Button button = (Button)actionEvent.getSource();
+        int currentPage =0;
+        switch (button.getId()) {
+            case "firstButton":    
+                currentPage = 1;             
+                firstButton.setDisable(true);
+                previousButton.setDisable(true);
+                nextButton.setDisable(false);
+                lastButton.setDisable(false);
+                break;
+            case "previousButton":          
+                currentPage = getCurrentPage()-1; 
+                if(currentPage<=1){
+                    firstButton.setDisable(true);
+                    previousButton.setDisable(true);
+                } else {
+                    firstButton.setDisable(false);
+                    previousButton.setDisable(false);
+                }
+                nextButton.setDisable(false);
+                lastButton.setDisable(false);  
+                break;
+            case "nextButton":          
+                currentPage = getCurrentPage()+1;
+                firstButton.setDisable(false);
+                previousButton.setDisable(false);
+                if(pagging.lastPage() <= currentPage){
+                    nextButton.setDisable(true);
+                    lastButton.setDisable(true);      
+                }          
+                break;
+            case "lastButton":          
+                currentPage = pagging.lastPage();
+                firstButton.setDisable(false);
+                previousButton.setDisable(false);
+                if(pagging.lastPage() <= currentPage){
+                    nextButton.setDisable(true);
+                    lastButton.setDisable(true);      
+                }          
+                break;
+            default:
+                break;
+        }
+        setCurrentPage(currentPage);        
     }
 }

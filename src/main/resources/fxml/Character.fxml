@@ -8,7 +8,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<SplitPane dividerPositions="0.5, 0.5, 0.5, 0.5, 0.5" orientation="VERTICAL" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.praktycznykoder.marvelapi.javafx.CharacterFXMLController">
+<SplitPane dividerPositions="0.5, 0.5, 0.5, 0.5, 0.5, 0.5" orientation="VERTICAL" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.praktycznykoder.marvelapi.javafx.CharacterFXMLController">
    <items>
       <GridPane maxHeight="-Infinity" prefHeight="30.0">
         <columnConstraints>
@@ -20,7 +20,7 @@
           <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label style="-fx-font: NORMAL 20 Tahoma;" text="Characters"></Label>
+            <Label style="-fx-font: NORMAL 20 Tahoma;" text="Characters" />
             <Button fx:id="showSelectedButton" mnemonicParsing="false" onAction="#showSelectedButtonAction" text="Show Selected" GridPane.columnIndex="1" />
             <ComboBox fx:id="orderByComboBox" onAction="#findButtonAction" prefWidth="150.0" GridPane.columnIndex="2" />
          </children>
@@ -49,6 +49,16 @@
              </TableColumn>
         </columns>  
        </TableView>
+      <FlowPane alignment="CENTER" columnHalignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="45.0" prefWidth="720.0">
+         <children>
+            <Button fx:id="firstButton" mnemonicParsing="false" onAction="#paggingButtonAction" text="&lt;&lt;" />
+            <Button fx:id="previousButton" mnemonicParsing="false" onAction="#paggingButtonAction" text="&lt;" />
+            <TextField fx:id="currentPageTextField" alignment="CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="100.0" text="1" />
+            <Button fx:id="goCurrentPageButton" mnemonicParsing="false" onAction="#paggingButtonAction" text="GO" />
+            <Button fx:id="nextButton" mnemonicParsing="false" onAction="#paggingButtonAction" text="&gt;" />
+            <Button fx:id="lastButton" mnemonicParsing="false" onAction="#paggingButtonAction" text="&gt;&gt;" />
+         </children>
+      </FlowPane>
       <TextField fx:id="nameTextField" promptText="Name" />
       <TextField fx:id="nameStartsWithTextField" promptText="Name starts with" />
       <DatePicker fx:id="modifiedSinceDatePicker" promptText="Modified since Date" />

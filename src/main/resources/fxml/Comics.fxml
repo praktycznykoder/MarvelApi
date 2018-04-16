@@ -8,7 +8,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<SplitPane dividerPositions="0.5, 0.5, 0.5" orientation="VERTICAL" prefHeight="566.0" prefWidth="730.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.praktycznykoder.marvelapi.javafx.ComicsFXMLController">
+<SplitPane dividerPositions="0.5, 0.5, 0.5, 0.5" orientation="VERTICAL" prefHeight="566.0" prefWidth="730.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.praktycznykoder.marvelapi.javafx.ComicsFXMLController">
    <items>
       <GridPane maxHeight="-Infinity" prefHeight="30.0">
          <children>
@@ -74,6 +74,16 @@
           </TableColumn>
         </columns>  
        </TableView>
+      <FlowPane alignment="CENTER" columnHalignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="45.0" prefWidth="720.0">
+         <children>
+            <Button fx:id="firstButton" mnemonicParsing="false" onAction="#findButtonAction" text="&lt;&lt;" />
+            <Button fx:id="previousButton" mnemonicParsing="false" onAction="#findButtonAction" text="&lt;" />
+            <TextField fx:id="currentPageTextField" alignment="CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="100.0" text="1" />
+            <Button fx:id="goCurrentPageButton" mnemonicParsing="false" onAction="#findButtonAction" text="GO" />
+            <Button fx:id="nextButton" mnemonicParsing="false" onAction="#findButtonAction" text="&gt;" />
+            <Button fx:id="lastButton" mnemonicParsing="false" onAction="#findButtonAction" text="&gt;&gt;" />
+         </children>
+      </FlowPane>
       <FlowPane alignment="CENTER" columnHalignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="147.0" prefWidth="720.0">
          <children>
             <TextField fx:id="titleTextFieldTextField" prefHeight="25.0" prefWidth="200.0" promptText="Title" />
