@@ -10,10 +10,8 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
-import pl.praktycznykoder.api.domain.Pagging;
 import pl.praktycznykoder.api.domain.Param;
 import pl.praktycznykoder.marvelapi.client.response.Data;
-import pl.praktycznykoder.marvelapi.client.response.MarvelApiResponse;
 
 /**
  *

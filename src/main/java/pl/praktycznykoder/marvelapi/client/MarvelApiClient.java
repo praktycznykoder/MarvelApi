@@ -119,7 +119,7 @@ public class MarvelApiClient extends ApiClient{
     private List<Param> createPaggingParam(int page) throws UnsupportedEncodingException, NoSuchAlgorithmException {
         List<Param> pagging = new ArrayList();
         pagging.add(new Param("limit", RESULT_LIMIT+""));
-        pagging.add(new Param("offset", (page*RESULT_LIMIT)+""));
+        pagging.add(new Param("offset", ((page-1)*RESULT_LIMIT)+""));
         return pagging;
     }
     public String getResponseFromMarvelApi(

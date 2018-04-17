@@ -12,14 +12,18 @@ import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import pl.praktycznykoder.api.domain.Pagging;
 import pl.praktycznykoder.api.domain.Param;
 import pl.praktycznykoder.marvelapi.client.response.Data;
 import pl.praktycznykoder.marvelapi.model.services.Service;
@@ -31,7 +35,10 @@ import pl.praktycznykoder.marvelapi.model.services.Service;
 public abstract class FXMLController implements Initializable{
     
     protected int orderByIndex = 0;
+    private int currentPage = 0;
+    private int lastPage = 0;
     
+    protected abstract void beforeInit();
     protected abstract Service getService();
     protected abstract TableView getTableView();
     
@@ -41,7 +48,7 @@ public abstract class FXMLController implements Initializable{
     
     @FXML protected ComboBox<String> orderByComboBox;
     @FXML protected void findButtonAction(ActionEvent event){                  
-        loadObjectsToTableView(true);
+        loadObjectsToTableView(true, 1);
     }
     @FXML protected void resetFormComboBoxOnAction(ActionEvent event){                  
         ComboBox comboBox = (ComboBox) event.getSource();
@@ -49,6 +56,48 @@ public abstract class FXMLController implements Initializable{
         if(tmpString.isEmpty()){
             comboBox.getSelectionModel().clearSelection();
         }
+    }
+        
+    @FXML Button firstButton;
+    @FXML Button previousButton;
+    @FXML Button goCurrentPageButton;
+    @FXML Button nextButton;
+    @FXML Button lastButton;
+    
+    @FXML Label lastPageLabel;
+    public void setTextLastPageLabel(int lastPageLabel) {
+        this.lastPageLabel.setText(lastPageLabel+"");
+    }
+    @FXML TextField currentPageTextField;
+    public void setCurrentPageTextField(int currentPage){
+        currentPageTextField.setText(currentPage+"");
+    }
+    @FXML protected void paggingButtonAction(ActionEvent actionEvent){
+        String id = ((Button)actionEvent.getSource()).getId();
+        switch (id) {
+            case "firstButton":    
+                loadObjectsToTableView(true, 1);
+                break;
+            case "previousButton":          
+                loadObjectsToTableView(true, currentPage-1); 
+                break;
+            case "nextButton":   
+                loadObjectsToTableView(true, currentPage+1); 
+                break;
+            case "lastButton": 
+                loadObjectsToTableView(true, lastPage); 
+                break;
+            default:
+                break;
+        }        
+    }
+    
+    protected void showAlert(String titleText, String headerText, String contentText){
+        Alert alert = new Alert(AlertType.INFORMATION);
+        alert.setTitle(titleText);
+        alert.setHeaderText(headerText);
+        alert.setContentText(contentText);
+        alert.showAndWait();
     }
     
     protected List<Param> getNewListParamWithOrderBy(){
@@ -65,48 +114,76 @@ public abstract class FXMLController implements Initializable{
         }               
         orderByComboBox.getSelectionModel().select(orderByIndex);
     }
-    
-    protected void loadObjectsToTableView(final boolean clear){
+    protected void clearTableView(boolean clear){
+        if(clear){
+            getTableView().getItems().clear();            
+        }
+    }
+    protected void refreshTableView(){
+        getTableView().refresh();
+    }
+    protected void addRowsToTableView(Data data){
+        if(data.getCount() >0){
+            getTableView().getItems().addAll(data.getResults());
+        } else {
+            showAlert("Information", null, "NO RESULTS");
+        }
+    }    
+    protected void initPagging(Data data){
+        currentPage = data.countCurrentPage();
+        lastPage = data.countLastPage();
+        if(data.getCount() == 0){
+            nextButton.setDisable(false);
+            lastButton.setDisable(false);      
+            nextButton.setDisable(false);
+            lastButton.setDisable(false);
+            return;
+        }
+        if(currentPage >= lastPage){             
+            nextButton.setDisable(true);
+            lastButton.setDisable(true);
+        } else {        
+            nextButton.setDisable(false);
+            lastButton.setDisable(false);
+        }   
+        if(currentPage > 1){        
+            firstButton.setDisable(false);
+            previousButton.setDisable(false);
+        } else { 
+            firstButton.setDisable(true);
+            previousButton.setDisable(true);
+        }
+        setTextLastPageLabel(lastPage);
+        setCurrentPageTextField(currentPage);
+    }
+    protected Data getDataFromService(int page){
+        try {
+            return getService().getData(getParamsFromForm(), page);
+        } catch (NoSuchAlgorithmException ex) {
+            Logger.getLogger(FXMLController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (URISyntaxException ex) {
+            Logger.getLogger(FXMLController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(FXMLController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+    protected void loadObjectsToTableView(final boolean clear, final int page){
         new Runnable() {
             @Override
-            public void run() {          
-                try {
-                    if(clear){
-                        getTableView().getItems().clear();                        
-                    }
-                    
-                    
-                    
-                    
-                    Data data = getService().getData(getParamsFromForm(), 0);                
-                    pagging.setLimit(data.getLimit());
-                    pagging.setOffset(data.getOffset());
-                    pagging.setTotal(data.getTotal());
-                    //add data to table
-                    getTableView().getItems().addAll(data.getResults());
-                    setCurrentPage(1);
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                } catch (NoSuchAlgorithmException ex) {
-                    org.apache.log4j.Logger.getLogger(
-                            ComicsFXMLController.class.getName()).error("GET_ITEMS", ex);
-                } catch (URISyntaxException ex) {
-                    org.apache.log4j.Logger.getLogger(ComicsFXMLController.class.getName()).error("GET_ITEMS", ex);
-                } catch (IOException ex) {
-                    org.apache.log4j.Logger.getLogger(ComicsFXMLController.class.getName()).error("GET_ITEMS", ex);
+            public void run() {     
+                clearTableView(clear);
+                Data data = getDataFromService(page);
+                if(data != null ){                    
+                    addRowsToTableView(data);
+                    initPagging(data);
+                    refreshTableView();
+                } else {
+                    showAlert("Information", "CONNECTION ERROR", "CHECK LOG FILE");
                 }
-                getTableView().refresh();
             }
         }.run();     
     }
-    protected abstract void beforeInit();
     
     protected void initOrderByComboBox() {        
         String[] orders = getService().getOrderByParamNodes();
@@ -114,7 +191,7 @@ public abstract class FXMLController implements Initializable{
     }
     protected void initTableView() {        
        if(getTableView().getItems().isEmpty()){
-            loadObjectsToTableView(false);
+            loadObjectsToTableView(false, 1);
         }
     }
     
@@ -123,73 +200,5 @@ public abstract class FXMLController implements Initializable{
         beforeInit();
         initOrderByComboBox();
         initTableView(); 
-    }
-    
-    //paggination
-    private Pagging pagging = new Pagging();
-
-    public void setPagging(Pagging pagging) {
-        this.pagging = pagging;
-    }
-    
-    
-    @FXML Button firstButton;
-    @FXML Button previousButton;
-    @FXML Button goCurrentPageButton;
-    @FXML Button nextButton;
-    @FXML Button lastButton;
-    
-    @FXML TextField currentPageTextField;
-    public void setCurrentPage(int currentPage){
-        currentPageTextField.setText(currentPage+"");
-    }
-    public int getCurrentPage(){
-        return Integer.parseInt(currentPageTextField.getText());
-    }
-    @FXML protected void paggingButtonAction(ActionEvent actionEvent){
-        Button button = (Button)actionEvent.getSource();
-        int currentPage =0;
-        switch (button.getId()) {
-            case "firstButton":    
-                currentPage = 1;             
-                firstButton.setDisable(true);
-                previousButton.setDisable(true);
-                nextButton.setDisable(false);
-                lastButton.setDisable(false);
-                break;
-            case "previousButton":          
-                currentPage = getCurrentPage()-1; 
-                if(currentPage<=1){
-                    firstButton.setDisable(true);
-                    previousButton.setDisable(true);
-                } else {
-                    firstButton.setDisable(false);
-                    previousButton.setDisable(false);
-                }
-                nextButton.setDisable(false);
-                lastButton.setDisable(false);  
-                break;
-            case "nextButton":          
-                currentPage = getCurrentPage()+1;
-                firstButton.setDisable(false);
-                previousButton.setDisable(false);
-                if(pagging.lastPage() <= currentPage){
-                    nextButton.setDisable(true);
-                    lastButton.setDisable(true);      
-                }          
-                break;
-            case "lastButton":          
-                currentPage = pagging.lastPage();
-                firstButton.setDisable(false);
-                previousButton.setDisable(false);
-                if(pagging.lastPage() <= currentPage){
-                    nextButton.setDisable(true);
-                    lastButton.setDisable(true);      
-                }          
-                break;
-            default:
-                break;
-        }
-        setCurrentPage(currentPage);        
     }
 }

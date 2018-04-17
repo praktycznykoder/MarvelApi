@@ -63,10 +63,6 @@ public class ApiClient {
         }
         return uriBuilder.build();
     }
-    //  HttpEntity entity = response.getEntity();
-    //  InputStream content =  entity.getContent();
-    //  convertStreamContentToString(content)
-
     /**
      *
      * @param is

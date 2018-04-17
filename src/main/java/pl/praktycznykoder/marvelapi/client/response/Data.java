@@ -19,6 +19,13 @@ public class Data<Type> {
     private Type[] results;
     private int count;
     private int limit;
+    
+    public int countCurrentPage(){
+        return getOffset()/getLimit()+1;
+    }
+    public int countLastPage(){
+        return getTotal()/getLimit()+1;
+    }
 
     public Data(int offset, int total, Type[] results, int count, int limit) {
         this.offset = offset;

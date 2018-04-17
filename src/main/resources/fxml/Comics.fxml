@@ -76,12 +76,14 @@
        </TableView>
       <FlowPane alignment="CENTER" columnHalignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="45.0" prefWidth="720.0">
          <children>
-            <Button fx:id="firstButton" mnemonicParsing="false" onAction="#findButtonAction" text="&lt;&lt;" />
-            <Button fx:id="previousButton" mnemonicParsing="false" onAction="#findButtonAction" text="&lt;" />
-            <TextField fx:id="currentPageTextField" alignment="CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="100.0" text="1" />
-            <Button fx:id="goCurrentPageButton" mnemonicParsing="false" onAction="#findButtonAction" text="GO" />
-            <Button fx:id="nextButton" mnemonicParsing="false" onAction="#findButtonAction" text="&gt;" />
-            <Button fx:id="lastButton" mnemonicParsing="false" onAction="#findButtonAction" text="&gt;&gt;" />
+            <Button fx:id="firstButton" mnemonicParsing="false" onAction="#paggingButtonAction" text="&lt;&lt;" />
+            <Button fx:id="previousButton" mnemonicParsing="false" onAction="#paggingButtonAction" text="&lt;" />
+            <TextField fx:id="currentPageTextField" alignment="CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="40.0" text="0" />
+            <Button fx:id="goCurrentPageButton" mnemonicParsing="false" onAction="#paggingButtonAction" text="GO" />
+            <Label alignment="CENTER" maxHeight="-Infinity" minWidth="-Infinity" prefWidth="20.0" text="/" />
+            <Label fx:id="lastPageLabel" alignment="CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="40.0" text="0" textAlignment="CENTER" />
+            <Button fx:id="nextButton" mnemonicParsing="false" onAction="#paggingButtonAction" text="&gt;" />
+            <Button fx:id="lastButton" mnemonicParsing="false" onAction="#paggingButtonAction" text="&gt;&gt;" />
          </children>
       </FlowPane>
       <FlowPane alignment="CENTER" columnHalignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="147.0" prefWidth="720.0">
