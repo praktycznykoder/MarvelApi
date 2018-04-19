@@ -52,10 +52,9 @@ public abstract class FXMLController implements Initializable{
     }
     @FXML protected void resetFormComboBoxOnAction(ActionEvent event){                  
         ComboBox comboBox = (ComboBox) event.getSource();
-        String tmpString = (String) comboBox.getSelectionModel().getSelectedItem();
-        if(tmpString.isEmpty()){
+        if(comboBox.getSelectionModel().getSelectedIndex() == 0){            
             comboBox.getSelectionModel().clearSelection();
-        }
+        };
     }
         
     @FXML Button firstButton;
@@ -72,6 +71,31 @@ public abstract class FXMLController implements Initializable{
     public void setCurrentPageTextField(int currentPage){
         currentPageTextField.setText(currentPage+"");
     }
+
+    public boolean initCurrentPageInputWhenIsValid() {
+        setCurrentPageTextField(currentPage);
+        String textTmp = currentPageTextField.getText();
+        int pageFromTextField;
+        try {
+            pageFromTextField = Integer.parseInt(textTmp);
+            
+            if(pageFromTextField == currentPage){
+                showAlert("Bad page input", null, "Input is current page");
+                return false;
+            } else if(pageFromTextField < 1 || pageFromTextField > lastPage){                
+                showAlert(
+                    "Bad page input", null, "Input must be betwen 1 or "+lastPage);
+                return false;
+            }
+        } catch (NumberFormatException e) {            
+            showAlert("Bad Input", null, "Input: \""+textTmp+"\" is not integer number (1-"+lastPage+")");
+            Logger.getLogger(FXMLController.class.getName()).log(Level.SEVERE, null, e);
+            return false;
+        }
+        currentPage = pageFromTextField;
+        return true;
+    }
+    
     @FXML protected void paggingButtonAction(ActionEvent actionEvent){
         String id = ((Button)actionEvent.getSource()).getId();
         switch (id) {
@@ -86,6 +110,11 @@ public abstract class FXMLController implements Initializable{
                 break;
             case "lastButton": 
                 loadObjectsToTableView(true, lastPage); 
+                break;
+            case "goCurrentPageButton":
+                if(initCurrentPageInputWhenIsValid()){
+                    loadObjectsToTableView(true, currentPage);                    
+                };              
                 break;
             default:
                 break;

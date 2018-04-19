@@ -18,6 +18,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.WritableImage;
@@ -45,6 +47,20 @@ public abstract class FXMLDetailsController<DomainType> implements Initializable
             comboBox.setDisable(true);
         }
     }
+    protected void disableButtonWhereIsEmpty(Button button, RemoteDomain value){
+        if(value == null){
+            button.setDisable(true);
+        }
+    }
+    
+    protected void showAlert(String titleText, String headerText, String contentText){
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(titleText);
+        alert.setHeaderText(headerText);
+        alert.setContentText(contentText);
+        alert.showAndWait();
+    }
+    
     protected WritableImage getImage(String url){
         try {
             BufferedImage image = getService().getImage(url);
@@ -104,6 +120,10 @@ public abstract class FXMLDetailsController<DomainType> implements Initializable
     }
     protected void openNewScene(String resource, String titeScene, 
             ComboBox<RemoteDomain> comboBox){        
+        if(comboBox.getItems().isEmpty()){
+            showAlert(titeScene, null, titeScene+" is Empty");
+            return;
+        }
         final RemoteDomain remoteDomain = comboBox.getSelectionModel().
                 getSelectedItem();
         openNewScene(resource, titeScene, remoteDomain); 

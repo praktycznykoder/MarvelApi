@@ -13,6 +13,7 @@ import java.io.InputStream;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.Scanner;
 import java.util.logging.Level;
@@ -70,7 +71,7 @@ public class ApiClient {
      */
     public String convertStreamContentToString(InputStream is) {
         @SuppressWarnings("resource")
-        Scanner s = new Scanner(is).useDelimiter("\\A");
+        Scanner s = new Scanner(is,"UTF-8").useDelimiter("\\A");
         return s.hasNext() ? s.next() : "";
     }
     

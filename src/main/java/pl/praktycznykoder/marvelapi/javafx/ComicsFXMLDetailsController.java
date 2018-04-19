@@ -75,8 +75,8 @@ public class ComicsFXMLDetailsController extends FXMLDetailsController<Comics> {
     @FXML private ComboBox<RemoteDomain> storiesComboBox;
     @FXML private ComboBox<RemoteDomain> eventsComboBox;
     @FXML private ComboBox<Url> urlsComboBox;
-
     
+    @FXML private Button seriesButton;
         
     @Override
     protected void initFields() {
@@ -125,6 +125,9 @@ public class ComicsFXMLDetailsController extends FXMLDetailsController<Comics> {
         
         eventsComboBox.getItems().addAll(comics.getEvents().getItems());
         disableComboBoxWhereIsEmpty(eventsComboBox);
+        
+        disableButtonWhereIsEmpty(seriesButton, comics.getSeries());
+        
         
     }
     
