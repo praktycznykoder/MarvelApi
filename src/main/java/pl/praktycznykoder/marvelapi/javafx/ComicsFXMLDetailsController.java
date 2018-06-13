@@ -22,9 +22,9 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import pl.praktycznykoder.marvelapi.model.domain.Comics;
-import pl.praktycznykoder.marvelapi.model.domain.others.Image;
-import pl.praktycznykoder.marvelapi.model.domain.others.Url;
-import pl.praktycznykoder.marvelapi.model.domain.remote.RemoteDomain;
+import pl.praktycznykoder.marvelapi.model.domain.basic.Image;
+import pl.praktycznykoder.marvelapi.model.domain.basic.Url;
+import pl.praktycznykoder.marvelapi.model.domain.wraper.DomainWraper;
 import pl.praktycznykoder.marvelapi.model.services.ComicsAbstractServiceImpl;
 import pl.praktycznykoder.marvelapi.model.services.Service;
 
@@ -64,16 +64,16 @@ public class ComicsFXMLDetailsController extends FXMLDetailsController<Comics> {
     @FXML private TextArea datesTextArea;
     
     //Comics
-    @FXML private ComboBox<RemoteDomain> variantsComboBox;
+    @FXML private ComboBox<DomainWraper> variantsComboBox;
     //Comics
-    @FXML private ComboBox<RemoteDomain> collectionsComboBox;
+    @FXML private ComboBox<DomainWraper> collectionsComboBox;
     //Comics
-    @FXML private ComboBox<RemoteDomain> collectedIssuesComboBox;
+    @FXML private ComboBox<DomainWraper> collectedIssuesComboBox;
     @FXML private ComboBox<Image> imagesComboBox;
-    @FXML private ComboBox<RemoteDomain> creatorsComboBox;
-    @FXML private ComboBox<RemoteDomain> charactersComboBox;
-    @FXML private ComboBox<RemoteDomain> storiesComboBox;
-    @FXML private ComboBox<RemoteDomain> eventsComboBox;
+    @FXML private ComboBox<DomainWraper> creatorsComboBox;
+    @FXML private ComboBox<DomainWraper> charactersComboBox;
+    @FXML private ComboBox<DomainWraper> storiesComboBox;
+    @FXML private ComboBox<DomainWraper> eventsComboBox;
     @FXML private ComboBox<Url> urlsComboBox;
     
     @FXML private Button seriesButton;
@@ -138,7 +138,7 @@ public class ComicsFXMLDetailsController extends FXMLDetailsController<Comics> {
     }
     
     @Override
-    public void initData(RemoteDomain remoteDomain) {
+    public void initData(DomainWraper remoteDomain) {
         try {
             this.comics = service.getObjectWithUrl(remoteDomain.getResourceURI(), null);
         } catch (NoSuchAlgorithmException | URISyntaxException | IOException ex) {
@@ -174,7 +174,7 @@ public class ComicsFXMLDetailsController extends FXMLDetailsController<Comics> {
                         eventsComboBox);
             break;                   
             case "seriesButton":   
-                openNewScene("/fxml/EventDetails.fxml", "Series",
+                openNewScene("/fxml/SeriesDetails.fxml", "Series",
                         comics.getSeries());
             break;            
             case "resourceURIButton":

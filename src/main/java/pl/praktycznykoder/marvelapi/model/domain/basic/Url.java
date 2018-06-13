@@ -3,15 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pl.praktycznykoder.marvelapi.model.domain.others;
+package pl.praktycznykoder.marvelapi.model.domain.basic;
 
-import pl.praktycznykoder.marvelapi.model.domain.remote.RemoteResource;
+import pl.praktycznykoder.marvelapi.model.domain.wraper.ResourceWraper;
 
 /**
  *
  * @author praktycznykoder.pl
  */
-public class Url implements RemoteResource{
+public class Url implements ResourceWraper{
 
     private String type;	
     private String url;

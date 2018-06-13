@@ -17,8 +17,8 @@ import javafx.scene.image.ImageView;
 import pl.praktycznykoder.marvelapi.model.services.CharacterAbstractServiceImpl;
 import pl.praktycznykoder.marvelapi.model.services.Service;
 import pl.praktycznykoder.marvelapi.model.domain.Character;
-import pl.praktycznykoder.marvelapi.model.domain.others.Url;
-import pl.praktycznykoder.marvelapi.model.domain.remote.RemoteDomain;
+import pl.praktycznykoder.marvelapi.model.domain.basic.Url;
+import pl.praktycznykoder.marvelapi.model.domain.wraper.DomainWraper;
 
 /**
  *
@@ -42,10 +42,10 @@ public class CharacterFXMLDetailsController extends FXMLDetailsController<Charac
     @FXML private TextField resourceURITextField;
     @FXML private TextArea descriptionTextArea;
     @FXML private ComboBox<Url> urlsComboBox;
-    @FXML private ComboBox<RemoteDomain> comicsComboBox;
-    @FXML private ComboBox<RemoteDomain> seriesComboBox;
-    @FXML private ComboBox<RemoteDomain> eventsComboBox;
-    @FXML private ComboBox<RemoteDomain> storiesComboBox;
+    @FXML private ComboBox<DomainWraper> comicsComboBox;
+    @FXML private ComboBox<DomainWraper> seriesComboBox;
+    @FXML private ComboBox<DomainWraper> eventsComboBox;
+    @FXML private ComboBox<DomainWraper> storiesComboBox;
     
     /**
      *
@@ -89,7 +89,7 @@ public class CharacterFXMLDetailsController extends FXMLDetailsController<Charac
     }
  
     @Override
-    public void initData(RemoteDomain remoteDomain) {
+    public void initData(DomainWraper remoteDomain) {
         try {
             this.character = service.getObjectWithUrl(remoteDomain.getResourceURI(), null);
         } catch (NoSuchAlgorithmException | URISyntaxException | IOException ex) {

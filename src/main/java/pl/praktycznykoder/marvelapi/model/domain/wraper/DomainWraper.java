@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pl.praktycznykoder.marvelapi.model.domain.remote;
+package pl.praktycznykoder.marvelapi.model.domain.wraper;
 
 /**
  * @author praktycznykoder.pl
@@ -11,14 +11,14 @@ package pl.praktycznykoder.marvelapi.model.domain.remote;
  * podrzędnym oraz umożliwia pobranie go, dzięki zawartemu adresowi Url
  * prowadzącego do danego zasobu
  */
-public class RemoteDomain implements RemoteResource{
+public class DomainWraper implements ResourceWraper{
     
     private String name;
     private String type;
     private String role;
     private String resourceURI;
 
-    public RemoteDomain(String name, String type, String role, String resourceURI) {
+    public DomainWraper(String name, String type, String role, String resourceURI) {
         this.name = name;
         this.type = type;
         this.role = role;
@@ -32,7 +32,7 @@ public class RemoteDomain implements RemoteResource{
 
 //    @Override
 //    public String toString() {
-//        return "RemoteDomain{" + "name=" + name + ", type=" + type + ", role=" + role + ", resourceURI=" + resourceURI + '}';
+//        return "DomainWraper{" + "name=" + name + ", type=" + type + ", role=" + role + ", resourceURI=" + resourceURI + '}';
 //    }
 //    
     

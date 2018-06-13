@@ -3,21 +3,21 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pl.praktycznykoder.marvelapi.model.domain.remote;
+package pl.praktycznykoder.marvelapi.model.domain.wraper;
 
 /**
  * @author praktycznykoder.pl
  * Służy do pobrania listy obiektów 
- * @see pl.praktycznykoder.marvelapi.model.domain.remote.RemoteDomain
+ * @see pl.praktycznykoder.marvelapi.model.domain.wraper.DomainWraper
  */
-public class RemoteDomainList {
+public class DomainListWraper {
     
     private String avaliable;
     private String collectionURI;
-    private RemoteDomain[] items;
+    private DomainWraper[] items;
     private String returned;
 
-    public RemoteDomainList(String avaliable, String collectionURI, RemoteDomain[] items, String returned) {
+    public DomainListWraper(String avaliable, String collectionURI, DomainWraper[] items, String returned) {
         this.avaliable = avaliable;
         this.collectionURI = collectionURI;
         this.items = items;
@@ -36,10 +36,10 @@ public class RemoteDomainList {
     public void setCollectionURI(String collectionURI) {
         this.collectionURI = collectionURI;
     }
-    public RemoteDomain[] getItems() {
+    public DomainWraper[] getItems() {
         return items;
     }
-    public void setItems(RemoteDomain[] items) {
+    public void setItems(DomainWraper[] items) {
         this.items = items;
     }
     public String getReturned() {

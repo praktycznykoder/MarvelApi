@@ -5,16 +5,20 @@
  */
 package pl.praktycznykoder.marvelapi.model.domain;
 
-import pl.praktycznykoder.marvelapi.model.domain.others.Url;
-import pl.praktycznykoder.marvelapi.model.domain.others.Image;
-import pl.praktycznykoder.marvelapi.model.domain.remote.RemoteDomainList;
+import pl.praktycznykoder.marvelapi.model.domain.basic.Url;
+import pl.praktycznykoder.marvelapi.model.domain.basic.Image;
+import pl.praktycznykoder.marvelapi.model.domain.wraper.DomainListWraper;
 
 /**
  *
  * @author praktycznykoder.pl
  */
 public class Creator implements Domain {
-
+    
+    public final static String[] ORDERBY_PARAM_NAMES = {
+        "lastName", "firstName", "middleName", "suffix",
+        "modifiede"
+    };
     private int id;
     private String firstName;
     private String middleName;
@@ -25,12 +29,12 @@ public class Creator implements Domain {
     private String resourceURI;
     private Image thumbnail;
     private Url[] urls;
-    private RemoteDomainList comics;
-    private RemoteDomainList stories;
-    private RemoteDomainList series;
-    private RemoteDomainList events;
+    private DomainListWraper comics;
+    private DomainListWraper stories;
+    private DomainListWraper series;
+    private DomainListWraper events;
 
-    public Creator(int id, String firstName, String middleName, String lastName, String suffix, String fullName, String modified, String resourceURI, Image thumbnail, Url[] urls, RemoteDomainList comics, RemoteDomainList stories, RemoteDomainList series, RemoteDomainList events) {
+    public Creator(int id, String firstName, String middleName, String lastName, String suffix, String fullName, String modified, String resourceURI, Image thumbnail, Url[] urls, DomainListWraper comics, DomainListWraper stories, DomainListWraper series, DomainListWraper events) {
         this.id = id;
         this.firstName = firstName;
         this.middleName = middleName;
@@ -128,35 +132,35 @@ public class Creator implements Domain {
         this.urls = urls;
     }
 
-    public RemoteDomainList getComics() {
+    public DomainListWraper getComics() {
         return comics;
     }
 
-    public void setComics(RemoteDomainList comics) {
+    public void setComics(DomainListWraper comics) {
         this.comics = comics;
     }
 
-    public RemoteDomainList getStories() {
+    public DomainListWraper getStories() {
         return stories;
     }
 
-    public void setStories(RemoteDomainList stories) {
+    public void setStories(DomainListWraper stories) {
         this.stories = stories;
     }
 
-    public RemoteDomainList getSeries() {
+    public DomainListWraper getSeries() {
         return series;
     }
 
-    public void setSeries(RemoteDomainList series) {
+    public void setSeries(DomainListWraper series) {
         this.series = series;
     }
 
-    public RemoteDomainList getEvents() {
+    public DomainListWraper getEvents() {
         return events;
     }
 
-    public void setEvents(RemoteDomainList events) {
+    public void setEvents(DomainListWraper events) {
         this.events = events;
     }
 }

@@ -5,9 +5,9 @@
  */
 package pl.praktycznykoder.marvelapi.model.domain;
 
-import pl.praktycznykoder.marvelapi.model.domain.others.Image;
-import pl.praktycznykoder.marvelapi.model.domain.remote.RemoteDomain;
-import pl.praktycznykoder.marvelapi.model.domain.remote.RemoteDomainList;
+import pl.praktycznykoder.marvelapi.model.domain.basic.Image;
+import pl.praktycznykoder.marvelapi.model.domain.wraper.DomainWraper;
+import pl.praktycznykoder.marvelapi.model.domain.wraper.DomainListWraper;
 
 /**
  *
@@ -22,14 +22,14 @@ public class Story implements Domain {
     private String modified;
     private String resourceURI;
     private Image thumbnail;
-    private RemoteDomain originalIssue;
-    private RemoteDomainList comics;
-    private RemoteDomainList series;
-    private RemoteDomainList events;
-    private RemoteDomainList characters;
-    private RemoteDomainList creators;
+    private DomainWraper originalIssue;
+    private DomainListWraper comics;
+    private DomainListWraper series;
+    private DomainListWraper events;
+    private DomainListWraper characters;
+    private DomainListWraper creators;
 
-    public Story(int id, String title, String type, String description, String modified, String resourceURI, Image thumbnail, RemoteDomain originalIssue, RemoteDomainList comics, RemoteDomainList series, RemoteDomainList events, RemoteDomainList characters, RemoteDomainList creators) {
+    public Story(int id, String title, String type, String description, String modified, String resourceURI, Image thumbnail, DomainWraper originalIssue, DomainListWraper comics, DomainListWraper series, DomainListWraper events, DomainListWraper characters, DomainListWraper creators) {
         this.id = id;
         this.title = title;
         this.type = type;
@@ -102,51 +102,51 @@ public class Story implements Domain {
         this.thumbnail = thumbnail;
     }
 
-    public RemoteDomain getOriginalIssue() {
+    public DomainWraper getOriginalIssue() {
         return originalIssue;
     }
 
-    public void setOriginalIssue(RemoteDomain originalIssue) {
+    public void setOriginalIssue(DomainWraper originalIssue) {
         this.originalIssue = originalIssue;
     }
 
-    public RemoteDomainList getComics() {
+    public DomainListWraper getComics() {
         return comics;
     }
 
-    public void setComics(RemoteDomainList comics) {
+    public void setComics(DomainListWraper comics) {
         this.comics = comics;
     }
 
-    public RemoteDomainList getSeries() {
+    public DomainListWraper getSeries() {
         return series;
     }
 
-    public void setSeries(RemoteDomainList series) {
+    public void setSeries(DomainListWraper series) {
         this.series = series;
     }
 
-    public RemoteDomainList getEvents() {
+    public DomainListWraper getEvents() {
         return events;
     }
 
-    public void setEvents(RemoteDomainList events) {
+    public void setEvents(DomainListWraper events) {
         this.events = events;
     }
 
-    public RemoteDomainList getCharacters() {
+    public DomainListWraper getCharacters() {
         return characters;
     }
 
-    public void setCharacters(RemoteDomainList characters) {
+    public void setCharacters(DomainListWraper characters) {
         this.characters = characters;
     }
 
-    public RemoteDomainList getCreators() {
+    public DomainListWraper getCreators() {
         return creators;
     }
 
-    public void setCreators(RemoteDomainList creators) {
+    public void setCreators(DomainListWraper creators) {
         this.creators = creators;
     }
     

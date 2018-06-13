@@ -3,13 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pl.praktycznykoder.marvelapi.model.domain.remote;
+package pl.praktycznykoder.marvelapi.model.domain.wraper;
 
 /**
  *
  * @author praktycznykoder.pl
  */
-public interface RemoteResource {
+public interface ResourceWraper {
     String getType();
     String getUrl();
 }

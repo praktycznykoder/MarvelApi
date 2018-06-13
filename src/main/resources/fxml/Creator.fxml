@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.cell.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<SplitPane dividerPositions="0.5, 0.5, 0.5, 0.5, 0.5" orientation="VERTICAL" prefHeight="596.0" prefWidth="730.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.praktycznykoder.marvelapi.javafx.CreatorFXMLController">
+   <items>
+      <GridPane maxHeight="-Infinity" prefHeight="30.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label style="-fx-font: NORMAL 20 Tahoma;" text="Creator" />
+            <Button fx:id="showSelectedButton" mnemonicParsing="false" onAction="#showSelectedButtonAction" text="Show Selected" GridPane.columnIndex="1" />
+            <ComboBox fx:id="orderByComboBox" onAction="#findButtonAction" prefWidth="150.0" GridPane.columnIndex="2" />
+         </children>
+      </GridPane>
+       <TableView fx:id="tableView">
+        <columns>
+             <TableColumn editable="false" text="Id">
+                 <cellValueFactory>
+                   <javafx.scene.control.cell.PropertyValueFactory property="id" />
+                 </cellValueFactory>
+             </TableColumn>
+             <TableColumn editable="false" text="First Name">
+                 <cellValueFactory>
+                   <javafx.scene.control.cell.PropertyValueFactory property="firstName" />
+                 </cellValueFactory>
+             </TableColumn>
+             <TableColumn editable="false" text="Middle Name">
+                 <cellValueFactory>
+                   <javafx.scene.control.cell.PropertyValueFactory property="middleName" />
+                 </cellValueFactory>
+             </TableColumn>
+             <TableColumn editable="false" text="Last Name">
+                 <cellValueFactory>
+                   <javafx.scene.control.cell.PropertyValueFactory property="lastName" />
+                 </cellValueFactory>
+             </TableColumn>
+             <TableColumn editable="false" text="Suffix">
+                 <cellValueFactory>
+                   <javafx.scene.control.cell.PropertyValueFactory property="suffix" />
+                 </cellValueFactory>
+             </TableColumn>
+             <TableColumn editable="false" text="Full Name">
+                 <cellValueFactory>
+                   <javafx.scene.control.cell.PropertyValueFactory property="fullName" />
+                 </cellValueFactory>
+             </TableColumn>
+             <TableColumn editable="false" text="Modified">
+                 <cellValueFactory>
+                   <javafx.scene.control.cell.PropertyValueFactory property="modified" />
+                 </cellValueFactory>
+             </TableColumn>
+        </columns>  
+       </TableView>
+      <FlowPane alignment="CENTER" columnHalignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="45.0" prefWidth="720.0">
+         <children>
+            <Button fx:id="firstButton" mnemonicParsing="false" onAction="#paggingButtonAction" text="&lt;&lt;" />
+            <Button fx:id="previousButton" mnemonicParsing="false" onAction="#paggingButtonAction" text="&lt;" />
+            <TextField fx:id="currentPageTextField" alignment="CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="40.0" text="0" />
+            <Button fx:id="goCurrentPageButton" mnemonicParsing="false" onAction="#paggingButtonAction" text="GO" />
+            <Label alignment="CENTER" maxHeight="-Infinity" minWidth="-Infinity" prefWidth="20.0" text="/" />
+            <Label fx:id="lastPageLabel" alignment="CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="40.0" text="0" textAlignment="CENTER" />
+            <Button fx:id="nextButton" mnemonicParsing="false" onAction="#paggingButtonAction" text="&gt;" />
+            <Button fx:id="lastButton" mnemonicParsing="false" onAction="#paggingButtonAction" text="&gt;&gt;" />
+         </children>
+      </FlowPane>
+      <GridPane hgap="5.0" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="63.0" prefWidth="720.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <TextField fx:id="firstNameTextField" promptText="First name" />
+            <TextField fx:id="firstNameStartsWithTextField" promptText="First name starts with" GridPane.rowIndex="1" />
+            <TextField fx:id="lastNameTextField" promptText="Last name" GridPane.columnIndex="1" />
+            <TextField fx:id="lastNameStartsWithTextField" promptText="Last name starts with" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+         </children>
+      </GridPane>
+      <DatePicker fx:id="modifiedSinceDatePicker" promptText="Modified since Date" />
+      <Button minWidth="-Infinity" mnemonicParsing="false" onAction="#findButtonAction" prefWidth="200.0" text="Find" />
+   </items>
+   <padding>
+      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+   </padding>
+</SplitPane>

@@ -25,9 +25,9 @@ import javafx.scene.control.TextArea;
 import javafx.scene.image.WritableImage;
 import javafx.stage.Stage;
 import pl.praktycznykoder.marvelapi.model.domain.TextObject;
-import pl.praktycznykoder.marvelapi.model.domain.others.Image;
-import pl.praktycznykoder.marvelapi.model.domain.others.Url;
-import pl.praktycznykoder.marvelapi.model.domain.remote.RemoteDomain;
+import pl.praktycznykoder.marvelapi.model.domain.basic.Image;
+import pl.praktycznykoder.marvelapi.model.domain.basic.Url;
+import pl.praktycznykoder.marvelapi.model.domain.wraper.DomainWraper;
 import pl.praktycznykoder.marvelapi.model.services.Service;
 
 /**
@@ -37,7 +37,7 @@ import pl.praktycznykoder.marvelapi.model.services.Service;
  */
 public abstract class FXMLDetailsController<DomainType> implements Initializable{
     public abstract void initData(DomainType character);
-    public abstract void initData(RemoteDomain remoteDomain);
+    public abstract void initData(DomainWraper remoteDomain);
     protected abstract void initFields();
     protected abstract void getResourceButtonOnAction(ActionEvent event);
     
@@ -47,7 +47,7 @@ public abstract class FXMLDetailsController<DomainType> implements Initializable
             comboBox.setDisable(true);
         }
     }
-    protected void disableButtonWhereIsEmpty(Button button, RemoteDomain value){
+    protected void disableButtonWhereIsEmpty(Button button, DomainWraper value){
         if(value == null){
             button.setDisable(true);
         }
@@ -96,7 +96,7 @@ public abstract class FXMLDetailsController<DomainType> implements Initializable
        
     }
     protected void openNewScene(String resource, String titeScene, 
-               RemoteDomain remoteDomain){
+               DomainWraper remoteDomain){
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().
         getResource(resource));     
         Stage stage = new Stage();
@@ -119,12 +119,12 @@ public abstract class FXMLDetailsController<DomainType> implements Initializable
         stage.show();        
     }
     protected void openNewScene(String resource, String titeScene, 
-            ComboBox<RemoteDomain> comboBox){        
+            ComboBox<DomainWraper> comboBox){        
         if(comboBox.getItems().isEmpty()){
             showAlert(titeScene, null, titeScene+" is Empty");
             return;
         }
-        final RemoteDomain remoteDomain = comboBox.getSelectionModel().
+        final DomainWraper remoteDomain = comboBox.getSelectionModel().
                 getSelectedItem();
         openNewScene(resource, titeScene, remoteDomain); 
     }
