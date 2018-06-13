@@ -45,7 +45,7 @@ public class CreatorFXMLController extends FXMLController {
     
     @Override
     protected void beforeInit() {
-        orderByIndex = 3;
+        orderByIndex = 0;
     }
     
     @Override
@@ -72,7 +72,7 @@ public class CreatorFXMLController extends FXMLController {
     @Override 
     @FXML protected void showSelectedButtonAction(ActionEvent event){
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().
-            getResource("/fxml/CharacterDetails.fxml"));     
+            getResource("/fxml/CreatorDetails.fxml"));     
         Stage stage = new Stage();
         Parent root = null;                       
         try {
@@ -83,7 +83,7 @@ public class CreatorFXMLController extends FXMLController {
         Scene scene = new Scene(root);
         //scene.getStylesheets().add("/styles/Styless.css");        
         final Creator creator = tableView.getSelectionModel().getSelectedItem(); 
-        stage.setTitle("Characters - "+creator.getFirstName()+" "+ 
+        stage.setTitle("Creator - "+creator.getFirstName()+" "+ 
                 creator.getLastName());
         stage.setScene(scene);       
 
