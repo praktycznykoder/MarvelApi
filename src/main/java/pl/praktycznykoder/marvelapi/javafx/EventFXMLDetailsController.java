@@ -18,13 +18,12 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
-import pl.praktycznykoder.marvelapi.model.domain.Creator;
 import pl.praktycznykoder.marvelapi.model.domain.Event;
 import pl.praktycznykoder.marvelapi.model.domain.basic.Url;
 import pl.praktycznykoder.marvelapi.model.domain.wraper.DomainWraper;
-import pl.praktycznykoder.marvelapi.model.services.CreatorAbstractServiceImpl;
 import pl.praktycznykoder.marvelapi.model.services.EventAbstractServiceImpl;
 import pl.praktycznykoder.marvelapi.model.services.Service;
 
@@ -44,32 +43,35 @@ public class EventFXMLDetailsController extends FXMLDetailsController<Event> {
         
     @FXML private ImageView thumbnailImageView;
     @FXML private TextField idTextField;
-    @FXML private TextField firstNameTextField;
-    @FXML private TextField middleNameTextField;
-    @FXML private TextField lastNameTextField;
-    @FXML private TextField fullNameTextField;
-    @FXML private TextField suffixTextField;
+    @FXML private TextField titleTextField;
+    @FXML private TextArea descriptionTextArea;
     @FXML private TextField modifiedTextField;
-    @FXML private TextField resourceURITextField;    
+    @FXML private TextField resourceURITextField;
+    @FXML private TextField startTextField;
+    @FXML private TextField endTextField;   
     
     @FXML private ComboBox<Url> urlsComboBox;
+    
     @FXML private ComboBox<DomainWraper> comicsComboBox;
     @FXML private ComboBox<DomainWraper> storiesComboBox;
     @FXML private ComboBox<DomainWraper> seriesComboBox;
-    @FXML private ComboBox<DomainWraper> eventsComboBox;
+    @FXML private ComboBox<DomainWraper> charactersComboBox;
+    @FXML private ComboBox<DomainWraper> creatorsComboBox;
             
     @Override
     protected void initFields() {
         thumbnailImageView.setImage(
                 getImage(eventDomain.getThumbnail().toString()));
         idTextField.setText(eventDomain.getId()+"");
-//        firstNameTextField.setText(eventDomain.getName());
-//        middleNameTextField.setText(eventDomain.getMiddleName());
-//        lastNameTextField.setText(eventDomain.getLastName());
-//        fullNameTextField.setText(eventDomain.getFullName());
-//        suffixTextField.setText(eventDomain.getSuffix());
+        titleTextField.setText(eventDomain.getTitle());       
+        descriptionTextArea.setText(eventDomain.getId()+"");
         modifiedTextField.setText(eventDomain.getModified());
+        startTextField.setText(eventDomain.getStart());
+        endTextField.setText(eventDomain.getEnd());
+        
         resourceURITextField.setText(eventDomain.getResourceURI());
+        
+        
         urlsComboBox.getItems().addAll(eventDomain.getUrls());
         disableComboBoxWhereIsEmpty(urlsComboBox);
         
@@ -82,8 +84,11 @@ public class EventFXMLDetailsController extends FXMLDetailsController<Event> {
         seriesComboBox.getItems().addAll(eventDomain.getSeries().getItems());
         disableComboBoxWhereIsEmpty(seriesComboBox);
         
-//        eventsComboBox.getItems().addAll(eventDomain.getEvents().getItems());
-        disableComboBoxWhereIsEmpty(eventsComboBox);
+        charactersComboBox.getItems().addAll(eventDomain.getCharacters().getItems());
+        disableComboBoxWhereIsEmpty(charactersComboBox);
+        
+        creatorsComboBox.getItems().addAll(eventDomain.getCreators().getItems());
+        disableComboBoxWhereIsEmpty(creatorsComboBox);
     }
     
     @Override
@@ -97,7 +102,7 @@ public class EventFXMLDetailsController extends FXMLDetailsController<Event> {
         try {
             this.eventDomain = service.getObjectWithUrl(remoteDomain.getResourceURI(), null);
         } catch (NoSuchAlgorithmException | URISyntaxException | IOException ex) {
-            Logger.getLogger(CharacterFXMLDetailsController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(EventFXMLDetailsController.class.getName()).log(Level.SEVERE, null, ex);
         }
         initFields();
     }
@@ -110,7 +115,7 @@ public class EventFXMLDetailsController extends FXMLDetailsController<Event> {
     protected void getResourceButtonOnAction(ActionEvent event){
         Button btn = (Button) event.getSource();
         String id = btn.getId();
-        
+        System.out.println(id);
         switch (id) {
             case "comicsButton":   
                 openNewScene("/fxml/ComicsDetails.fxml", "Comics",
@@ -120,19 +125,31 @@ public class EventFXMLDetailsController extends FXMLDetailsController<Event> {
                 openNewScene("/fxml/StoryDetails.fxml", "Stories",
                         storiesComboBox);
             break;
-            case "eventsButton":   
-                openNewScene("/fxml/EventDetails.fxml", "Event",
-                        eventsComboBox);
+            case "charactersComboBox":   
+                openNewScene("/fxml/CharacterDetails.fxml", "Character",
+                        charactersComboBox);
+            break;
+            case "creatorsComboBox":   
+                openNewScene("/fxml/CreatorDetails.fxml", "Creator",
+                        creatorsComboBox);
             break;                   
             case "seriesButton":   
                 openNewScene("/fxml/SeriesDetails.fxml", "Series",
                         seriesComboBox);
-            break;            
+            break;                             
+            case "previousButton":   
+                openNewScene("/fxml/EventDetails.fxml", "Event",
+                        eventDomain.getPrevious());
+            break;                            
+            case "nextButton":   
+                openNewScene("/fxml/EventDetails.fxml", "Event",
+                        eventDomain.getNext());
+            break;
             case "resourceURIButton":
                 try {
                     Desktop.getDesktop().browse(new URI(eventDomain.getResourceURI()));
                 } catch (IOException | URISyntaxException ex) {
-                    Logger.getLogger(CharacterFXMLDetailsController.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(EventFXMLDetailsController.class.getName()).log(Level.SEVERE, null, ex);
                 }
             break;
             case "urlsButton":   

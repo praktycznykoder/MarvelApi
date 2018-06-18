@@ -65,7 +65,7 @@ public class EventFXMLController extends FXMLController {
     @Override 
     @FXML protected void showSelectedButtonAction(ActionEvent event){
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().
-            getResource("/fxml/CreatorDetails.fxml"));     
+            getResource("/fxml/EventDetails.fxml"));     
         Stage stage = new Stage();
         Parent root = null;                       
         try {

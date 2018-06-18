@@ -9,7 +9,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<GridPane hgap="5.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="371.0" prefWidth="869.0" vgap="5.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.praktycznykoder.marvelapi.javafx.CreatorFXMLDetailsController">
+<GridPane hgap="5.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="488.0" prefWidth="869.0" vgap="5.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.praktycznykoder.marvelapi.javafx.EventFXMLDetailsController">
   <columnConstraints>
       <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
     <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -20,32 +20,34 @@
     <RowConstraints minHeight="10.0" valignment="TOP" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <ImageView fx:id="thumbnailImageView" fitHeight="349.0" fitWidth="154.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="thumbnailImageView" fitHeight="349.0" fitWidth="204.0" pickOnBounds="true" preserveRatio="true" />
       <SplitPane dividerPositions="0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5" orientation="VERTICAL" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
          <items>
             <Label maxWidth="-Infinity" minHeight="-Infinity" prefHeight="25.0" text="Id" />
             <TextField fx:id="idTextField" editable="false" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="33.0" prefWidth="204.0" />
-            <Label maxWidth="-Infinity" minHeight="-Infinity" prefHeight="25.0" text="Middle name" />
-            <TextField fx:id="middleNameTextField" editable="false" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="33.0" prefWidth="204.0" />
-            <Label maxHeight="-Infinity" minHeight="-Infinity" prefHeight="25.0" text="Full name" />
-            <TextField fx:id="fullNameTextField" editable="false" focusTraversable="false" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="33.0" />
+            <Label maxWidth="-Infinity" minHeight="-Infinity" prefHeight="25.0" text="Start" />
+            <TextField fx:id="startTextField" editable="false" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="33.0" prefWidth="204.0" />
             <Label maxHeight="-Infinity" minHeight="-Infinity" prefHeight="25.0" text="Modified" />
             <TextField fx:id="modifiedTextField" editable="false" focusTraversable="false" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="33.0" />
+            <Label maxHeight="-Infinity" minHeight="-Infinity" prefHeight="25.0" text="Description" />
+            <TextArea fx:id="descriptionTextArea" prefHeight="200.0" prefWidth="200.0" />
          </items>
       </SplitPane>
-      <SplitPane dividerPositions="0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5" orientation="VERTICAL" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2">
+      <SplitPane dividerPositions="0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5" orientation="VERTICAL" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2">
          <items>
-            <Label maxHeight="-Infinity" minHeight="-Infinity" prefHeight="25.0" text="First name" />
-            <TextField fx:id="firstNameTextField" editable="false" focusTraversable="false" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="33.0" />
-            <Label maxHeight="-Infinity" minHeight="-Infinity" prefHeight="25.0" text="Last name" />
-            <TextField fx:id="lastNameTextField" editable="false" focusTraversable="false" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="33.0" />
-            <Label maxHeight="-Infinity" minHeight="-Infinity" prefHeight="25.0" text="Suffix" />
-            <TextField fx:id="suffixTextField" editable="false" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="33.0" prefWidth="204.0" />
+            <Label maxHeight="-Infinity" minHeight="-Infinity" prefHeight="25.0" text="Title" />
+            <TextField fx:id="titleTextField" editable="false" focusTraversable="false" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="33.0" />
+            <Label maxHeight="-Infinity" minHeight="-Infinity" prefHeight="25.0" text="End" />
+            <TextField fx:id="endTextField" editable="false" focusTraversable="false" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="33.0" />
             <Label maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" text="Resource URI" />
             <TextField fx:id="resourceURITextField" editable="false" focusTraversable="false" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="33.0" />
+            <Label prefHeight="25.0" text="Previous" />
+            <Button fx:id="previousButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#getResourceButtonOnAction" prefHeight="33.0" prefWidth="200.0" text="Go" />
+            <Label prefHeight="25.0" text="Next" />
+            <Button fx:id="nextButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#getResourceButtonOnAction" prefHeight="33.0" prefWidth="200.0" text="Go" />
          </items>
       </SplitPane>
-      <SplitPane dividerPositions="0.5, 0.5, 0.5, 0.5" orientation="VERTICAL" prefHeight="358.0" prefWidth="221.0" GridPane.columnIndex="3">
+      <SplitPane dividerPositions="0.16204690831556504, 0.3326226012793177, 0.5031982942430704, 0.673773987206823, 0.5" orientation="VERTICAL" prefHeight="358.0" prefWidth="221.0" GridPane.columnIndex="3">
          <items>
             <TitledPane animated="false" minHeight="-Infinity" text="Urls">
               <content>
@@ -87,12 +89,22 @@
                   </AnchorPane>
                </content>
             </TitledPane>
-            <TitledPane animated="false" text="Events">
+            <TitledPane animated="false" text="Characters">
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="40.0" prefWidth="200.0">
                      <children>
-                        <Button fx:id="eventsButton" layoutX="161.0" mnemonicParsing="false" onAction="#getResourceButtonOnAction" prefHeight="39.0" prefWidth="40.0" text="Go" />
-                        <ComboBox fx:id="eventsComboBox" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="39.0" prefWidth="161.0" promptText="Choose Event" />
+                        <Button fx:id="charactersButton" layoutX="161.0" mnemonicParsing="false" onAction="#getResourceButtonOnAction" prefHeight="39.0" prefWidth="40.0" text="Go" />
+                        <ComboBox fx:id="charactersComboBox" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="39.0" prefWidth="161.0" promptText="Character" />
+                     </children>
+                  </AnchorPane>
+               </content>
+            </TitledPane>
+            <TitledPane animated="false" text="Creators">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="40.0" prefWidth="200.0">
+                     <children>
+                        <Button fx:id="creatorsButton" layoutX="161.0" mnemonicParsing="false" onAction="#getResourceButtonOnAction" prefHeight="39.0" prefWidth="40.0" text="Go" />
+                        <ComboBox fx:id="creatorsComboBox" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="39.0" prefWidth="161.0" promptText="Choose Creator" />
                      </children>
                   </AnchorPane>
                </content>

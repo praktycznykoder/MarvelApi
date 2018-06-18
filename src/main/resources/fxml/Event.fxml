@@ -76,8 +76,8 @@
             <Button fx:id="lastButton" mnemonicParsing="false" onAction="#paggingButtonAction" text="&gt;&gt;" />
          </children>
       </FlowPane>
-      <TextField fx:id="nameTextField" promptText="Name" />
-      <TextField fx:id="nameStartsWithTextField" promptText="Name starts with" />
+      <TextField fx:id="nameTextField" promptText="Title" />
+      <TextField fx:id="nameStartsWithTextField" promptText="Title starts with" />
       <DatePicker fx:id="modifiedSinceDatePicker" promptText="Modified since Date" />
       <Button minWidth="-Infinity" mnemonicParsing="false" onAction="#findButtonAction" prefWidth="200.0" text="Find" />
    </items>
