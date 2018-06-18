@@ -15,7 +15,11 @@ import pl.praktycznykoder.marvelapi.model.domain.wraper.DomainListWraper;
  * @author praktycznykoder.pl
  */
 public class Event implements Domain {
-
+    
+    public final static String[] ORDERBY_PARAM_NAMES = {
+        "name", "startDate", "modified"
+    };
+    
     private int id;
     private String title;
     private String description;
