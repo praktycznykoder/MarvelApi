@@ -15,7 +15,16 @@ import pl.praktycznykoder.marvelapi.model.domain.wraper.DomainListWraper;
  * @author praktycznykoder.pl
  */
 public class Series implements Domain {
-
+    
+    public final static String[] ORDERBY_PARAM_NAMES = {
+        "title", "modified", "startYear",
+    };
+    
+    public final static String[] CONTAINS = {
+        "comic", "magazine", "startYear", "trade paperback", "hardcover",
+        "digest", "graphic novel", "digital comic", "infinite comic"
+    };
+    
     private int id;
     private String title;
     private String description;

@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.cell.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<GridPane hgap="5.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="488.0" prefWidth="869.0" vgap="5.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.praktycznykoder.marvelapi.javafx.EventFXMLDetailsController">
+  <columnConstraints>
+      <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+    <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+      <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+      <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+  </columnConstraints>
+  <rowConstraints>
+    <RowConstraints minHeight="10.0" valignment="TOP" vgrow="SOMETIMES" />
+  </rowConstraints>
+   <children>
+      <ImageView fx:id="thumbnailImageView" fitHeight="349.0" fitWidth="204.0" pickOnBounds="true" preserveRatio="true" />
+      <SplitPane dividerPositions="0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5" orientation="VERTICAL" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
+         <items>
+            <Label maxWidth="-Infinity" minHeight="-Infinity" prefHeight="25.0" text="Id" />
+            <TextField fx:id="idTextField" editable="false" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="33.0" prefWidth="204.0" />
+            <Label maxWidth="-Infinity" minHeight="-Infinity" prefHeight="25.0" text="Start" />
+            <TextField fx:id="startTextField" editable="false" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="33.0" prefWidth="204.0" />
+            <Label maxHeight="-Infinity" minHeight="-Infinity" prefHeight="25.0" text="Modified" />
+            <TextField fx:id="modifiedTextField" editable="false" focusTraversable="false" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="33.0" />
+            <Label maxHeight="-Infinity" minHeight="-Infinity" prefHeight="25.0" text="Description" />
+            <TextArea fx:id="descriptionTextArea" prefHeight="200.0" prefWidth="200.0" />
+         </items>
+      </SplitPane>
+      <SplitPane dividerPositions="0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5" orientation="VERTICAL" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2">
+         <items>
+            <Label maxHeight="-Infinity" minHeight="-Infinity" prefHeight="25.0" text="Title" />
+            <TextField fx:id="titleTextField" editable="false" focusTraversable="false" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="33.0" />
+            <Label maxHeight="-Infinity" minHeight="-Infinity" prefHeight="25.0" text="End" />
+            <TextField fx:id="endTextField" editable="false" focusTraversable="false" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="33.0" />
+            <Label maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" text="Resource URI" />
+            <TextField fx:id="resourceURITextField" editable="false" focusTraversable="false" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="33.0" />
+            <Label prefHeight="25.0" text="Previous" />
+            <Button fx:id="previousButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#getResourceButtonOnAction" prefHeight="33.0" prefWidth="200.0" text="Go" />
+            <Label prefHeight="25.0" text="Next" />
+            <Button fx:id="nextButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#getResourceButtonOnAction" prefHeight="33.0" prefWidth="200.0" text="Go" />
+         </items>
+      </SplitPane>
+      <SplitPane dividerPositions="0.16204690831556504, 0.3326226012793177, 0.5031982942430704, 0.673773987206823, 0.5" orientation="VERTICAL" prefHeight="358.0" prefWidth="221.0" GridPane.columnIndex="3">
+         <items>
+            <TitledPane animated="false" minHeight="-Infinity" text="Urls">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="40.0" prefWidth="200.0">
+                     <children>
+                        <Button fx:id="urlsButton" layoutX="161.0" mnemonicParsing="false" onAction="#getResourceButtonOnAction" prefHeight="39.0" prefWidth="40.0" text="Go" />
+                        <ComboBox fx:id="urlsComboBox" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="39.0" prefWidth="161.0" promptText="Choose URL" />
+                     </children>
+                  </AnchorPane>
+              </content>
+            </TitledPane>
+            <TitledPane animated="false" text="Comics">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="40.0" prefWidth="200.0">
+                     <children>
+                        <Button fx:id="comicsButton" layoutX="161.0" mnemonicParsing="false" onAction="#getResourceButtonOnAction" prefHeight="39.0" prefWidth="40.0" text="Go" />
+                        <ComboBox fx:id="comicsComboBox" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="39.0" prefWidth="161.0" promptText="Choose Comics" />
+                     </children>
+                  </AnchorPane>
+               </content>
+            </TitledPane>
+            <TitledPane animated="false" text="Stories">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="40.0" prefWidth="200.0">
+                     <children>
+                        <Button fx:id="storiesButton" layoutX="161.0" mnemonicParsing="false" onAction="#getResourceButtonOnAction" prefHeight="39.0" prefWidth="40.0" text="Go" />
+                        <ComboBox fx:id="storiesComboBox" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="39.0" prefWidth="161.0" promptText="Choose Story" />
+                     </children>
+                  </AnchorPane>
+               </content>
+            </TitledPane>
+            <TitledPane animated="false" text="Series">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="40.0" prefWidth="200.0">
+                     <children>
+                        <Button fx:id="seriesButton" layoutX="161.0" mnemonicParsing="false" onAction="#getResourceButtonOnAction" prefHeight="39.0" prefWidth="40.0" text="Go" />
+                        <ComboBox fx:id="seriesComboBox" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="39.0" prefWidth="161.0" promptText="Choose Series" />
+                     </children>
+                  </AnchorPane>
+               </content>
+            </TitledPane>
+            <TitledPane animated="false" text="Characters">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="40.0" prefWidth="200.0">
+                     <children>
+                        <Button fx:id="charactersButton" layoutX="161.0" mnemonicParsing="false" onAction="#getResourceButtonOnAction" prefHeight="39.0" prefWidth="40.0" text="Go" />
+                        <ComboBox fx:id="charactersComboBox" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="39.0" prefWidth="161.0" promptText="Character" />
+                     </children>
+                  </AnchorPane>
+               </content>
+            </TitledPane>
+            <TitledPane animated="false" text="Creators">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="40.0" prefWidth="200.0">
+                     <children>
+                        <Button fx:id="creatorsButton" layoutX="161.0" mnemonicParsing="false" onAction="#getResourceButtonOnAction" prefHeight="39.0" prefWidth="40.0" text="Go" />
+                        <ComboBox fx:id="creatorsComboBox" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="39.0" prefWidth="161.0" promptText="Choose Creator" />
+                     </children>
+                  </AnchorPane>
+               </content>
+            </TitledPane>
+         </items>
+      </SplitPane>
+   </children>
+   <padding>
+      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+   </padding>
+</GridPane>
