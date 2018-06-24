@@ -45,29 +45,35 @@ public class SeriesFXMLDetailsController extends FXMLDetailsController<Series> {
     @FXML private TextField idTextField;
     @FXML private TextField titleTextField;
     @FXML private TextArea descriptionTextArea;
+    @FXML private TextField typeTextField;
     @FXML private TextField modifiedTextField;
     @FXML private TextField resourceURITextField;
-    @FXML private TextField startTextField;
-    @FXML private TextField endTextField;   
+    @FXML private TextField startYearTextField;
+    @FXML private TextField endYearTextField;   
     
     @FXML private ComboBox<Url> urlsComboBox;
     
     @FXML private ComboBox<DomainWraper> comicsComboBox;
-    @FXML private ComboBox<DomainWraper> storiesComboBox;
-    @FXML private ComboBox<DomainWraper> seriesComboBox;
     @FXML private ComboBox<DomainWraper> charactersComboBox;
+    @FXML private ComboBox<DomainWraper> storiesComboBox;
     @FXML private ComboBox<DomainWraper> creatorsComboBox;
+    @FXML private ComboBox<DomainWraper> eventsComboBox;
             
+    
+    @FXML private Button previousButton; 
+    @FXML private Button nextButton; 
+   
     @Override
     protected void initFields() {
         thumbnailImageView.setImage(
                 getImage(seriesDomain.getThumbnail().toString()));
         idTextField.setText(seriesDomain.getId()+"");
         titleTextField.setText(seriesDomain.getTitle());       
-        descriptionTextArea.setText(seriesDomain.getId()+"");
+        descriptionTextArea.setText(seriesDomain.getDescription());
+        typeTextField.setText(seriesDomain.getType());
         modifiedTextField.setText(seriesDomain.getModified());
-        startTextField.setText(seriesDomain.getStart());
-        endTextField.setText(seriesDomain.getEnd());
+        startYearTextField.setText(seriesDomain.getStartYear());
+        endYearTextField.setText(seriesDomain.getEndYear());
         
         resourceURITextField.setText(seriesDomain.getResourceURI());
         
@@ -81,14 +87,19 @@ public class SeriesFXMLDetailsController extends FXMLDetailsController<Series> {
         storiesComboBox.getItems().addAll(seriesDomain.getStories().getItems());
         disableComboBoxWhereIsEmpty(storiesComboBox);
         
-        seriesComboBox.getItems().addAll(seriesDomain.getSeries().getItems());
-        disableComboBoxWhereIsEmpty(seriesComboBox);
+        eventsComboBox.getItems().addAll(seriesDomain.getEvents().getItems());
+        disableComboBoxWhereIsEmpty(eventsComboBox);
         
         charactersComboBox.getItems().addAll(seriesDomain.getCharacters().getItems());
         disableComboBoxWhereIsEmpty(charactersComboBox);
         
         creatorsComboBox.getItems().addAll(seriesDomain.getCreators().getItems());
         disableComboBoxWhereIsEmpty(creatorsComboBox);
+        
+        disableButtonWhereIsEmpty(previousButton, seriesDomain.getPrevious());        
+        disableButtonWhereIsEmpty(nextButton, seriesDomain.getNext());
+        
+        
     }
     
     @Override
@@ -133,16 +144,17 @@ public class SeriesFXMLDetailsController extends FXMLDetailsController<Series> {
                 openNewScene("/fxml/CreatorDetails.fxml", "Creator",
                         creatorsComboBox);
             break;                   
-            case "seriesButton":   
-                openNewScene("/fxml/SeriesDetails.fxml", "Series",
-                        seriesComboBox);
+            case "eventsComboBox":   
+                openNewScene("/fxml/EventsDetails.fxml", "Event",
+                        eventsComboBox);
             break;                             
             case "previousButton":   
-                openNewScene("/fxml/EventDetails.fxml", "Event",
+                System.out.println(seriesDomain.getPrevious());
+                openNewScene("/fxml/SeriesDetails.fxml", "Series",
                         seriesDomain.getPrevious());
             break;                            
             case "nextButton":   
-                openNewScene("/fxml/EventDetails.fxml", "Event",
+                openNewScene("/fxml/SeriesDetails.fxml", "Series",
                         seriesDomain.getNext());
             break;
             case "resourceURIButton":

@@ -86,7 +86,7 @@
             <Button fx:id="lastButton" mnemonicParsing="false" onAction="#paggingButtonAction" text="&gt;&gt;" />
          </children>
       </FlowPane>
-      <FlowPane alignment="CENTER" columnHalignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="147.0" prefWidth="720.0">
+      <FlowPane alignment="CENTER" columnHalignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="185.0" prefWidth="720.0">
          <children>
             <TextField fx:id="titleTextFieldTextField" prefHeight="25.0" prefWidth="200.0" promptText="Title" />
             <TextField fx:id="titleStartsWithTextField" prefWidth="200.0" promptText="Title starts with" />

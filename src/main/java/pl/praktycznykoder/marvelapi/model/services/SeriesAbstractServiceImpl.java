@@ -31,4 +31,8 @@ public class SeriesAbstractServiceImpl extends AbstractService<Series> {
     public String[] getContains() {
         return Series.CONTAINS;
     }
+    
+    public String[] getSeriesType() {
+        return Series.SERIES_TYPES;
+    }
 }

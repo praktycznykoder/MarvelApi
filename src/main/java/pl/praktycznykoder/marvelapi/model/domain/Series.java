@@ -20,8 +20,12 @@ public class Series implements Domain {
         "title", "modified", "startYear",
     };
     
+    public final static String[] SERIES_TYPES = {
+        "", "collection", "one shot", "limited", "ongoing"
+    };
+    
     public final static String[] CONTAINS = {
-        "comic", "magazine", "startYear", "trade paperback", "hardcover",
+        "", "comic", "magazine", "startYear", "trade paperback", "hardcover",
         "digest", "graphic novel", "digital comic", "infinite comic"
     };
     

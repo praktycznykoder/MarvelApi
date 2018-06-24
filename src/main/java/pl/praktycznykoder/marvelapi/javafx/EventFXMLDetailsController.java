@@ -58,6 +58,10 @@ public class EventFXMLDetailsController extends FXMLDetailsController<Event> {
     @FXML private ComboBox<DomainWraper> charactersComboBox;
     @FXML private ComboBox<DomainWraper> creatorsComboBox;
             
+    
+    @FXML private Button previousButton; 
+    @FXML private Button nextButton; 
+    
     @Override
     protected void initFields() {
         thumbnailImageView.setImage(
@@ -89,6 +93,10 @@ public class EventFXMLDetailsController extends FXMLDetailsController<Event> {
         
         creatorsComboBox.getItems().addAll(eventDomain.getCreators().getItems());
         disableComboBoxWhereIsEmpty(creatorsComboBox);
+        
+        disableButtonWhereIsEmpty(previousButton, eventDomain.getPrevious());        
+        disableButtonWhereIsEmpty(nextButton, eventDomain.getNext());
+        
     }
     
     @Override

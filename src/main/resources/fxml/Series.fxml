@@ -8,7 +8,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<SplitPane dividerPositions="0.5, 0.5, 0.5, 0.5, 0.5" orientation="VERTICAL" prefHeight="596.0" prefWidth="730.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.praktycznykoder.marvelapi.javafx.EventFXMLController">
+<SplitPane dividerPositions="0.5, 0.5, 0.5, 0.5" orientation="VERTICAL" prefHeight="596.0" prefWidth="730.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.praktycznykoder.marvelapi.javafx.SeriesFXMLController">
    <items>
       <GridPane maxHeight="-Infinity" prefHeight="30.0">
         <columnConstraints>
@@ -20,12 +20,12 @@
           <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label style="-fx-font: NORMAL 20 Tahoma;" text="Event" />
+            <Label style="-fx-font: NORMAL 20 Tahoma;" text="Series" />
             <Button fx:id="showSelectedButton" mnemonicParsing="false" onAction="#showSelectedButtonAction" text="Show Selected" GridPane.columnIndex="1" />
             <ComboBox fx:id="orderByComboBox" onAction="#findButtonAction" prefWidth="150.0" GridPane.columnIndex="2" />
          </children>
       </GridPane>
-       <TableView fx:id="tableView">
+       <TableView fx:id="tableView" prefHeight="114.0" prefWidth="720.0">
         <columns>
              <TableColumn editable="false" text="Id">
                  <cellValueFactory>
@@ -37,9 +37,9 @@
                    <javafx.scene.control.cell.PropertyValueFactory property="title" />
                  </cellValueFactory>
              </TableColumn>
-             <TableColumn editable="false" text="Description">
+             <TableColumn editable="false" text="Type">
                  <cellValueFactory>
-                   <javafx.scene.control.cell.PropertyValueFactory property="description" />
+                   <javafx.scene.control.cell.PropertyValueFactory property="type" />
                  </cellValueFactory>
              </TableColumn>
              <TableColumn editable="false" text="Modified">
@@ -52,14 +52,24 @@
                    <javafx.scene.control.cell.PropertyValueFactory property="resourceURI" />
                  </cellValueFactory>
              </TableColumn>
-             <TableColumn editable="false" text="Start">
+             <TableColumn editable="false" text="Start year">
                  <cellValueFactory>
-                   <javafx.scene.control.cell.PropertyValueFactory property="start" />
+                   <javafx.scene.control.cell.PropertyValueFactory property="startYear" />
                  </cellValueFactory>
              </TableColumn>
-             <TableColumn editable="false" text="End">
+             <TableColumn editable="false" text="End year">
                  <cellValueFactory>
-                   <javafx.scene.control.cell.PropertyValueFactory property="end" />
+                   <javafx.scene.control.cell.PropertyValueFactory property="endYear" />
+                 </cellValueFactory>
+             </TableColumn>
+             <TableColumn editable="false" text="Rating">
+                 <cellValueFactory>
+                   <javafx.scene.control.cell.PropertyValueFactory property="rating" />
+                 </cellValueFactory>
+             </TableColumn>
+             <TableColumn editable="false" text="Description">
+                 <cellValueFactory>
+                   <javafx.scene.control.cell.PropertyValueFactory property="description" />
                  </cellValueFactory>
              </TableColumn>
         </columns>  
@@ -76,23 +86,25 @@
             <Button fx:id="lastButton" mnemonicParsing="false" onAction="#paggingButtonAction" text="&gt;&gt;" />
          </children>
       </FlowPane>
-      <GridPane>
+      <GridPane maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="96.0" prefWidth="720.0" SplitPane.resizableWithParent="false">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
         </columnConstraints>
         <rowConstraints>
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="32.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="32.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="32.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <TextField fx:id="nameTextField" promptText="Title" />
-            <TextField fx:id="nameStartsWithTextField" promptText="Title starts with" GridPane.columnIndex="1" />
-            <TextField fx:id="nameTextField1" promptText="Title" GridPane.rowIndex="1" />
+            <TextField fx:id="titleTextField" promptText="Title" />
+            <TextField fx:id="titleStartsWithTextField" promptText="Title starts with" GridPane.columnIndex="1" />
+            <TextField fx:id="startYearTextField" promptText="Start year" GridPane.rowIndex="1" />
+            <DatePicker fx:id="modifiedSinceDatePicker" prefWidth="360.0" promptText="Modified since Date" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <ComboBox fx:id="seriesTypeComboBox" onAction="#resetFormComboBoxOnAction" prefHeight="31.0" prefWidth="360.0" promptText="Series type" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS" />
+            <ComboBox fx:id="containsComboBox" onAction="#resetFormComboBoxOnAction" prefHeight="31.0" prefWidth="360.0" promptText="Contains" GridPane.rowIndex="2" />
          </children>
       </GridPane>
-      <DatePicker fx:id="modifiedSinceDatePicker" promptText="Modified since Date" />
       <Button minWidth="-Infinity" mnemonicParsing="false" onAction="#findButtonAction" prefWidth="200.0" text="Find" />
    </items>
    <padding>

@@ -10,15 +10,15 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import pl.praktycznykoder.api.domain.Param;
 import pl.praktycznykoder.marvelapi.model.services.Service;
-import pl.praktycznykoder.marvelapi.model.domain.Event;
 import pl.praktycznykoder.marvelapi.model.domain.Series;
-import pl.praktycznykoder.marvelapi.model.services.EventAbstractServiceImpl;
+import pl.praktycznykoder.marvelapi.model.services.SeriesAbstractServiceImpl;
 
 /**
  *
@@ -26,11 +26,15 @@ import pl.praktycznykoder.marvelapi.model.services.EventAbstractServiceImpl;
  */
 public class SeriesFXMLController extends FXMLController {
     
-    private final Service service = new EventAbstractServiceImpl();
+    private final Service service = new SeriesAbstractServiceImpl();
     
     @FXML private TableView<Series> tableView;
-    @FXML private TextField nameTextField;
-    @FXML private TextField nameStartsWithTextField;
+    @FXML private TextField titleTextField;
+    @FXML private TextField titleStartsWithTextField;
+    @FXML private TextField startYearTextField;
+    
+    @FXML private ComboBox<String> seriesTypeComboBox;
+    @FXML private ComboBox<String> containsComboBox;
     @FXML private DatePicker modifiedSinceDatePicker;
     
     @Override
@@ -45,21 +49,39 @@ public class SeriesFXMLController extends FXMLController {
     @Override
     protected void beforeInit() {
         orderByIndex = 0;
+        seriesTypeComboBox.getItems().addAll(
+                ((SeriesAbstractServiceImpl)service).getSeriesType());
+        containsComboBox.getItems().addAll(
+                ((SeriesAbstractServiceImpl)service).getContains());
     }
     
     @Override
     protected List<Param> getParamsFromForm(){
         List<Param> params = getNewListParamWithOrderBy();
         
-        String name = nameTextField.getText();
-        String nameStartsWith = nameStartsWithTextField.getText();
-        LocalDate modifiedSince = modifiedSinceDatePicker.getValue();
+        String title = titleTextField.getText();
+        if(!title.isEmpty()) params.add(new Param("title", title));
+        String titleStartsWith = titleStartsWithTextField.getText();
+        if(!titleStartsWith.isEmpty()) params.add(
+                new Param("titleStartsWith", titleStartsWith));
+        String startYear = startYearTextField.getText();
+        if(!startYear.isEmpty()) params.add(
+                new Param("startYear", titleStartsWith));
         
-        if(!name.isEmpty()) params.add(new Param("name", name));
-        if(!nameStartsWith.isEmpty()) params.add(
-                new Param("nameStartsWith", nameStartsWith));
+        String seriesType = seriesTypeComboBox.getSelectionModel().
+                getSelectedItem();
+        if(seriesType != null && !seriesType.isEmpty()) params.add(
+                new Param("seriesType", seriesType));
+        
+        String contains = containsComboBox.getSelectionModel().
+                getSelectedItem();
+        if(contains != null && !contains.isEmpty()) params.add(
+                new Param("contains", contains));
+        
+        LocalDate modifiedSince = modifiedSinceDatePicker.getValue();
         if(modifiedSince != null) params.add(
                 new Param("modifiedSince", modifiedSince.toString()));
+        
         return params.isEmpty() ? null : params;
     }
     
