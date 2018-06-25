@@ -21,25 +21,26 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
-import pl.praktycznykoder.marvelapi.model.domain.Series;
+import pl.praktycznykoder.marvelapi.model.domain.Story;
 import pl.praktycznykoder.marvelapi.model.domain.basic.Url;
 import pl.praktycznykoder.marvelapi.model.domain.wraper.DomainWraper;
-import pl.praktycznykoder.marvelapi.model.services.SeriesAbstractServiceImpl;
 import pl.praktycznykoder.marvelapi.model.services.Service;
+import pl.praktycznykoder.marvelapi.model.services.StoryAbstractServiceImpl;
 
 /**
  *
  * @author praktycznykoder.pl
  */
-public class SeriesFXMLDetailsController extends FXMLDetailsController<Series> {
+public class StoryFXMLDetailsController extends FXMLDetailsController<Story> {
 
-    private final Service<Series> service = new SeriesAbstractServiceImpl();
+    private final Service<Story> service = new StoryAbstractServiceImpl();
+    
     @Override
     protected Service getService() {
         return service;
     }
     
-    private Series seriesDomain;
+    private Story storyDomain;
         
     @FXML private ImageView thumbnailImageView;
     @FXML private TextField idTextField;
@@ -48,72 +49,64 @@ public class SeriesFXMLDetailsController extends FXMLDetailsController<Series> {
     @FXML private TextField typeTextField;
     @FXML private TextField modifiedTextField;
     @FXML private TextField resourceURITextField;
-    @FXML private TextField startYearTextField;
-    @FXML private TextField endYearTextField;   
     
     @FXML private ComboBox<Url> urlsComboBox;
     
     @FXML private ComboBox<DomainWraper> comicsComboBox;
     @FXML private ComboBox<DomainWraper> charactersComboBox;
-    @FXML private ComboBox<DomainWraper> storiesComboBox;
+    @FXML private ComboBox<DomainWraper> seriesComboBox;
     @FXML private ComboBox<DomainWraper> creatorsComboBox;
     @FXML private ComboBox<DomainWraper> eventsComboBox;
             
     
-    @FXML private Button previousButton; 
-    @FXML private Button nextButton; 
+    @FXML private Button originalIssueButton; 
    
     @Override
     protected void initFields() {
-        thumbnailImageView.setImage(
-                getImage(seriesDomain.getThumbnail().toString()));
-        idTextField.setText(seriesDomain.getId()+"");
-        titleTextField.setText(seriesDomain.getTitle());       
-        descriptionTextArea.setText(seriesDomain.getDescription());
-        typeTextField.setText(seriesDomain.getType());
-        modifiedTextField.setText(seriesDomain.getModified());
-        startYearTextField.setText(seriesDomain.getStartYear());
-        endYearTextField.setText(seriesDomain.getEndYear());
+        if(storyDomain.getThumbnail() != null){
+            thumbnailImageView.setImage(
+                getImage(storyDomain.getThumbnail().toString()));            
+        }
+        idTextField.setText(storyDomain.getId()+"");
+        titleTextField.setText(storyDomain.getTitle());       
+        descriptionTextArea.setText(storyDomain.getDescription());
+        typeTextField.setText(storyDomain.getType());
+        modifiedTextField.setText(storyDomain.getModified());
         
-        resourceURITextField.setText(seriesDomain.getResourceURI());
+        resourceURITextField.setText(storyDomain.getResourceURI());
         
         
-        urlsComboBox.getItems().addAll(seriesDomain.getUrls());
-        disableComboBoxWhereIsEmpty(urlsComboBox);
-        
-        comicsComboBox.getItems().addAll(seriesDomain.getComics().getItems());
+        comicsComboBox.getItems().addAll(storyDomain.getComics().getItems());
         disableComboBoxWhereIsEmpty(comicsComboBox);
         
-        storiesComboBox.getItems().addAll(seriesDomain.getStories().getItems());
-        disableComboBoxWhereIsEmpty(storiesComboBox);
-        
-        eventsComboBox.getItems().addAll(seriesDomain.getEvents().getItems());
+        seriesComboBox.getItems().addAll(storyDomain.getSeries().getItems());
+        disableComboBoxWhereIsEmpty(seriesComboBox);
+                        
+        eventsComboBox.getItems().addAll(storyDomain.getEvents().getItems());
         disableComboBoxWhereIsEmpty(eventsComboBox);
         
-        charactersComboBox.getItems().addAll(seriesDomain.getCharacters().getItems());
+        charactersComboBox.getItems().addAll(storyDomain.getCharacters().getItems());
         disableComboBoxWhereIsEmpty(charactersComboBox);
         
-        creatorsComboBox.getItems().addAll(seriesDomain.getCreators().getItems());
+        creatorsComboBox.getItems().addAll(storyDomain.getCreators().getItems());
         disableComboBoxWhereIsEmpty(creatorsComboBox);
         
-        disableButtonWhereIsEmpty(previousButton, seriesDomain.getPrevious());        
-        disableButtonWhereIsEmpty(nextButton, seriesDomain.getNext());
-        
+        disableButtonWhereIsEmpty(originalIssueButton, storyDomain.getOriginalIssue()); 
         
     }
     
     @Override
-    public void initData(Series seriesDomain){
-        this.seriesDomain = seriesDomain;
+    public void initData(Story storyDomain){
+        this.storyDomain = storyDomain;
         initFields();
     }
     
     @Override
     public void initData(DomainWraper remoteDomain) {
         try {
-            this.seriesDomain = service.getObjectWithUrl(remoteDomain.getResourceURI(), null);
+            this.storyDomain = service.getObjectWithUrl(remoteDomain.getResourceURI(), null);
         } catch (NoSuchAlgorithmException | URISyntaxException | IOException ex) {
-            Logger.getLogger(SeriesFXMLDetailsController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(StoryFXMLDetailsController.class.getName()).log(Level.SEVERE, null, ex);
         }
         initFields();
     }
@@ -132,9 +125,9 @@ public class SeriesFXMLDetailsController extends FXMLDetailsController<Series> {
                 openNewScene("/fxml/ComicsDetails.fxml", "Comics",
                         comicsComboBox);
             break;
-            case "storiesButton":   
-                openNewScene("/fxml/StoryDetails.fxml", "Stories",
-                        storiesComboBox);
+            case "seriesButton":   
+                openNewScene("/fxml/SsriesDetails.fxml", "Series",
+                        seriesComboBox);
             break;
             case "charactersComboBox":   
                 openNewScene("/fxml/CharacterDetails.fxml", "Character",
@@ -148,20 +141,15 @@ public class SeriesFXMLDetailsController extends FXMLDetailsController<Series> {
                 openNewScene("/fxml/EventsDetails.fxml", "Event",
                         eventsComboBox);
             break;                             
-            case "previousButton":   
-                System.out.println(seriesDomain.getPrevious());
-                openNewScene("/fxml/SeriesDetails.fxml", "Series",
-                        seriesDomain.getPrevious());
-            break;                            
-            case "nextButton":   
-                openNewScene("/fxml/SeriesDetails.fxml", "Series",
-                        seriesDomain.getNext());
-            break;
+            case "originalIssueButton":   
+                openNewScene("/fxml/ComicsDetails.fxml", "Comics",
+                        storyDomain.getOriginalIssue());
+            break;     
             case "resourceURIButton":
                 try {
-                    Desktop.getDesktop().browse(new URI(seriesDomain.getResourceURI()));
+                    Desktop.getDesktop().browse(new URI(storyDomain.getResourceURI()));
                 } catch (IOException | URISyntaxException ex) {
-                    Logger.getLogger(SeriesFXMLDetailsController.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(StoryFXMLDetailsController.class.getName()).log(Level.SEVERE, null, ex);
                 }
             break;
             case "urlsButton":   

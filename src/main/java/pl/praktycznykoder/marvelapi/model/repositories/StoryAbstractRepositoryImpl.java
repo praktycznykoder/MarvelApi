@@ -5,15 +5,15 @@
  */
 package pl.praktycznykoder.marvelapi.model.repositories;
 
-import pl.praktycznykoder.marvelapi.client.response.SeriesMarvelApiResponse;
+import pl.praktycznykoder.marvelapi.client.response.StoryMarvelApiResponse;
 
 /**
  *
  * @author praktycznykoder.pl
  */
-public class SeriesAbstractRepositoryImpl  extends AbstractRepository<SeriesMarvelApiResponse> {
+public class StoryAbstractRepositoryImpl  extends AbstractRepository<StoryMarvelApiResponse> {
 
-    private final String path = "v1/public/series";
+    private final String path = "v1/public/stories";
     @Override
     protected String getPath() {
         return path;
@@ -21,7 +21,7 @@ public class SeriesAbstractRepositoryImpl  extends AbstractRepository<SeriesMarv
 
     @Override
     protected Class<?> getClazz() {
-        return SeriesMarvelApiResponse.class;
+        return StoryMarvelApiResponse.class;
     }
     
 }

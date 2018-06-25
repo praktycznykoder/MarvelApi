@@ -15,6 +15,10 @@ import pl.praktycznykoder.marvelapi.model.domain.wraper.DomainListWraper;
  */
 public class Story implements Domain {
 
+    public final static String[] ORDERBY_PARAM_NAMES = {
+        "id", "modified"
+    };
+    
     private int id;
     private String title;
     private String type;

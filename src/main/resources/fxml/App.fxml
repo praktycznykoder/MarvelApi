@@ -7,12 +7,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" 
-            minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" 
-            xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
-    fx:id="appBorderPane"
-    fx:controller="pl.praktycznykoder.marvelapi.javafx.AppFXMLController">
+<BorderPane fx:id="appBorderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.praktycznykoder.marvelapi.javafx.AppFXMLController">
     
    <top>
       <MenuBar BorderPane.alignment="CENTER">
@@ -24,20 +19,21 @@
           </Menu>
           <Menu mnemonicParsing="false" text="Data">
             <items>
-                <MenuItem mnemonicParsing="false" text="Characters" 
-                    onAction="#handleDataCharacterMenuItem"  />
-                <MenuItem mnemonicParsing="false" text="Comics" 
-                    onAction="#handleDataComicsMenuItem" />
-                <MenuItem mnemonicParsing="false" text="Creators" 
-                    onAction="#handleDataCreatorMenuItem" />
-                <MenuItem mnemonicParsing="false" text="Events" 
-                    onAction="#handleDataEventMenuItem" />
-                <MenuItem mnemonicParsing="false" text="Series" 
-                    onAction="#handleDataSeriesMenuItem" />
-                <MenuItem mnemonicParsing="false" text="Stories" 
-                    onAction="#handleDataStoryMenuItem" />
+                <MenuItem mnemonicParsing="false" onAction="#handleDataCharacterMenuItem" text="Characters" />
+                <MenuItem mnemonicParsing="false" onAction="#handleDataComicsMenuItem" text="Comics" />
+                <MenuItem mnemonicParsing="false" onAction="#handleDataCreatorMenuItem" text="Creators" />
+                <MenuItem mnemonicParsing="false" onAction="#handleDataEventMenuItem" text="Events" />
+                <MenuItem mnemonicParsing="false" onAction="#handleDataSeriesMenuItem" text="Series" />
+                <MenuItem mnemonicParsing="false" onAction="#handleDataStoryMenuItem" text="Stories" />
             </items>
           </Menu>
+            <Menu mnemonicParsing="false" text="Properties">
+              <items>
+                <MenuItem mnemonicParsing="false" text="Configure connection" />
+                  <MenuItem mnemonicParsing="false" text="Go to cache folder" />
+                  <MenuItem mnemonicParsing="false" text="Clear cache" />
+              </items>
+            </Menu>
           <Menu mnemonicParsing="false" text="Help">
             <items>
               <MenuItem mnemonicParsing="false" text="About" />

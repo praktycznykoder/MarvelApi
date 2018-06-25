@@ -19,7 +19,7 @@ public class MainApp extends Application {
                 
         Scene scene = new Scene(root);
         scene.getStylesheets().add("/styles/Styles.css");        
-        stage.setTitle("Marvel API Apps");
+        stage.setTitle("Marvel API Apps - Data provided by Marvel. © 2014 Marvel");
         
         stage.setScene(scene);
         stage.show();
