@@ -18,6 +18,13 @@ public class DomainWraper implements ResourceWraper{
     private String role;
     private String resourceURI;
 
+    /**
+     *
+     * @param name
+     * @param type
+     * @param role
+     * @param resourceURI
+     */
     public DomainWraper(String name, String type, String role, String resourceURI) {
         this.name = name;
         this.type = type;
@@ -36,32 +43,74 @@ public class DomainWraper implements ResourceWraper{
 //    }
 //    
     
-
+    /**
+     *
+     * @return
+     */
     public String getName() {
         return name;
     }
+
+    /**
+     *
+     * @param name
+     */
     public void setName(String name) {
         this.name = name;
     }
+
+    /**
+     *
+     * @return
+     */
     public String getType() {
         return type;
     }
+
+    /**
+     *
+     * @param type
+     */
     public void setType(String type) {
         this.type = type;
     }
+
+    /**
+     *
+     * @return
+     */
     public String getRole() {
         return role;
     }
+
+    /**
+     *
+     * @param role
+     */
     public void setRole(String role) {
         this.role = role;
     }
+
+    /**
+     *
+     * @return
+     */
     public String getResourceURI() {
         return resourceURI;
     }
+
+    /**
+     *
+     * @param resourceURI
+     */
     public void setResourceURI(String resourceURI) {
         this.resourceURI = resourceURI;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public String getUrl() {
         return this.getResourceURI();

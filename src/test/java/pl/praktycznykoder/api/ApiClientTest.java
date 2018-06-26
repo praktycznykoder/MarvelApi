@@ -34,21 +34,36 @@ import pl.praktycznykoder.api.domain.Param;
  */
 public class ApiClientTest {
     
+    /**
+     *
+     */
     public ApiClientTest() {
     }
     
+    /**
+     *
+     */
     @BeforeClass
     public static void setUpClass() {
     }
     
+    /**
+     *
+     */
     @AfterClass
     public static void tearDownClass() {
     }
     
+    /**
+     *
+     */
     @Before
     public void setUp() {
     }
     
+    /**
+     *
+     */
     @After
     public void tearDown() {
     }  
@@ -196,6 +211,7 @@ public class ApiClientTest {
 
     /**
      * Test of getImage method, of class ApiClient.
+     * @throws java.io.IOException
      */
     @Ignore
     @Test

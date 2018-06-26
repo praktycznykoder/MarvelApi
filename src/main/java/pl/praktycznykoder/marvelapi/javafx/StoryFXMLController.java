@@ -30,20 +30,36 @@ public class StoryFXMLController extends FXMLController {
     
     @FXML private DatePicker modifiedSinceDatePicker;
     
+    /**
+     *
+     * @return
+     */
     @Override
     protected Service getService() {
         return service;
     }
+
+    /**
+     *
+     * @return
+     */
     @Override
     protected TableView getTableView() {
         return tableView;
     }
     
+    /**
+     *
+     */
     @Override
     protected void beforeInit() {
         orderByIndex = 0;
     }
     
+    /**
+     *
+     * @return
+     */
     @Override
     protected List<Param> getParamsFromForm(){
         List<Param> params = getNewListParamWithOrderBy();
@@ -55,6 +71,10 @@ public class StoryFXMLController extends FXMLController {
         return params.isEmpty() ? null : params;
     }
     
+    /**
+     *
+     * @param event
+     */
     @Override 
     @FXML protected void showSelectedButtonAction(ActionEvent event){
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().

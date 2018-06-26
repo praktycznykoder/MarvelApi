@@ -20,7 +20,7 @@
     <RowConstraints minHeight="10.0" valignment="TOP" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <ImageView fx:id="thumbnailImageView" fitHeight="349.0" fitWidth="154.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="thumbnailImageView" onMouseClicked="#imageThumbnailViewClick" fitHeight="349.0" fitWidth="154.0" pickOnBounds="true" preserveRatio="true" />
       <SplitPane dividerPositions="0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5" orientation="VERTICAL" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
          <items>
             <Label maxWidth="-Infinity" minHeight="-Infinity" prefHeight="25.0" text="Id" />
@@ -51,7 +51,7 @@
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="40.0" prefWidth="200.0">
                      <children>
-                        <Button fx:id="urlsButton" layoutX="161.0" mnemonicParsing="false" onAction="#getResourceButtonOnAction" prefHeight="39.0" prefWidth="40.0" text="Go" />
+                        <Button fx:id="urlsButton" layoutX="161.0" mnemonicParsing="false" onAction="#resourceButtonOnAction" prefHeight="39.0" prefWidth="40.0" text="Go" />
                         <ComboBox fx:id="urlsComboBox" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="39.0" prefWidth="161.0" promptText="Choose URL" />
                      </children>
                   </AnchorPane>
@@ -61,7 +61,7 @@
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="40.0" prefWidth="200.0">
                      <children>
-                        <Button fx:id="comicsButton" layoutX="161.0" mnemonicParsing="false" onAction="#getResourceButtonOnAction" prefHeight="39.0" prefWidth="40.0" text="Go" />
+                        <Button fx:id="comicsButton" layoutX="161.0" mnemonicParsing="false" onAction="#resourceButtonOnAction" prefHeight="39.0" prefWidth="40.0" text="Go" />
                         <ComboBox fx:id="comicsComboBox" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="39.0" prefWidth="161.0" promptText="Choose Comics" />
                      </children>
                   </AnchorPane>
@@ -71,7 +71,7 @@
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="40.0" prefWidth="200.0">
                      <children>
-                        <Button fx:id="storiesButton" layoutX="161.0" mnemonicParsing="false" onAction="#getResourceButtonOnAction" prefHeight="39.0" prefWidth="40.0" text="Go" />
+                        <Button fx:id="storiesButton" layoutX="161.0" mnemonicParsing="false" onAction="#resourceButtonOnAction" prefHeight="39.0" prefWidth="40.0" text="Go" />
                         <ComboBox fx:id="storiesComboBox" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="39.0" prefWidth="161.0" promptText="Choose Story" />
                      </children>
                   </AnchorPane>
@@ -81,7 +81,7 @@
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="40.0" prefWidth="200.0">
                      <children>
-                        <Button fx:id="seriesButton" layoutX="161.0" mnemonicParsing="false" onAction="#getResourceButtonOnAction" prefHeight="39.0" prefWidth="40.0" text="Go" />
+                        <Button fx:id="seriesButton" layoutX="161.0" mnemonicParsing="false" onAction="#resourceButtonOnAction" prefHeight="39.0" prefWidth="40.0" text="Go" />
                         <ComboBox fx:id="seriesComboBox" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="39.0" prefWidth="161.0" promptText="Choose Series" />
                      </children>
                   </AnchorPane>
@@ -91,7 +91,7 @@
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="40.0" prefWidth="200.0">
                      <children>
-                        <Button fx:id="eventsButton" layoutX="161.0" mnemonicParsing="false" onAction="#getResourceButtonOnAction" prefHeight="39.0" prefWidth="40.0" text="Go" />
+                        <Button fx:id="eventsButton" layoutX="161.0" mnemonicParsing="false" onAction="#resourceButtonOnAction" prefHeight="39.0" prefWidth="40.0" text="Go" />
                         <ComboBox fx:id="eventsComboBox" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="39.0" prefWidth="161.0" promptText="Choose Event" />
                      </children>
                   </AnchorPane>

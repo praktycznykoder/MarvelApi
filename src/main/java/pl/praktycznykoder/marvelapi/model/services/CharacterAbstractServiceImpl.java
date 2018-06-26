@@ -18,11 +18,19 @@ public class CharacterAbstractServiceImpl extends AbstractService<Character> {
     private final CharactersAbstractRepositoryImpl repository = 
             new CharactersAbstractRepositoryImpl();
     
+    /**
+     *
+     * @return
+     */
     @Override
     protected Repository getRepository() {
         return repository;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public String[] getOrderByParamNodes() {
         return Character.ORDERBY_PARAM_NAMES;

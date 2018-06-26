@@ -17,6 +17,13 @@ public class DomainListWraper {
     private DomainWraper[] items;
     private String returned;
 
+    /**
+     *
+     * @param avaliable
+     * @param collectionURI
+     * @param items
+     * @param returned
+     */
     public DomainListWraper(String avaliable, String collectionURI, DomainWraper[] items, String returned) {
         this.avaliable = avaliable;
         this.collectionURI = collectionURI;
@@ -24,27 +31,66 @@ public class DomainListWraper {
         this.returned = returned;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getAvaliable() {
         return avaliable;
     }
+
+    /**
+     *
+     * @param avaliable
+     */
     public void setAvaliable(String avaliable) {
         this.avaliable = avaliable;
     }
+
+    /**
+     *
+     * @return
+     */
     public String getCollectionURI() {
         return collectionURI;
     }
+
+    /**
+     *
+     * @param collectionURI
+     */
     public void setCollectionURI(String collectionURI) {
         this.collectionURI = collectionURI;
     }
+
+    /**
+     *
+     * @return
+     */
     public DomainWraper[] getItems() {
         return items;
     }
+
+    /**
+     *
+     * @param items
+     */
     public void setItems(DomainWraper[] items) {
         this.items = items;
     }
+
+    /**
+     *
+     * @return
+     */
     public String getReturned() {
         return returned;
     }
+
+    /**
+     *
+     * @param returned
+     */
     public void setReturned(String returned) {
         this.returned = returned;
     }    

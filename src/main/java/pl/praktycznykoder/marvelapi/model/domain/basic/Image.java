@@ -11,9 +11,21 @@ package pl.praktycznykoder.marvelapi.model.domain.basic;
  */
 public class Image {
     
+    /**
+     *
+     */
     public String path;
+
+    /**
+     *
+     */
     public String extension;
 
+    /**
+     *
+     * @param path
+     * @param extension
+     */
     public Image(String path, String extension) {
         this.path = path;
         this.extension = extension;

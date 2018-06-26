@@ -48,12 +48,19 @@ public class ComicsFXMLController extends FXMLController {
     
     @FXML private DatePicker modifiedSinceDatePicker;
     
-
+    /**
+     *
+     * @return
+     */
     @Override
     protected Service getService() {
         return service;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     protected TableView getTableView() {
         return tableView;
@@ -66,6 +73,9 @@ public class ComicsFXMLController extends FXMLController {
 //        "modifiedSince"
 //    };
     
+    /**
+     *
+     */
     @Override
     protected void beforeInit() {
         orderByIndex = 9;
@@ -79,6 +89,10 @@ public class ComicsFXMLController extends FXMLController {
                 service.getThreeBooleanState());
     }
     
+    /**
+     *
+     * @return
+     */
     @Override
     protected List<Param> getParamsFromForm() {
         List<Param> params = getNewListParamWithOrderBy();
@@ -132,6 +146,10 @@ public class ComicsFXMLController extends FXMLController {
         return params.isEmpty() ? null : params;
     }
     
+    /**
+     *
+     * @param event
+     */
     @Override        
     @FXML protected void showSelectedButtonAction(ActionEvent event){
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().

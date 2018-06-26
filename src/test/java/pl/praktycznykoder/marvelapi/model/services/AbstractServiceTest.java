@@ -26,27 +26,45 @@ import pl.praktycznykoder.marvelapi.model.repositories.Repository;
  */
 public class AbstractServiceTest {
     
+    /**
+     *
+     */
     public AbstractServiceTest() {
     }
     
+    /**
+     *
+     */
     @BeforeClass
     public static void setUpClass() {
     }
     
+    /**
+     *
+     */
     @AfterClass
     public static void tearDownClass() {
     }
     
+    /**
+     *
+     */
     @Before
     public void setUp() {
     }
     
+    /**
+     *
+     */
     @After
     public void tearDown() {
     }
 
     /**
      * Test of getObjectWithUrl method, of class AbstractService.
+     * @throws java.security.NoSuchAlgorithmException
+     * @throws java.net.URISyntaxException
+     * @throws java.io.IOException
      */
     @Test
     public void testGetObjectWithUrl() throws NoSuchAlgorithmException, URISyntaxException, IOException {
@@ -61,6 +79,9 @@ public class AbstractServiceTest {
 
     /**
      * Test of getObjectWithId method, of class AbstractService.
+     * @throws java.security.NoSuchAlgorithmException
+     * @throws java.net.URISyntaxException
+     * @throws java.io.IOException
      */
     @Test
     public void testGetObjectWithId() throws NoSuchAlgorithmException, URISyntaxException, IOException {
@@ -74,6 +95,9 @@ public class AbstractServiceTest {
 
     /**
      * Test of getObjects method, of class AbstractService.
+     * @throws java.security.NoSuchAlgorithmException
+     * @throws java.net.URISyntaxException
+     * @throws java.io.IOException
      */
     @Test
     public void testGetObjects() throws NoSuchAlgorithmException, URISyntaxException, IOException {
@@ -86,13 +110,24 @@ public class AbstractServiceTest {
         //assertEquals(expResult, result);
     }
 
+    /**
+     *
+     */
     public class AbstractServiceImpl extends AbstractService<Comics> {
 
+        /**
+         *
+         * @return
+         */
         @Override
         protected Repository getRepository() {
             return new ComicsAbstractRepositoryImpl();
         }        
 
+        /**
+         *
+         * @return
+         */
         @Override
         public String[] getOrderByParamNodes() {
             throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

@@ -20,6 +20,10 @@ public class ImageFXMLDetailsController implements Initializable{
     
     @FXML private ImageView imageView;
 
+    /**
+     *
+     * @param fxImage
+     */
     public void setImage(WritableImage fxImage) {
         imageView.setImage(fxImage);
         imageView.setFitHeight(fxImage.getHeight());
@@ -27,6 +31,10 @@ public class ImageFXMLDetailsController implements Initializable{
         
     }
     
+    /**
+     *
+     * @param image
+     */
     public void setImage(javafx.scene.image.Image image) {
         imageView.setImage(image);  
         

@@ -19,18 +19,64 @@ import pl.praktycznykoder.marvelapi.client.response.Data;
  * @param <OBJECT_TYPE>
  */
 public interface Service<OBJECT_TYPE> {
+
+    /**
+     *
+     * @param params
+     * @param page
+     * @return
+     * @throws NoSuchAlgorithmException
+     * @throws URISyntaxException
+     * @throws IOException
+     */
     Data getData(List<Param> params, int page)
             throws NoSuchAlgorithmException, URISyntaxException,IOException;
     
 //    Pagging getPaggingFromData(Data data);
 //    List<OBJECT_TYPE> getObjectsFromData(Data data);
+
+    /**
+     *
+     * @param id
+     * @return
+     * @throws NoSuchAlgorithmException
+     * @throws URISyntaxException
+     * @throws IOException
+     */
     
     OBJECT_TYPE getObjectWithId(String id)
             throws NoSuchAlgorithmException, URISyntaxException,IOException;
+
+    /**
+     *
+     * @param url
+     * @param params
+     * @return
+     * @throws NoSuchAlgorithmException
+     * @throws URISyntaxException
+     * @throws IOException
+     */
     OBJECT_TYPE getObjectWithUrl(String url, List<Param> params)
             throws NoSuchAlgorithmException, URISyntaxException,IOException;
+
+    /**
+     *
+     * @param url
+     * @return
+     * @throws IOException
+     */
     BufferedImage getImage(String url) throws IOException;
+
+    /**
+     *
+     * @return
+     */
     String[] getOrderByParamNodes();
+
+    /**
+     *
+     * @return
+     */
     String[] getThreeBooleanState();
     
     

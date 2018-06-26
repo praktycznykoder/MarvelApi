@@ -37,15 +37,27 @@ public class SeriesFXMLController extends FXMLController {
     @FXML private ComboBox<String> containsComboBox;
     @FXML private DatePicker modifiedSinceDatePicker;
     
+    /**
+     *
+     * @return
+     */
     @Override
     protected Service getService() {
         return service;
     }
+
+    /**
+     *
+     * @return
+     */
     @Override
     protected TableView getTableView() {
         return tableView;
     }
     
+    /**
+     *
+     */
     @Override
     protected void beforeInit() {
         orderByIndex = 0;
@@ -55,6 +67,10 @@ public class SeriesFXMLController extends FXMLController {
                 ((SeriesAbstractServiceImpl)service).getContains());
     }
     
+    /**
+     *
+     * @return
+     */
     @Override
     protected List<Param> getParamsFromForm(){
         List<Param> params = getNewListParamWithOrderBy();
@@ -85,6 +101,10 @@ public class SeriesFXMLController extends FXMLController {
         return params.isEmpty() ? null : params;
     }
     
+    /**
+     *
+     * @param event
+     */
     @Override 
     @FXML protected void showSelectedButtonAction(ActionEvent event){
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().

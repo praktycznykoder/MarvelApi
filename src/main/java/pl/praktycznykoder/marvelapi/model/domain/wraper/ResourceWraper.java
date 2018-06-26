@@ -10,6 +10,16 @@ package pl.praktycznykoder.marvelapi.model.domain.wraper;
  * @author praktycznykoder.pl
  */
 public interface ResourceWraper {
+
+    /**
+     *
+     * @return
+     */
     String getType();
+
+    /**
+     *
+     * @return
+     */
     String getUrl();
 }

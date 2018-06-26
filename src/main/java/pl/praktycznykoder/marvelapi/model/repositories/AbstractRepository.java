@@ -25,19 +25,43 @@ public abstract class AbstractRepository<RESPONSE_TYPE> implements Repository<RE
     
     private final MarvelApiClient client = new MarvelApiClient();
     
+    /**
+     *
+     * @return
+     */
     protected MarvelApiClient getClient() {
         return client;
     }
     
+    /**
+     *
+     * @return
+     */
     protected abstract String getPath();
+
+    /**
+     *
+     * @return
+     */
     protected abstract Class<?> getClazz();
     
+    /**
+     *
+     * @param resultLimit
+     */
     public void setResultLimit(int resultLimit){
         getClient().setRESULT_LIMIT(resultLimit);
     }
     
-    
-    
+    /**
+     *
+     * @param params
+     * @param page
+     * @return
+     * @throws NoSuchAlgorithmException
+     * @throws URISyntaxException
+     * @throws IOException
+     */
     @Override
     public RESPONSE_TYPE getObjects(List params,int page)
             throws NoSuchAlgorithmException, URISyntaxException,IOException {
@@ -46,6 +70,14 @@ public abstract class AbstractRepository<RESPONSE_TYPE> implements Repository<RE
                         getPath(), false, params, page), getClazz());
     }
 
+    /**
+     *
+     * @param id
+     * @return
+     * @throws NoSuchAlgorithmException
+     * @throws URISyntaxException
+     * @throws IOException
+     */
     @Override
     public RESPONSE_TYPE getObjectWithId(String id) 
             throws NoSuchAlgorithmException, URISyntaxException,IOException{ 
@@ -61,6 +93,15 @@ public abstract class AbstractRepository<RESPONSE_TYPE> implements Repository<RE
         return null;
     }
 
+    /**
+     *
+     * @param url
+     * @param params
+     * @return
+     * @throws NoSuchAlgorithmException
+     * @throws URISyntaxException
+     * @throws IOException
+     */
     @Override
     public RESPONSE_TYPE getObjectWithUrl(String url, List<Param> params) 
             throws NoSuchAlgorithmException, URISyntaxException,IOException{

@@ -1,7 +1,19 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Copyright (C) 2018 praktycznykoder.pl
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License
+ * as published by the Free Software Foundation; either version 2
+ * of the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 package pl.praktycznykoder.api;
 
@@ -13,7 +25,6 @@ import java.io.InputStream;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
-import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.Scanner;
 import java.util.logging.Level;
@@ -30,14 +41,30 @@ import pl.praktycznykoder.marvelapi.client.MarvelApiClient;
 /**
  *
  * @author praktycznykoder.pl
+ * This class containing the basic API methods
  */
 public class ApiClient {
     
+    /**
+     *
+     * @param urlString
+     * @return
+     * @throws IOException
+     */
     public BufferedImage getImage(String urlString) throws IOException{
         URL url = new URL(urlString);
         return ImageIO.read(url);
     }
 
+    /**
+     *
+     * @param scheme
+     * @param host
+     * @param path
+     * @param params
+     * @return
+     * @throws URISyntaxException
+     */
     public URI buildURI(String scheme, String host, String path, 
         List<Param> params) throws URISyntaxException {
         URIBuilder uriBuilder = new URIBuilder();
@@ -54,6 +81,13 @@ public class ApiClient {
         return uriBuilder.build();
     }
     
+    /**
+     *
+     * @param url
+     * @param params
+     * @return
+     * @throws URISyntaxException
+     */
     public URI buildURI(String url,  List<Param> params) throws URISyntaxException{
         URIBuilder uriBuilder = new URIBuilder(url);
         if(params != null){
@@ -75,6 +109,15 @@ public class ApiClient {
         return s.hasNext() ? s.next() : "";
     }
     
+    /**
+     *
+     * @param acceptHeaderType
+     * @param uri
+     * @return
+     * @throws URISyntaxException
+     * @throws ClientProtocolException
+     * @throws IOException
+     */
     public HttpResponse getResponse(String acceptHeaderType, URI uri) throws 
         URISyntaxException, ClientProtocolException, IOException {
         

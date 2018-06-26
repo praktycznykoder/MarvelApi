@@ -20,7 +20,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.image.ImageView;
 import pl.praktycznykoder.marvelapi.model.domain.Event;
 import pl.praktycznykoder.marvelapi.model.domain.basic.Url;
 import pl.praktycznykoder.marvelapi.model.domain.wraper.DomainWraper;
@@ -34,6 +33,11 @@ import pl.praktycznykoder.marvelapi.model.services.Service;
 public class EventFXMLDetailsController extends FXMLDetailsController<Event> {
 
     private final Service<Event> service = new EventAbstractServiceImpl();
+
+    /**
+     *
+     * @return
+     */
     @Override
     protected Service getService() {
         return service;
@@ -41,7 +45,6 @@ public class EventFXMLDetailsController extends FXMLDetailsController<Event> {
     
     private Event eventDomain;
         
-    @FXML private ImageView thumbnailImageView;
     @FXML private TextField idTextField;
     @FXML private TextField titleTextField;
     @FXML private TextArea descriptionTextArea;
@@ -62,6 +65,9 @@ public class EventFXMLDetailsController extends FXMLDetailsController<Event> {
     @FXML private Button previousButton; 
     @FXML private Button nextButton; 
     
+    /**
+     *
+     */
     @Override
     protected void initFields() {
         thumbnailImageView.setImage(
@@ -99,12 +105,20 @@ public class EventFXMLDetailsController extends FXMLDetailsController<Event> {
         
     }
     
+    /**
+     *
+     * @param eventDomain
+     */
     @Override
     public void initData(Event eventDomain){
         this.eventDomain = eventDomain;
         initFields();
     }
     
+    /**
+     *
+     * @param remoteDomain
+     */
     @Override
     public void initData(DomainWraper remoteDomain) {
         try {
@@ -120,7 +134,7 @@ public class EventFXMLDetailsController extends FXMLDetailsController<Event> {
      */
     @Override
     @FXML
-    protected void getResourceButtonOnAction(ActionEvent event){
+    protected void resourceButtonOnAction(ActionEvent event){
         Button btn = (Button) event.getSource();
         String id = btn.getId();
         System.out.println(id);

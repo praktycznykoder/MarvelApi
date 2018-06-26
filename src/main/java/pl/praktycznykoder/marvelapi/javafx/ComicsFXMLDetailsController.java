@@ -20,7 +20,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.image.ImageView;
 import pl.praktycznykoder.marvelapi.model.domain.Comics;
 import pl.praktycznykoder.marvelapi.model.domain.basic.Image;
 import pl.praktycznykoder.marvelapi.model.domain.basic.Url;
@@ -35,6 +34,11 @@ import pl.praktycznykoder.marvelapi.model.services.Service;
 public class ComicsFXMLDetailsController extends FXMLDetailsController<Comics> {
 
     private final Service<Comics> service = new ComicsAbstractServiceImpl();
+
+    /**
+     *
+     * @return
+     */
     @Override
     protected Service getService() {
         return service;
@@ -77,9 +81,9 @@ public class ComicsFXMLDetailsController extends FXMLDetailsController<Comics> {
     
     @FXML private Button seriesButton;
     
-    
-    
-        
+    /**
+     *
+     */
     @Override
     protected void initFields() {
         thumbnailImageView.setImage(
@@ -133,12 +137,20 @@ public class ComicsFXMLDetailsController extends FXMLDetailsController<Comics> {
         
     }
     
+    /**
+     *
+     * @param comics
+     */
     @Override
     public void initData(Comics comics){
         this.comics = comics;
         initFields();
     }
     
+    /**
+     *
+     * @param remoteDomain
+     */
     @Override
     public void initData(DomainWraper remoteDomain) {
         try {
@@ -154,7 +166,7 @@ public class ComicsFXMLDetailsController extends FXMLDetailsController<Comics> {
      */
     @Override
     @FXML
-    protected void getResourceButtonOnAction(ActionEvent event){
+    protected void resourceButtonOnAction(ActionEvent event){
         Button btn = (Button) event.getSource();
         String id = btn.getId();
         

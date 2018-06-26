@@ -19,26 +19,61 @@ public class AppFXMLController implements Initializable {
     @FXML
     BorderPane appBorderPane;
      
+    /**
+     *
+     * @param event
+     * @throws IOException
+     */
     @FXML protected void handleDataCharacterMenuItem(ActionEvent event) throws IOException {
         Node charactersNode = FXMLLoader.load(getClass().getResource("/fxml/Character.fxml"));        
         appBorderPane.setCenter(charactersNode);
     }
+
+    /**
+     *
+     * @param event
+     * @throws IOException
+     */
     @FXML protected void handleDataComicsMenuItem(ActionEvent event) throws IOException {
         Node comicsNode = FXMLLoader.load(getClass().getResource("/fxml/Comics.fxml"));        
         appBorderPane.setCenter(comicsNode);
     }    
+
+    /**
+     *
+     * @param event
+     * @throws IOException
+     */
     @FXML protected void handleDataCreatorMenuItem(ActionEvent event) throws IOException {
         Node creatorsNode = FXMLLoader.load(getClass().getResource("/fxml/Creator.fxml"));        
         appBorderPane.setCenter(creatorsNode);
     }  
+
+    /**
+     *
+     * @param event
+     * @throws IOException
+     */
     @FXML protected void handleDataEventMenuItem(ActionEvent event) throws IOException {
         Node eventsNode = FXMLLoader.load(getClass().getResource("/fxml/Event.fxml"));        
         appBorderPane.setCenter(eventsNode);
     }  
+
+    /**
+     *
+     * @param event
+     * @throws IOException
+     */
     @FXML protected void handleDataSeriesMenuItem(ActionEvent event) throws IOException {
         Node  seriesNode = FXMLLoader.load(getClass().getResource("/fxml/Series.fxml"));        
         appBorderPane.setCenter(seriesNode);
     }  
+
+    /**
+     *
+     * @param event
+     * @throws IOException
+     */
     @FXML protected void handleDataStoryMenuItem(ActionEvent event) throws IOException {
         Node storiesNode = FXMLLoader.load(getClass().getResource("/fxml/Story.fxml"));        
         appBorderPane.setCenter(storiesNode);

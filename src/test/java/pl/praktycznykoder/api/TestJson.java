@@ -11,26 +11,54 @@ package pl.praktycznykoder.api;
  */
 public class TestJson {
     
+    /**
+     *
+     */
     public String id;
+
+    /**
+     *
+     */
     public String text;
 
+    /**
+     *
+     * @param id
+     * @param text
+     */
     public TestJson(String id, String text) {
         this.id = id;
         this.text = text;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getId() {
         return id;
     }
 
+    /**
+     *
+     * @param id
+     */
     public void setId(String id) {
         this.id = id;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getText() {
         return text;
     }
 
+    /**
+     *
+     * @param text
+     */
     public void setText(String text) {
         this.text = text;
     }

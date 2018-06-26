@@ -15,6 +15,12 @@ public class TextObject {
     private String language;
     private String text;
 
+    /**
+     *
+     * @param type
+     * @param language
+     * @param text
+     */
     public TextObject(String type, String language, String text) {
         this.type = type;
         this.language = language;
@@ -26,26 +32,50 @@ public class TextObject {
         return "type: " + type + " | language: " + language + " | " + text;
     }
     
+    /**
+     *
+     * @return
+     */
     public String getType() {
         return type;
     }
 
+    /**
+     *
+     * @param type
+     */
     public void setType(String type) {
         this.type = type;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getLanguage() {
         return language;
     }
 
+    /**
+     *
+     * @param language
+     */
     public void setLanguage(String language) {
         this.language = language;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getText() {
         return text;
     }
 
+    /**
+     *
+     * @param text
+     */
     public void setText(String text) {
         this.text = text;
     }

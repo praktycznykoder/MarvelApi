@@ -15,11 +15,20 @@ public class ComicsAbstractRepositoryImpl
         extends AbstractRepository<ComicsMarvelApiResponse> {
     
     private final String path = "v1/public/comics";
+
+    /**
+     *
+     * @return
+     */
     @Override
     protected String getPath() {
         return path;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     protected Class<?> getClazz() {
         return ComicsMarvelApiResponse.class;

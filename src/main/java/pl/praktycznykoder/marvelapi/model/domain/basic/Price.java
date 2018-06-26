@@ -14,6 +14,11 @@ public class Price {
     private String type;
     private float price;
 
+    /**
+     *
+     * @param type
+     * @param price
+     */
     public Price(String type, float price) {
         this.type = type;
         this.price = price;
@@ -24,18 +29,34 @@ public class Price {
         return type + " : "+ price;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getType() {
         return type;
     }
 
+    /**
+     *
+     * @param type
+     */
     public void setType(String type) {
         this.type = type;
     }
 
+    /**
+     *
+     * @return
+     */
     public float getPrice() {
         return price;
     }
 
+    /**
+     *
+     * @param price
+     */
     public void setPrice(float price) {
         this.price = price;
     }    

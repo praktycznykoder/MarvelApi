@@ -18,11 +18,19 @@ public class CreatorAbstractServiceImpl extends AbstractService<Creator> {
     private final CreatorAbstractRepositoryImpl repository = 
             new CreatorAbstractRepositoryImpl();
     
+    /**
+     *
+     * @return
+     */
     @Override
     protected Repository getRepository() {
         return repository;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public String[] getOrderByParamNodes() {
         return Creator.ORDERBY_PARAM_NAMES;

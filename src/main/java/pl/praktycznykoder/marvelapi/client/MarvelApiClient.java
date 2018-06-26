@@ -1,7 +1,19 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Copyright (C) 2018 praktycznykoder.pl
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License
+ * as published by the Free Software Foundation; either version 2
+ * of the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 package pl.praktycznykoder.marvelapi.client;
 
@@ -38,15 +50,31 @@ public class MarvelApiClient extends ApiClient{
     
     private int RESULT_LIMIT;
 
+    /**
+     *
+     * @return
+     */
     public int getRESULT_LIMIT() {
         return RESULT_LIMIT;
     }
+
+    /**
+     *
+     * @param RESULT_LIMIT
+     */
     public void setRESULT_LIMIT(int RESULT_LIMIT) {
         this.RESULT_LIMIT = RESULT_LIMIT;
     }
     
-    
-
+    /**
+     *
+     * @param API_KEY
+     * @param PRIVATE_API_KEY
+     * @param ACCEPT_HEADER
+     * @param SHEME
+     * @param HOST
+     * @param RESULT_LIMIT
+     */
     public MarvelApiClient(String API_KEY, String PRIVATE_API_KEY, 
             String ACCEPT_HEADER, String SHEME, String HOST, int RESULT_LIMIT) {
         super();
@@ -58,6 +86,9 @@ public class MarvelApiClient extends ApiClient{
         this.RESULT_LIMIT = RESULT_LIMIT;
     }
 
+    /**
+     *
+     */
     public MarvelApiClient() {
         super();
         try {
@@ -67,6 +98,12 @@ public class MarvelApiClient extends ApiClient{
         }
     }
     
+    /**
+     *
+     * @return
+     * @throws FileNotFoundException
+     * @throws IOException
+     */
     protected Properties getProps() throws FileNotFoundException, IOException{
         Properties props = new Properties();
         FileReader file;
@@ -92,6 +129,13 @@ public class MarvelApiClient extends ApiClient{
         RESULT_LIMIT = Integer.parseInt(props.getProperty("resultlimit"));
     }
     
+    /**
+     *
+     * @param timestamp
+     * @return
+     * @throws UnsupportedEncodingException
+     * @throws NoSuchAlgorithmException
+     */
     protected String getKeyHash(long timestamp) throws
         UnsupportedEncodingException, NoSuchAlgorithmException {
         String stringToHash = 
@@ -122,6 +166,18 @@ public class MarvelApiClient extends ApiClient{
         pagging.add(new Param("offset", ((page-1)*RESULT_LIMIT)+""));
         return pagging;
     }
+
+    /**
+     *
+     * @param path
+     * @param pathIsFullUrl
+     * @param params
+     * @return
+     * @throws UnsupportedEncodingException
+     * @throws NoSuchAlgorithmException
+     * @throws URISyntaxException
+     * @throws IOException
+     */
     public String getResponseFromMarvelApi(
             String path, boolean pathIsFullUrl, List<Param> params)
         throws UnsupportedEncodingException, NoSuchAlgorithmException,
@@ -143,7 +199,18 @@ public class MarvelApiClient extends ApiClient{
         return this.convertStreamContentToString(response.getEntity().getContent());
     }
     
-    
+    /**
+     *
+     * @param path
+     * @param pathIsFullUrl
+     * @param params
+     * @param page
+     * @return
+     * @throws UnsupportedEncodingException
+     * @throws NoSuchAlgorithmException
+     * @throws URISyntaxException
+     * @throws IOException
+     */
     public String getPaggingResponseFromMarvelApi(
             String path, boolean pathIsFullUrl, List<Param> params, int page)
         throws UnsupportedEncodingException, NoSuchAlgorithmException,
@@ -166,15 +233,34 @@ public class MarvelApiClient extends ApiClient{
         return this.convertStreamContentToString(response.getEntity().getContent());
     }
     
+    /**
+     *
+     * @return
+     */
     public String getAPI_KEY() {
         return API_KEY;
     }
+
+    /**
+     *
+     * @return
+     */
     public String getACCEPT_HEADER() {
         return ACCEPT_HEADER;
     }
+
+    /**
+     *
+     * @return
+     */
     public String getSHEME() {
         return SHEME;
     }
+
+    /**
+     *
+     * @return
+     */
     public String getHOST() {
         return HOST;
     }

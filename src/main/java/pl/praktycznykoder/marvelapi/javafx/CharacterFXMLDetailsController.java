@@ -28,6 +28,10 @@ public class CharacterFXMLDetailsController extends FXMLDetailsController<Charac
     
     private final Service<Character> service = new CharacterAbstractServiceImpl();     
     
+    /**
+     *
+     * @return
+     */
     @Override
     protected Service getService() {
         return service;
@@ -35,7 +39,6 @@ public class CharacterFXMLDetailsController extends FXMLDetailsController<Charac
     
     private Character character;
         
-    @FXML private ImageView thumbnailImageView;
     @FXML private TextField idTextField;
     @FXML private TextField nameTextField;
     @FXML private TextField modyfiedTextField;
@@ -88,6 +91,10 @@ public class CharacterFXMLDetailsController extends FXMLDetailsController<Charac
         initFields();
     }
  
+    /**
+     *
+     * @param remoteDomain
+     */
     @Override
     public void initData(DomainWraper remoteDomain) {
         try {
@@ -103,7 +110,7 @@ public class CharacterFXMLDetailsController extends FXMLDetailsController<Charac
      */
     @Override
     @FXML
-    protected void getResourceButtonOnAction(ActionEvent event){
+    protected void resourceButtonOnAction(ActionEvent event){
         Button btn = (Button) event.getSource();
         String id = btn.getId();
         

@@ -18,11 +18,19 @@ public class StoryAbstractServiceImpl extends AbstractService<Story> {
     private final StoryAbstractRepositoryImpl repository = 
             new StoryAbstractRepositoryImpl();
     
+    /**
+     *
+     * @return
+     */
     @Override
     protected Repository getRepository() {
         return repository;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public String[] getOrderByParamNodes() {
         return Story.ORDERBY_PARAM_NAMES;

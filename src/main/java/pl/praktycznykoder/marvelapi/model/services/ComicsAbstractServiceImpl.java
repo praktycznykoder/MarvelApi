@@ -19,24 +19,44 @@ public class ComicsAbstractServiceImpl
     private final ComicsAbstractRepositoryImpl repository = 
             new ComicsAbstractRepositoryImpl();
     
+    /**
+     *
+     * @return
+     */
     @Override
     protected Repository getRepository() {
         return repository;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public String[] getOrderByParamNodes() {
         return Comics.ORDERBY_PARAM_NAMES;
     }
     
+    /**
+     *
+     * @return
+     */
     public String[] getFormatParamNodes() {
         return Comics.FORMAT_PARAM_NAMES;
     }
     
+    /**
+     *
+     * @return
+     */
     public String[] getFormatTypeParamNodes() {
         return Comics.FORMAT_TYPE_PARAM_NAMES;
     }
     
+    /**
+     *
+     * @return
+     */
     public String[] getDateDescriptorParamNodes() {
         return Comics.DATE_DESCRIPTOR_PARAM_NAMES;
     }

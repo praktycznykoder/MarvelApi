@@ -25,21 +25,36 @@ import pl.praktycznykoder.marvelapi.client.response.ComicsMarvelApiResponse;
  */
 public class AbstractRepositoryTest {
     
+    /**
+     *
+     */
     public AbstractRepositoryTest() {
     }
     
+    /**
+     *
+     */
     @BeforeClass
     public static void setUpClass() {
     }
     
+    /**
+     *
+     */
     @AfterClass
     public static void tearDownClass() {
     }
     
+    /**
+     *
+     */
     @Before
     public void setUp() {
     }
     
+    /**
+     *
+     */
     @After
     public void tearDown() {
     }
@@ -105,6 +120,9 @@ public class AbstractRepositoryTest {
 
     /**
      * Test of getObjects method, of class AbstractRepository.
+     * @throws java.security.NoSuchAlgorithmException
+     * @throws java.net.URISyntaxException
+     * @throws java.io.IOException
      */
     @Test
     public void testGetObjects() throws NoSuchAlgorithmException, URISyntaxException, IOException {
@@ -129,6 +147,9 @@ public class AbstractRepositoryTest {
 
     /**
      * Test of getObjectWithId method, of class AbstractRepository.
+     * @throws java.security.NoSuchAlgorithmException
+     * @throws java.net.URISyntaxException
+     * @throws java.io.IOException
      */
     @Test
     public void testGetObjectWithId() throws NoSuchAlgorithmException, URISyntaxException, IOException {
@@ -149,6 +170,9 @@ public class AbstractRepositoryTest {
 
     /**
      * Test of getObjectWithUrl method, of class AbstractRepository.
+     * @throws java.security.NoSuchAlgorithmException
+     * @throws java.net.URISyntaxException
+     * @throws java.io.IOException
      */
     @Test
     public void testGetObjectWithUrl() throws NoSuchAlgorithmException, URISyntaxException, IOException {
@@ -168,20 +192,36 @@ public class AbstractRepositoryTest {
         assertEquals("Ok", result.getStatus());
     }
 
+    /**
+     *
+     */
     public class AbstractRepositoryImpl extends AbstractRepository<ComicsMarvelApiResponse> {
 
         private final MarvelApiClient client = new MarvelApiClient();
         private final String path = "v1/public/comics";
 
+        /**
+         *
+         * @return
+         */
         @Override
         protected MarvelApiClient getClient() {
             return client;
         }
+
+        /**
+         *
+         * @return
+         */
         @Override
         protected String getPath() {
             return path;
         }
 
+        /**
+         *
+         * @return
+         */
         @Override
         protected Class<?> getClazz() {
             return ComicsMarvelApiResponse.class;

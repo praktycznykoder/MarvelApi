@@ -34,22 +34,59 @@ import pl.praktycznykoder.marvelapi.model.services.Service;
  */
 public abstract class FXMLController implements Initializable{
     
+    /**
+     *
+     */
     protected int orderByIndex = 0;
     private int currentPage = 0;
     private int lastPage = 0;
     
+    /**
+     *
+     */
     protected abstract void beforeInit();
+
+    /**
+     *
+     * @return
+     */
     protected abstract Service getService();
+
+    /**
+     *
+     * @return
+     */
     protected abstract TableView getTableView();
     
+    /**
+     *
+     * @return
+     */
     protected abstract List<Param> getParamsFromForm();
     
+    /**
+     *
+     * @param event
+     */
     protected abstract void showSelectedButtonAction(ActionEvent event);
     
+    /**
+     *
+     */
     @FXML protected ComboBox<String> orderByComboBox;
+
+    /**
+     *
+     * @param event
+     */
     @FXML protected void findButtonAction(ActionEvent event){                  
         loadObjectsToTableView(true, 1);
     }
+
+    /**
+     *
+     * @param event
+     */
     @SuppressWarnings("empty-statement")  
     @FXML                
     protected void resetFormComboBoxOnAction(ActionEvent event){                  
@@ -66,14 +103,28 @@ public abstract class FXMLController implements Initializable{
     @FXML Button lastButton;
     
     @FXML Label lastPageLabel;
+
+    /**
+     *
+     * @param lastPageLabel
+     */
     public void setTextLastPageLabel(int lastPageLabel) {
         this.lastPageLabel.setText(lastPageLabel+"");
     }
     @FXML TextField currentPageTextField;
+
+    /**
+     *
+     * @param currentPage
+     */
     public void setCurrentPageTextField(int currentPage){
         currentPageTextField.setText(currentPage+"");
     }
 
+    /**
+     *
+     * @return
+     */
     public boolean initCurrentPageInputWhenIsValid() {
         setCurrentPageTextField(currentPage);
         String textTmp = currentPageTextField.getText();
@@ -98,6 +149,10 @@ public abstract class FXMLController implements Initializable{
         return true;
     }
     
+    /**
+     *
+     * @param actionEvent
+     */
     @FXML protected void paggingButtonAction(ActionEvent actionEvent){
         String id = ((Button)actionEvent.getSource()).getId();
         switch (id) {
@@ -123,6 +178,12 @@ public abstract class FXMLController implements Initializable{
         }        
     }
     
+    /**
+     *
+     * @param titleText
+     * @param headerText
+     * @param contentText
+     */
     protected void showAlert(String titleText, String headerText, String contentText){
         Alert alert = new Alert(AlertType.INFORMATION);
         alert.setTitle(titleText);
@@ -131,6 +192,10 @@ public abstract class FXMLController implements Initializable{
         alert.showAndWait();
     }
     
+    /**
+     *
+     * @return
+     */
     protected List<Param> getNewListParamWithOrderBy(){
         List<Param> params = new ArrayList();
         String orderBy = orderByComboBox.getSelectionModel().getSelectedItem();        
@@ -138,6 +203,10 @@ public abstract class FXMLController implements Initializable{
         return params;
     }
     
+    /**
+     *
+     * @param orders
+     */
     protected void addOrdersToOrderByComboBox(String[] orders){
         orderByComboBox.getItems().addAll(orders); 
         for(String order : orders){
@@ -145,14 +214,28 @@ public abstract class FXMLController implements Initializable{
         }               
         orderByComboBox.getSelectionModel().select(orderByIndex);
     }
+
+    /**
+     *
+     * @param clear
+     */
     protected void clearTableView(boolean clear){
         if(clear){
             getTableView().getItems().clear();            
         }
     }
+
+    /**
+     *
+     */
     protected void refreshTableView(){
         getTableView().refresh();
     }
+
+    /**
+     *
+     * @param data
+     */
     protected void addRowsToTableView(Data data){
         if(data.getCount() >0){
             getTableView().getItems().addAll(data.getResults());
@@ -160,6 +243,11 @@ public abstract class FXMLController implements Initializable{
             showAlert("Information", null, "NO RESULTS");
         }
     }    
+
+    /**
+     *
+     * @param data
+     */
     protected void initPagging(Data data){
         currentPage = data.countCurrentPage();
         lastPage = data.countLastPage();
@@ -187,6 +275,12 @@ public abstract class FXMLController implements Initializable{
         setTextLastPageLabel(lastPage);
         setCurrentPageTextField(currentPage);
     }
+
+    /**
+     *
+     * @param page
+     * @return
+     */
     protected Data getDataFromService(int page){
         try {
             return getService().getData(getParamsFromForm(), page);
@@ -195,6 +289,12 @@ public abstract class FXMLController implements Initializable{
         }
         return null;
     }
+
+    /**
+     *
+     * @param clear
+     * @param page
+     */
     protected void loadObjectsToTableView(final boolean clear, final int page){
         new Runnable() {
             @Override
@@ -212,10 +312,17 @@ public abstract class FXMLController implements Initializable{
         }.run();     
     }
     
+    /**
+     *
+     */
     protected void initOrderByComboBox() {        
         String[] orders = getService().getOrderByParamNodes();
         addOrdersToOrderByComboBox(orders);
     }
+
+    /**
+     *
+     */
     protected void initTableView() {        
        if(getTableView().getItems().isEmpty()){
             loadObjectsToTableView(false, 1);

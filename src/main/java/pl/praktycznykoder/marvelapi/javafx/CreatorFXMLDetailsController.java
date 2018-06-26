@@ -19,7 +19,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
-import javafx.scene.image.ImageView;
 import pl.praktycznykoder.marvelapi.model.domain.Creator;
 import pl.praktycznykoder.marvelapi.model.domain.basic.Url;
 import pl.praktycznykoder.marvelapi.model.domain.wraper.DomainWraper;
@@ -33,6 +32,11 @@ import pl.praktycznykoder.marvelapi.model.services.Service;
 public class CreatorFXMLDetailsController extends FXMLDetailsController<Creator> {
 
     private final Service<Creator> service = new CreatorAbstractServiceImpl();
+
+    /**
+     *
+     * @return
+     */
     @Override
     protected Service getService() {
         return service;
@@ -40,7 +44,6 @@ public class CreatorFXMLDetailsController extends FXMLDetailsController<Creator>
     
     private Creator creator;
         
-    @FXML private ImageView thumbnailImageView;
     @FXML private TextField idTextField;
     @FXML private TextField firstNameTextField;
     @FXML private TextField middleNameTextField;
@@ -56,6 +59,9 @@ public class CreatorFXMLDetailsController extends FXMLDetailsController<Creator>
     @FXML private ComboBox<DomainWraper> seriesComboBox;
     @FXML private ComboBox<DomainWraper> eventsComboBox;
             
+    /**
+     *
+     */
     @Override
     protected void initFields() {
         thumbnailImageView.setImage(
@@ -89,12 +95,20 @@ public class CreatorFXMLDetailsController extends FXMLDetailsController<Creator>
         
     }
     
+    /**
+     *
+     * @param creator
+     */
     @Override
     public void initData(Creator creator){
         this.creator = creator;
         initFields();
     }
     
+    /**
+     *
+     * @param remoteDomain
+     */
     @Override
     public void initData(DomainWraper remoteDomain) {
         try {
@@ -110,7 +124,7 @@ public class CreatorFXMLDetailsController extends FXMLDetailsController<Creator>
      */
     @Override
     @FXML
-    protected void getResourceButtonOnAction(ActionEvent event){
+    protected void resourceButtonOnAction(ActionEvent event){
         Button btn = (Button) event.getSource();
         String id = btn.getId();
         

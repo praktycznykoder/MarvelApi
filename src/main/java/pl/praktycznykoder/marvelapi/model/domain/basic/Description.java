@@ -15,32 +15,62 @@ public class Description {
     private String language;
     private String description;
 
+    /**
+     *
+     * @param type
+     * @param language
+     * @param description
+     */
     public Description(String type, String language, String description) {
         this.type = type;
         this.language = language;
         this.description = description;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getType() {
         return type;
     }
 
+    /**
+     *
+     * @param type
+     */
     public void setType(String type) {
         this.type = type;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getLanguage() {
         return language;
     }
 
+    /**
+     *
+     * @param language
+     */
     public void setLanguage(String language) {
         this.language = language;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getDescription() {
         return description;
     }
 
+    /**
+     *
+     * @param description
+     */
     public void setDescription(String description) {
         this.description = description;
     }

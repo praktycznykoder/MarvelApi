@@ -24,21 +24,36 @@ import pl.praktycznykoder.marvelapi.model.domain.Character;
  */
 public class CharacterAbstractServiceImplTest {
     
+    /**
+     *
+     */
     public CharacterAbstractServiceImplTest() {
     }
     
+    /**
+     *
+     */
     @BeforeClass
     public static void setUpClass() {
     }
     
+    /**
+     *
+     */
     @AfterClass
     public static void tearDownClass() {
     }
     
+    /**
+     *
+     */
     @Before
     public void setUp() {
     }
     
+    /**
+     *
+     */
     @After
     public void tearDown() {
     }
@@ -46,6 +61,9 @@ public class CharacterAbstractServiceImplTest {
     /**
      * Test of getObjectWithId method, of class CharacterAbstractServiceImpl
      * extends from AbstractService.
+     * @throws java.security.NoSuchAlgorithmException
+     * @throws java.net.URISyntaxException
+     * @throws java.io.IOException
      */
     @Test
     public void testGetObjectWithId() throws NoSuchAlgorithmException, URISyntaxException, IOException{        

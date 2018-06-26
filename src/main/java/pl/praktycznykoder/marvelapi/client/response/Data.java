@@ -20,13 +20,30 @@ public class Data<Type> {
     private int count;
     private int limit;
     
+    /**
+     *
+     * @return
+     */
     public int countCurrentPage(){
         return getOffset()/getLimit()+1;
     }
+
+    /**
+     *
+     * @return
+     */
     public int countLastPage(){
         return getTotal()/getLimit()+1;
     }
 
+    /**
+     *
+     * @param offset
+     * @param total
+     * @param results
+     * @param count
+     * @param limit
+     */
     public Data(int offset, int total, Type[] results, int count, int limit) {
         this.offset = offset;
         this.total = total;
@@ -35,42 +52,82 @@ public class Data<Type> {
         this.limit = limit;
     }
     
+    /**
+     *
+     * @return
+     */
     public int getOffset() {
         return offset;
     }
 
+    /**
+     *
+     * @param offset
+     */
     public void setOffset(int offset) {
         this.offset = offset;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getTotal() {
         return total;
     }
 
+    /**
+     *
+     * @param total
+     */
     public void setTotal(int total) {
         this.total = total;
     }
 
+    /**
+     *
+     * @return
+     */
     public Type[] getResults() {
         return results;
     }
 
+    /**
+     *
+     * @param results
+     */
     public void setResults(Type[] results) {
         this.results = results;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getCount() {
         return count;
     }
 
+    /**
+     *
+     * @param count
+     */
     public void setCount(int count) {
         this.count = count;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getLimit() {
         return limit;
     }
 
+    /**
+     *
+     * @param limit
+     */
     public void setLimit(int limit) {
         this.limit = limit;
     }

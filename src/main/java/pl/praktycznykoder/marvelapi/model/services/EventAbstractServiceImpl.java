@@ -18,11 +18,19 @@ public class EventAbstractServiceImpl extends AbstractService<Event> {
     private final EventAbstractRepositoryImpl repository = 
             new EventAbstractRepositoryImpl();
     
+    /**
+     *
+     * @return
+     */
     @Override
     protected Repository getRepository() {
         return repository;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public String[] getOrderByParamNodes() {
         return Event.ORDERBY_PARAM_NAMES;

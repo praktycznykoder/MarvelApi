@@ -18,20 +18,36 @@ public class SeriesAbstractServiceImpl extends AbstractService<Series> {
     private final SeriesAbstractRepositoryImpl repository = 
             new SeriesAbstractRepositoryImpl();
     
+    /**
+     *
+     * @return
+     */
     @Override
     protected Repository getRepository() {
         return repository;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public String[] getOrderByParamNodes() {
         return Series.ORDERBY_PARAM_NAMES;
     }
     
+    /**
+     *
+     * @return
+     */
     public String[] getContains() {
         return Series.CONTAINS;
     }
     
+    /**
+     *
+     * @return
+     */
     public String[] getSeriesType() {
         return Series.SERIES_TYPES;
     }

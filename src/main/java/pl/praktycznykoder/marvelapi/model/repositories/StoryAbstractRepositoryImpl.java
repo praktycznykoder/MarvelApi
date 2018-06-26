@@ -14,11 +14,20 @@ import pl.praktycznykoder.marvelapi.client.response.StoryMarvelApiResponse;
 public class StoryAbstractRepositoryImpl  extends AbstractRepository<StoryMarvelApiResponse> {
 
     private final String path = "v1/public/stories";
+
+    /**
+     *
+     * @return
+     */
     @Override
     protected String getPath() {
         return path;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     protected Class<?> getClazz() {
         return StoryMarvelApiResponse.class;

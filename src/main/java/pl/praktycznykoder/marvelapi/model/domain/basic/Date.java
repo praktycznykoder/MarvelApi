@@ -13,7 +13,16 @@ import java.text.SimpleDateFormat;
  */
 public class Date {
     	
+    /**
+     *
+     */
     public final static String DATE_FORMAT = "yyyy-MM-dd";
+
+    /**
+     *
+     * @param date
+     * @return
+     */
     public final static String dateConvert(String date){
         try {
             date = date.substring(0, DATE_FORMAT.length());
@@ -29,6 +38,11 @@ public class Date {
     private String type;
     private String date;
 
+    /**
+     *
+     * @param type
+     * @param date
+     */
     public Date(String type, String date) {
         this.type = type;
         this.date = date;
@@ -39,18 +53,34 @@ public class Date {
         return type + " : " + getDate();
     }
     
+    /**
+     *
+     * @return
+     */
     public String getType() {
             return type;
     }
 
+    /**
+     *
+     * @param type
+     */
     public void setType(String type) {
             this.type = type;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getDate() {
             return dateConvert(date);
     }
 
+    /**
+     *
+     * @param date
+     */
     public void setDate(String date) {
             this.date = date;
     }   

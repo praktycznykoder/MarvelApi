@@ -38,31 +38,75 @@ import pl.praktycznykoder.marvelapi.model.services.Service;
  */
 public abstract class FXMLDetailsController<DomainType> implements Initializable {
     
-    
+    /**
+     *
+     */
     @FXML protected ImageView thumbnailImageView;
     
+    /**
+     *
+     */
     @FXML protected void imageThumbnailViewClick(){
-        openImageScene(thumbnailImageView.getImage());                
+        if(thumbnailImageView.getImage() != null){
+            openImageScene(thumbnailImageView.getImage());
+        }
     }
     
-    
+    /**
+     *
+     * @param character
+     */
     public abstract void initData(DomainType character);
+
+    /**
+     *
+     * @param remoteDomain
+     */
     public abstract void initData(DomainWraper remoteDomain);
+
+    /**
+     *
+     */
     protected abstract void initFields();
-    protected abstract void getResourceButtonOnAction(ActionEvent event);
+
+    /**
+     *
+     * @param event
+     */
+    protected abstract void resourceButtonOnAction(ActionEvent event);
     
+    /**
+     *
+     */
     protected final int EMPTY_ITEMS = 0;
+
+    /**
+     *
+     * @param comboBox
+     */
     protected void disableComboBoxWhereIsEmpty(ComboBox comboBox){
         if(comboBox.getItems().size()<= EMPTY_ITEMS){
             comboBox.setDisable(true);
         }
     }
+
+    /**
+     *
+     * @param button
+     * @param value
+     */
     protected void disableButtonWhereIsEmpty(Button button, DomainWraper value){
         if(value == null){
             button.setDisable(true);
         }
     }
     
+    /**
+     *
+     * @param titleText
+     * @param headerText
+     * @param contentText
+     */
     protected void showAlert(String titleText, String headerText, String contentText){
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(titleText);
@@ -71,6 +115,11 @@ public abstract class FXMLDetailsController<DomainType> implements Initializable
         alert.showAndWait();
     }
     
+    /**
+     *
+     * @param url
+     * @return
+     */
     protected WritableImage getImage(String url){
         try {
             BufferedImage image = getService().getImage(url);
@@ -80,6 +129,11 @@ public abstract class FXMLDetailsController<DomainType> implements Initializable
         }
         return null;
     }    
+
+    /**
+     *
+     * @param image
+     */
     protected void openImageScene(javafx.scene.image.Image image){
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().
         getResource("/fxml/ShowImage.fxml"));     
@@ -105,7 +159,10 @@ public abstract class FXMLDetailsController<DomainType> implements Initializable
        
     }
     
-    
+    /**
+     *
+     * @param image
+     */
     protected void openImageScene(Image image){
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().
         getResource("/fxml/ShowImage.fxml"));     
@@ -131,6 +188,13 @@ public abstract class FXMLDetailsController<DomainType> implements Initializable
         stage.show();        
        
     }
+
+    /**
+     *
+     * @param resource
+     * @param titeScene
+     * @param remoteDomain
+     */
     protected void openNewScene(String resource, String titeScene, 
                DomainWraper remoteDomain){
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().
@@ -154,6 +218,13 @@ public abstract class FXMLDetailsController<DomainType> implements Initializable
         controller.initData(remoteDomain);
         stage.show();        
     }
+
+    /**
+     *
+     * @param resource
+     * @param titeScene
+     * @param comboBox
+     */
     protected void openNewScene(String resource, String titeScene, 
             ComboBox<DomainWraper> comboBox){        
         if(comboBox.getItems().isEmpty()){
@@ -165,6 +236,11 @@ public abstract class FXMLDetailsController<DomainType> implements Initializable
         openNewScene(resource, titeScene, remoteDomain); 
     }
     
+    /**
+     *
+     * @param objs
+     * @param textArea
+     */
     protected void setArrayObjectToTextArea(Object[] objs, TextArea textArea){
         String tmpText = "";        
         for (Object textObject : objs) {
@@ -173,6 +249,10 @@ public abstract class FXMLDetailsController<DomainType> implements Initializable
         textArea.setText(tmpText);
     }
     
+    /**
+     *
+     * @param url
+     */
     protected void openDesktopBrowserWithUrl(Url url){
         try {
             Desktop.getDesktop().browse(new URI(url.getUrl()));
@@ -180,10 +260,19 @@ public abstract class FXMLDetailsController<DomainType> implements Initializable
             Logger.getLogger(CharacterFXMLDetailsController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
+    /**
+     *
+     * @param comboBox
+     */
     protected void openDesktopBrowserFromComboBoxUrl(ComboBox<Url> comboBox){
         Url url = comboBox.getSelectionModel().getSelectedItem();
         openDesktopBrowserWithUrl(url);
     }
     
+    /**
+     *
+     * @return
+     */
     protected abstract Service getService();
 }

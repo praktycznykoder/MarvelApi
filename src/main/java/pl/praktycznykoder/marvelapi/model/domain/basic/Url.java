@@ -16,6 +16,11 @@ public class Url implements ResourceWraper{
     private String type;	
     private String url;
 
+    /**
+     *
+     * @param type
+     * @param url
+     */
     public Url(String type, String url) {
         this.type = type;
         this.url = url;
@@ -26,18 +31,34 @@ public class Url implements ResourceWraper{
             return url+"."+type;
     }
     
+    /**
+     *
+     * @return
+     */
     public String getType() {
         return type;
     }
 
+    /**
+     *
+     * @param type
+     */
     public void setType(String type) {
         this.type = type;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getUrl() {
         return url;
     }
 
+    /**
+     *
+     * @param url
+     */
     public void setUrl(String url) {
         this.url = url;
     }

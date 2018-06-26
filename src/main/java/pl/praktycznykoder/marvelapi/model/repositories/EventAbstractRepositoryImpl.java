@@ -14,11 +14,20 @@ import pl.praktycznykoder.marvelapi.client.response.EventMarvelApiResponse;
 public class EventAbstractRepositoryImpl  extends AbstractRepository<EventMarvelApiResponse> {
 
     private final String path = "v1/public/events";
+
+    /**
+     *
+     * @return
+     */
     @Override
     protected String getPath() {
         return path;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     protected Class<?> getClazz() {
         return EventMarvelApiResponse.class;

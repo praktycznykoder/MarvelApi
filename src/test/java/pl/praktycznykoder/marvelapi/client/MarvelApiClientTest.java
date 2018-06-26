@@ -27,21 +27,36 @@ import pl.praktycznykoder.api.domain.Param;
  */
 public class MarvelApiClientTest {
     
+    /**
+     *
+     */
     public MarvelApiClientTest() {
     }
     
+    /**
+     *
+     */
     @BeforeClass
     public static void setUpClass() {
     }
     
+    /**
+     *
+     */
     @AfterClass
     public static void tearDownClass() {
     }
     
+    /**
+     *
+     */
     @Before
     public void setUp() {
     }
     
+    /**
+     *
+     */
     @After
     public void tearDown() {
     }
@@ -88,6 +103,7 @@ public class MarvelApiClientTest {
 
     /**
      * Test of getPaggingResponseFromMarvelApi method, of class MarvelApiClient.
+     * @throws java.lang.Exception
      */
     @Ignore
     @Test
@@ -133,6 +149,7 @@ public class MarvelApiClientTest {
 
     /**
      * Test of getProps method, of class MarvelApiClient.
+     * @throws java.io.IOException
      */
     @Test
     public void testGetProps() throws IOException {

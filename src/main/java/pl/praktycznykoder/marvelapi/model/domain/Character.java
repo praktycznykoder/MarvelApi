@@ -15,6 +15,9 @@ import pl.praktycznykoder.marvelapi.model.domain.wraper.DomainListWraper;
  */
 public class Character implements Domain {
     
+    /**
+     *
+     */
     public final static String[] ORDERBY_PARAM_NAMES = {
         "name", "modified"
     };
@@ -31,6 +34,20 @@ public class Character implements Domain {
     private DomainListWraper events;
     private DomainListWraper stories;
 
+    /**
+     *
+     * @param id
+     * @param name
+     * @param description
+     * @param modified
+     * @param resourceURI
+     * @param thumbnail
+     * @param urls
+     * @param comics
+     * @param series
+     * @param events
+     * @param stories
+     */
     public Character(int id, String name, String description, String modified, 
             String resourceURI, Image thumbnail, Url[] urls, 
             DomainListWraper comics, DomainListWraper series, 
@@ -49,91 +66,179 @@ public class Character implements Domain {
         this.stories = stories;
     }
     
+    /**
+     *
+     * @return
+     */
     @Override
     public int getId() {
         return id;
     }
     
+    /**
+     *
+     * @param id
+     */
     public void setId(int id) {
         this.id = id;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     *
+     * @param name
+     */
     public void setName(String name) {
         this.name = name;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getDescription() {
         return description;
     }
 
+    /**
+     *
+     * @param description
+     */
     public void setDescription(String description) {
         this.description = description;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getModified() {
         return modified;
     }
 
+    /**
+     *
+     * @param modified
+     */
     public void setModified(String modified) {
         this.modified = modified;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getResourceURI() {
         return resourceURI;
     }
 
+    /**
+     *
+     * @param resourceURI
+     */
     public void setResourceURI(String resourceURI) {
         this.resourceURI = resourceURI;
     }
 
+    /**
+     *
+     * @return
+     */
     public Image getThumbnail() {
         return thumbnail;
     }
 
+    /**
+     *
+     * @param thumbnail
+     */
     public void setThumbnail(Image thumbnail) {
         this.thumbnail = thumbnail;
     }
 
+    /**
+     *
+     * @return
+     */
     public Url[] getUrls() {
         return urls;
     }
 
+    /**
+     *
+     * @param urls
+     */
     public void setUrls(Url[] urls) {
         this.urls = urls;
     }
 
+    /**
+     *
+     * @return
+     */
     public DomainListWraper getComics() {
         return comics;
     }
 
+    /**
+     *
+     * @param comics
+     */
     public void setComics(DomainListWraper comics) {
         this.comics = comics;
     }
 
+    /**
+     *
+     * @return
+     */
     public DomainListWraper getSeries() {
         return series;
     }
 
+    /**
+     *
+     * @param series
+     */
     public void setSeries(DomainListWraper series) {
         this.series = series;
     }
 
+    /**
+     *
+     * @return
+     */
     public DomainListWraper getEvents() {
         return events;
     }
 
+    /**
+     *
+     * @param events
+     */
     public void setEvents(DomainListWraper events) {
         this.events = events;
     }
 
+    /**
+     *
+     * @return
+     */
     public DomainListWraper getStories() {
         return stories;
     }
 
+    /**
+     *
+     * @param stories
+     */
     public void setStories(DomainListWraper stories) {
         this.stories = stories;
     }

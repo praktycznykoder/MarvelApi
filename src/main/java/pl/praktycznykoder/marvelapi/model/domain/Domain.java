@@ -10,5 +10,10 @@ package pl.praktycznykoder.marvelapi.model.domain;
  * @author praktycznykoder.pl
  */
 public interface Domain {
+
+    /**
+     *
+     * @return
+     */
     int getId();
 }
