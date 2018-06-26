@@ -20,7 +20,7 @@
     <RowConstraints minHeight="10.0" valignment="TOP" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <ImageView fx:id="thumbnailImageView" fitHeight="349.0" fitWidth="204.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="thumbnailImageView" fitHeight="349.0" fitWidth="204.0" onContextMenuRequested="#imageViewClick" pickOnBounds="true" preserveRatio="true" />
       <SplitPane dividerPositions="0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5" orientation="VERTICAL" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
          <items>
             <Label maxWidth="-Infinity" minHeight="-Infinity" prefHeight="25.0" text="Id" />

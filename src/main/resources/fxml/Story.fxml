@@ -20,7 +20,7 @@
           <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label style="-fx-font: NORMAL 20 Tahoma;" text="Series" />
+            <Label style="-fx-font: NORMAL 20 Tahoma;" text="Story" />
             <Button fx:id="showSelectedButton" mnemonicParsing="false" onAction="#showSelectedButtonAction" text="Show Selected" GridPane.columnIndex="1" />
             <ComboBox fx:id="orderByComboBox" onAction="#findButtonAction" prefWidth="150.0" GridPane.columnIndex="2" />
          </children>

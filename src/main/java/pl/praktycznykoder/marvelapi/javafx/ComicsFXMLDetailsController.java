@@ -42,7 +42,6 @@ public class ComicsFXMLDetailsController extends FXMLDetailsController<Comics> {
     
     private Comics comics;
         
-    @FXML private ImageView thumbnailImageView;
     @FXML private TextField idTextField;
     @FXML private TextField digitalIdTextField;
     @FXML private TextField titleTextField;
@@ -77,6 +76,9 @@ public class ComicsFXMLDetailsController extends FXMLDetailsController<Comics> {
     @FXML private ComboBox<Url> urlsComboBox;
     
     @FXML private Button seriesButton;
+    
+    
+    
         
     @Override
     protected void initFields() {

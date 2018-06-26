@@ -14,6 +14,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
@@ -22,9 +23,9 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
+import javafx.scene.image.ImageView;
 import javafx.scene.image.WritableImage;
 import javafx.stage.Stage;
-import pl.praktycznykoder.marvelapi.model.domain.TextObject;
 import pl.praktycznykoder.marvelapi.model.domain.basic.Image;
 import pl.praktycznykoder.marvelapi.model.domain.basic.Url;
 import pl.praktycznykoder.marvelapi.model.domain.wraper.DomainWraper;
@@ -35,7 +36,16 @@ import pl.praktycznykoder.marvelapi.model.services.Service;
  * @author praktycznykoder.pl
  * @param <DomainType>
  */
-public abstract class FXMLDetailsController<DomainType> implements Initializable{
+public abstract class FXMLDetailsController<DomainType> implements Initializable {
+    
+    
+    @FXML protected ImageView thumbnailImageView;
+    
+    @FXML protected void imageThumbnailViewClick(){
+        openImageScene(thumbnailImageView.getImage());                
+    }
+    
+    
     public abstract void initData(DomainType character);
     public abstract void initData(DomainWraper remoteDomain);
     protected abstract void initFields();
@@ -69,7 +79,33 @@ public abstract class FXMLDetailsController<DomainType> implements Initializable
             Logger.getLogger(CharacterFXMLDetailsController.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
+    }    
+    protected void openImageScene(javafx.scene.image.Image image){
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().
+        getResource("/fxml/ShowImage.fxml"));     
+        Stage stage = new Stage();
+        Parent root = null;                       
+        try {
+            root = (Parent)fxmlLoader.load();
+        } catch (IOException ex) {
+            Logger.getLogger(ImageFXMLDetailsController.class.getName()).
+                    log(Level.SEVERE, null, ex);
+        }
+        Scene scene = new Scene(root);
+        stage.setTitle("Thumbnails image");
+        stage.setScene(scene);       
+        
+
+        ImageFXMLDetailsController controller = 
+        fxmlLoader.<ImageFXMLDetailsController>getController();
+        
+        controller.setImage(image);        
+        stage.setMaximized(true);
+        stage.show();        
+       
     }
+    
+    
     protected void openImageScene(Image image){
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().
         getResource("/fxml/ShowImage.fxml"));     

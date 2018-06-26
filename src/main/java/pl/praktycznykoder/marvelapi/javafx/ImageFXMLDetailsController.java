@@ -26,7 +26,14 @@ public class ImageFXMLDetailsController implements Initializable{
         imageView.setFitWidth(fxImage.getWidth());
         
     }
-
+    
+    public void setImage(javafx.scene.image.Image image) {
+        imageView.setImage(image);  
+        
+        imageView.setFitHeight(800);
+        imageView.setFitWidth(600);
+    }
+    
     @Override
     public void initialize(URL location, ResourceBundle resources) {}
     

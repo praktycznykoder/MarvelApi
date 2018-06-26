@@ -50,7 +50,9 @@ public abstract class FXMLController implements Initializable{
     @FXML protected void findButtonAction(ActionEvent event){                  
         loadObjectsToTableView(true, 1);
     }
-    @FXML protected void resetFormComboBoxOnAction(ActionEvent event){                  
+    @SuppressWarnings("empty-statement")  
+    @FXML                
+    protected void resetFormComboBoxOnAction(ActionEvent event){                  
         ComboBox comboBox = (ComboBox) event.getSource();
         if(comboBox.getSelectionModel().getSelectedIndex() == 0){            
             comboBox.getSelectionModel().clearSelection();
@@ -188,11 +190,7 @@ public abstract class FXMLController implements Initializable{
     protected Data getDataFromService(int page){
         try {
             return getService().getData(getParamsFromForm(), page);
-        } catch (NoSuchAlgorithmException ex) {
-            Logger.getLogger(FXMLController.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (URISyntaxException ex) {
-            Logger.getLogger(FXMLController.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
+        } catch (NoSuchAlgorithmException | URISyntaxException | IOException ex) {
             Logger.getLogger(FXMLController.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
