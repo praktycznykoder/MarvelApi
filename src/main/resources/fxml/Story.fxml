@@ -25,7 +25,7 @@
             <ComboBox fx:id="orderByComboBox" onAction="#findButtonAction" prefWidth="150.0" GridPane.columnIndex="2" />
          </children>
       </GridPane>
-       <TableView fx:id="tableView" prefHeight="114.0" prefWidth="720.0">
+       <TableView fx:id="tableView" onMouseClicked="#doubleClickRowMouseEvent" prefHeight="114.0" prefWidth="720.0">
         <columns>
              <TableColumn editable="false" text="Id">
                  <cellValueFactory>

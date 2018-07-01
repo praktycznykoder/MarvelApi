@@ -15,7 +15,7 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
-package pl.praktycznykoder.marvelapi.javafx;
+package pl.praktycznykoder.marvelapi.javafx.controllers;
 
 import java.awt.Desktop;
 import java.io.IOException;
@@ -54,7 +54,7 @@ public class CreatorFXMLDetailsController extends FXMLDetailsController<Creator>
         return service;
     }
     
-    private Creator creator;
+    private Creator creatorDomain;
         
     @FXML private TextField idTextField;
     @FXML private TextField firstNameTextField;
@@ -70,6 +70,12 @@ public class CreatorFXMLDetailsController extends FXMLDetailsController<Creator>
     @FXML private ComboBox<DomainWraper> storiesComboBox;
     @FXML private ComboBox<DomainWraper> seriesComboBox;
     @FXML private ComboBox<DomainWraper> eventsComboBox;
+    
+    @FXML private Button urlsButton;
+    @FXML private Button comicsButton;
+    @FXML private Button storiesButton;
+    @FXML private Button seriesButton;
+    @FXML private Button eventsButton;
             
     /**
      *
@@ -77,29 +83,29 @@ public class CreatorFXMLDetailsController extends FXMLDetailsController<Creator>
     @Override
     protected void initFields() {
         thumbnailImageView.setImage(
-                getImage(creator.getThumbnail().toString()));
-        idTextField.setText(creator.getId()+"");
-        firstNameTextField.setText(creator.getFirstName());
-        middleNameTextField.setText(creator.getMiddleName());
-        lastNameTextField.setText(creator.getLastName());
-        fullNameTextField.setText(creator.getFullName());
-        suffixTextField.setText(creator.getSuffix());
-        modifiedTextField.setText(creator.getModified());
-        resourceURITextField.setText(creator.getResourceURI());
-        urlsComboBox.getItems().addAll(creator.getUrls());
-        disableComboBoxWhereIsEmpty(urlsComboBox);
+                getImage(creatorDomain.getThumbnail().toString()));
+        idTextField.setText(creatorDomain.getId()+"");
+        firstNameTextField.setText(creatorDomain.getFirstName());
+        middleNameTextField.setText(creatorDomain.getMiddleName());
+        lastNameTextField.setText(creatorDomain.getLastName());
+        fullNameTextField.setText(creatorDomain.getFullName());
+        suffixTextField.setText(creatorDomain.getSuffix());
+        modifiedTextField.setText(creatorDomain.getModified());
+        resourceURITextField.setText(creatorDomain.getResourceURI());
+        urlsComboBox.getItems().addAll(creatorDomain.getUrls());
+        disableComboBoxWhereIsEmpty(urlsComboBox, urlsButton);
         
-        comicsComboBox.getItems().addAll(creator.getComics().getItems());
-        disableComboBoxWhereIsEmpty(comicsComboBox);
+        comicsComboBox.getItems().addAll(creatorDomain.getComics().getItems());
+        disableComboBoxWhereIsEmpty(comicsComboBox, comicsButton);
         
-        storiesComboBox.getItems().addAll(creator.getStories().getItems());
-        disableComboBoxWhereIsEmpty(storiesComboBox);
+        storiesComboBox.getItems().addAll(creatorDomain.getStories().getItems());
+        disableComboBoxWhereIsEmpty(storiesComboBox, storiesButton);
         
-        seriesComboBox.getItems().addAll(creator.getSeries().getItems());
-        disableComboBoxWhereIsEmpty(seriesComboBox);
+        seriesComboBox.getItems().addAll(creatorDomain.getSeries().getItems());
+        disableComboBoxWhereIsEmpty(seriesComboBox, seriesButton);
         
-        eventsComboBox.getItems().addAll(creator.getEvents().getItems());
-        disableComboBoxWhereIsEmpty(eventsComboBox);
+        eventsComboBox.getItems().addAll(creatorDomain.getEvents().getItems());
+        disableComboBoxWhereIsEmpty(eventsComboBox, eventsButton);
                 
         
         
@@ -113,7 +119,7 @@ public class CreatorFXMLDetailsController extends FXMLDetailsController<Creator>
      */
     @Override
     public void initData(Creator creator){
-        this.creator = creator;
+        this.creatorDomain = creator;
         initFields();
     }
     
@@ -124,7 +130,7 @@ public class CreatorFXMLDetailsController extends FXMLDetailsController<Creator>
     @Override
     public void initData(DomainWraper remoteDomain) {
         try {
-            this.creator = service.getObjectWithUrl(remoteDomain.getResourceURI(), null);
+            this.creatorDomain = service.getObjectWithUrl(remoteDomain.getResourceURI(), null);
         } catch (NoSuchAlgorithmException | URISyntaxException | IOException ex) {
             Logger.getLogger(CharacterFXMLDetailsController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -159,7 +165,7 @@ public class CreatorFXMLDetailsController extends FXMLDetailsController<Creator>
             break;            
             case "resourceURIButton":
                 try {
-                    Desktop.getDesktop().browse(new URI(creator.getResourceURI()));
+                    Desktop.getDesktop().browse(new URI(creatorDomain.getResourceURI()));
                 } catch (IOException | URISyntaxException ex) {
                     Logger.getLogger(CharacterFXMLDetailsController.class.getName()).log(Level.SEVERE, null, ex);
                 }

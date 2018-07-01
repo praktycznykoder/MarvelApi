@@ -9,7 +9,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<GridPane hgap="5.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="363.0" prefWidth="639.0" vgap="5.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.praktycznykoder.marvelapi.javafx.CharacterFXMLDetailsController">
+<GridPane hgap="5.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="404.0" prefWidth="639.0" vgap="5.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.praktycznykoder.marvelapi.javafx.CharacterFXMLDetailsController">
   <columnConstraints>
       <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
     <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -19,10 +19,10 @@
     <RowConstraints minHeight="10.0" valignment="TOP" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <ImageView fx:id="thumbnailImageView" onMouseClicked="#imageThumbnailViewClick" fitHeight="156.0" fitWidth="190.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="thumbnailImageView" fitHeight="156.0" fitWidth="190.0" onMouseClicked="#imageThumbnailViewClick" pickOnBounds="true" preserveRatio="true" />
       <SplitPane dividerPositions="0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5" orientation="VERTICAL" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
          <items>
-            <Label maxWidth="-Infinity" minHeight="-Infinity" prefHeight="26.0" prefWidth="11.0" text="Id" />
+            <Label maxWidth="-Infinity" minHeight="-Infinity" prefHeight="26.0" prefWidth="23.0" text="Id" />
             <TextField fx:id="idTextField" editable="false" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="33.0" prefWidth="204.0" />
             <Label maxHeight="-Infinity" minHeight="-Infinity" prefHeight="25.0" text="Name" />
             <TextField fx:id="nameTextField" editable="false" focusTraversable="false" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="33.0" />

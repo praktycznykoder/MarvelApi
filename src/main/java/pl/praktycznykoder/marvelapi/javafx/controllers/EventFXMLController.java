@@ -15,7 +15,7 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
-package pl.praktycznykoder.marvelapi.javafx;
+package pl.praktycznykoder.marvelapi.javafx.controllers;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -32,19 +32,19 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import pl.praktycznykoder.api.domain.Param;
-import pl.praktycznykoder.marvelapi.model.services.CharacterAbstractServiceImpl;
 import pl.praktycznykoder.marvelapi.model.services.Service;
-import pl.praktycznykoder.marvelapi.model.domain.Character;
+import pl.praktycznykoder.marvelapi.model.domain.Event;
+import pl.praktycznykoder.marvelapi.model.services.EventAbstractServiceImpl;
 
 /**
  *
  * @author praktycznykoder.pl
  */
-public class CharacterFXMLController extends FXMLController {
+public class EventFXMLController extends FXMLController {
     
-    private final Service service = new CharacterAbstractServiceImpl();
+    private final Service service = new EventAbstractServiceImpl();
     
-    @FXML private TableView<Character> tableView;
+    @FXML private TableView<Event> tableView;
     @FXML private TextField nameTextField;
     @FXML private TextField nameStartsWithTextField;
     @FXML private DatePicker modifiedSinceDatePicker;
@@ -72,7 +72,7 @@ public class CharacterFXMLController extends FXMLController {
      */
     @Override
     protected void beforeInit() {
-        orderByIndex = 3;
+        orderByIndex = 0;
     }
     
     /**
@@ -102,23 +102,24 @@ public class CharacterFXMLController extends FXMLController {
     @Override 
     @FXML protected void showSelectedButtonAction(ActionEvent event){
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().
-            getResource("/fxml/CharacterDetails.fxml"));     
+            getResource("/fxml/EventDetails.fxml"));     
         Stage stage = new Stage();
         Parent root = null;                       
         try {
             root = (Parent)fxmlLoader.load();
         } catch (IOException ex) {
-            Logger.getLogger(CharacterFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(EventFXMLController.class.getName()).log(Level.SEVERE, null, ex);
         }
         Scene scene = new Scene(root);
         //scene.getStylesheets().add("/styles/Styless.css");        
-        final Character character = tableView.getSelectionModel().getSelectedItem(); 
-        stage.setTitle("Characters - "+character.getName());
+        final Event eventDomain = tableView.getSelectionModel().getSelectedItem(); 
+        if(eventDomain == null) return;
+        stage.setTitle("Event - "+eventDomain.getTitle());
         stage.setScene(scene);       
 
-        CharacterFXMLDetailsController controller = 
-        fxmlLoader.<CharacterFXMLDetailsController>getController();
-        controller.initData(character);
+        EventFXMLDetailsController controller = 
+        fxmlLoader.<EventFXMLDetailsController>getController();
+        controller.initData(eventDomain);
         
         stage.show();        
     }

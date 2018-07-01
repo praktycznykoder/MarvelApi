@@ -15,7 +15,7 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
-package pl.praktycznykoder.marvelapi.javafx;
+package pl.praktycznykoder.marvelapi.javafx.controllers;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -53,7 +53,7 @@ public class CharacterFXMLDetailsController extends FXMLDetailsController<Charac
         return service;
     }
     
-    private Character character;
+    private Character characterDomain;
         
     @FXML private TextField idTextField;
     @FXML private TextField nameTextField;
@@ -66,6 +66,12 @@ public class CharacterFXMLDetailsController extends FXMLDetailsController<Charac
     @FXML private ComboBox<DomainWraper> eventsComboBox;
     @FXML private ComboBox<DomainWraper> storiesComboBox;
     
+    @FXML private Button urlsButton;
+    @FXML private Button comicsButton;
+    @FXML private Button seriesButton;
+    @FXML private Button eventsButton;
+    @FXML private Button storiesButton;
+    
     /**
      *
      * @throws NullPointerException
@@ -74,27 +80,27 @@ public class CharacterFXMLDetailsController extends FXMLDetailsController<Charac
     protected void initFields() throws java.lang.NullPointerException{
         
         thumbnailImageView.setImage(
-                getImage(character.getThumbnail().toString()));
-        idTextField.setText(character.getId()+"");
-        nameTextField.setText(character.getName());
-        modyfiedTextField.setText(character.getModified());
-        resourceURITextField.setText(character.getResourceURI());
-        descriptionTextArea.setText(character.getDescription());
+                getImage(characterDomain.getThumbnail().toString()));
+        idTextField.setText(characterDomain.getId()+"");
+        nameTextField.setText(characterDomain.getName());
+        modyfiedTextField.setText(characterDomain.getModified());
+        resourceURITextField.setText(characterDomain.getResourceURI());
+        descriptionTextArea.setText(characterDomain.getDescription());
         
-        urlsComboBox.getItems().addAll(character.getUrls());
-        disableComboBoxWhereIsEmpty(urlsComboBox);
+        urlsComboBox.getItems().addAll(characterDomain.getUrls());
+        disableComboBoxWhereIsEmpty(urlsComboBox, urlsButton);
                          
-        comicsComboBox.getItems().addAll(character.getComics().getItems());        
-        disableComboBoxWhereIsEmpty(comicsComboBox);
+        comicsComboBox.getItems().addAll(characterDomain.getComics().getItems());        
+        disableComboBoxWhereIsEmpty(comicsComboBox, comicsButton);
         
-        seriesComboBox.getItems().addAll(character.getSeries().getItems());
-        disableComboBoxWhereIsEmpty(seriesComboBox);
+        seriesComboBox.getItems().addAll(characterDomain.getSeries().getItems());
+        disableComboBoxWhereIsEmpty(seriesComboBox, seriesButton);
         
-        eventsComboBox.getItems().addAll(character.getEvents().getItems());
-        disableComboBoxWhereIsEmpty(eventsComboBox);
+        eventsComboBox.getItems().addAll(characterDomain.getEvents().getItems());
+        disableComboBoxWhereIsEmpty(eventsComboBox, eventsButton);
         
-        storiesComboBox.getItems().addAll(character.getStories().getItems());
-        disableComboBoxWhereIsEmpty(storiesComboBox);
+        storiesComboBox.getItems().addAll(characterDomain.getStories().getItems());
+        disableComboBoxWhereIsEmpty(storiesComboBox, storiesButton);
     }
         
     /**
@@ -103,7 +109,7 @@ public class CharacterFXMLDetailsController extends FXMLDetailsController<Charac
      */
     @Override
     public void initData(Character character){
-        this.character = character;
+        this.characterDomain = character;
         initFields();
     }
  
@@ -114,7 +120,7 @@ public class CharacterFXMLDetailsController extends FXMLDetailsController<Charac
     @Override
     public void initData(DomainWraper remoteDomain) {
         try {
-            this.character = service.getObjectWithUrl(remoteDomain.getResourceURI(), null);
+            this.characterDomain = service.getObjectWithUrl(remoteDomain.getResourceURI(), null);
         } catch (NoSuchAlgorithmException | URISyntaxException | IOException ex) {
             Logger.getLogger(CharacterFXMLDetailsController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -135,20 +141,20 @@ public class CharacterFXMLDetailsController extends FXMLDetailsController<Charac
                     openDesktopBrowserFromComboBoxUrl(urlsComboBox);
                 break;
             case "comicsButton":
-                openNewScene("/fxml/ComicsDetails.fxml", "Comics",
+                    openNewScene("/fxml/ComicsDetails.fxml", "Comics",
                         comicsComboBox);
                 break;
             case "seriesButton":
-                System.out.println(seriesComboBox.getSelectionModel().
-                        getSelectedItem());
+                    openNewScene("/fxml/SeriesDetails.fxml", "Series",
+                        seriesComboBox);
                 break;
             case "eventsButton":
-                System.out.println(eventsComboBox.getSelectionModel().
-                        getSelectedItem());
+                    openNewScene("/fxml/EventDetails.fxml", "Event",
+                        eventsComboBox);
                 break;
             case "storiesButton":
-                System.out.println(storiesComboBox.getSelectionModel().
-                        getSelectedItem());
+                    openNewScene("/fxml/StoryDetails.fxml", "Stories",
+                        storiesComboBox);
                 break;
             default:
                 break;

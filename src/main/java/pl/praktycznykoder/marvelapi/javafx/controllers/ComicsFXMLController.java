@@ -15,7 +15,7 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
-package pl.praktycznykoder.marvelapi.javafx;
+package pl.praktycznykoder.marvelapi.javafx.controllers;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -180,13 +180,14 @@ public class ComicsFXMLController extends FXMLController {
         }
         Scene scene = new Scene(root);
         //scene.getStylesheets().add("/styles/Styless.css");
-        final Comics comics = tableView.getSelectionModel().getSelectedItem(); 
-        stage.setTitle("Comics - "+comics.getTitle());
+        final Comics comicsDomain = tableView.getSelectionModel().getSelectedItem();        
+        if(comicsDomain == null) return;
+        stage.setTitle("Comics - "+comicsDomain.getTitle());
         stage.setScene(scene);       
 
         ComicsFXMLDetailsController controller = 
         fxmlLoader.<ComicsFXMLDetailsController>getController();
-        controller.initData(comics);
+        controller.initData(comicsDomain);
         
         stage.show();        
     }

@@ -15,7 +15,7 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
-package pl.praktycznykoder.marvelapi.javafx;
+package pl.praktycznykoder.marvelapi.javafx.controllers;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -27,31 +27,28 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import pl.praktycznykoder.api.domain.Param;
 import pl.praktycznykoder.marvelapi.model.services.Service;
-import pl.praktycznykoder.marvelapi.model.domain.Series;
-import pl.praktycznykoder.marvelapi.model.services.SeriesAbstractServiceImpl;
+import pl.praktycznykoder.marvelapi.model.domain.Creator;
+import pl.praktycznykoder.marvelapi.model.services.CreatorAbstractServiceImpl;
 
 /**
  *
  * @author praktycznykoder.pl
  */
-public class SeriesFXMLController extends FXMLController {
+public class CreatorFXMLController extends FXMLController {
     
-    private final Service service = new SeriesAbstractServiceImpl();
+    private final Service service = new CreatorAbstractServiceImpl();
     
-    @FXML private TableView<Series> tableView;
-    @FXML private TextField titleTextField;
-    @FXML private TextField titleStartsWithTextField;
-    @FXML private TextField startYearTextField;
-    
-    @FXML private ComboBox<String> seriesTypeComboBox;
-    @FXML private ComboBox<String> containsComboBox;
+    @FXML private TableView<Creator> tableView;
+    @FXML private TextField firstNameTextField;
+    @FXML private TextField firstNameStartsWithTextField;
+    @FXML private TextField lastNameTextField;
+    @FXML private TextField lastNameStartsWithTextField;
     @FXML private DatePicker modifiedSinceDatePicker;
     
     /**
@@ -78,10 +75,6 @@ public class SeriesFXMLController extends FXMLController {
     @Override
     protected void beforeInit() {
         orderByIndex = 0;
-        seriesTypeComboBox.getItems().addAll(
-                ((SeriesAbstractServiceImpl)service).getSeriesType());
-        containsComboBox.getItems().addAll(
-                ((SeriesAbstractServiceImpl)service).getContains());
     }
     
     /**
@@ -92,29 +85,20 @@ public class SeriesFXMLController extends FXMLController {
     protected List<Param> getParamsFromForm(){
         List<Param> params = getNewListParamWithOrderBy();
         
-        String title = titleTextField.getText();
-        if(!title.isEmpty()) params.add(new Param("title", title));
-        String titleStartsWith = titleStartsWithTextField.getText();
-        if(!titleStartsWith.isEmpty()) params.add(
-                new Param("titleStartsWith", titleStartsWith));
-        String startYear = startYearTextField.getText();
-        if(!startYear.isEmpty()) params.add(
-                new Param("startYear", titleStartsWith));
-        
-        String seriesType = seriesTypeComboBox.getSelectionModel().
-                getSelectedItem();
-        if(seriesType != null && !seriesType.isEmpty()) params.add(
-                new Param("seriesType", seriesType));
-        
-        String contains = containsComboBox.getSelectionModel().
-                getSelectedItem();
-        if(contains != null && !contains.isEmpty()) params.add(
-                new Param("contains", contains));
-        
+        String firstName = firstNameTextField.getText();
+        String firstNameStartsWith = firstNameStartsWithTextField.getText();
+        String lastName = lastNameTextField.getText();
+        String lastNameStartsWith = lastNameStartsWithTextField.getText();
         LocalDate modifiedSince = modifiedSinceDatePicker.getValue();
+        
+        if(!firstName.isEmpty()) params.add(new Param("firstName", firstName));
+        if(!firstNameStartsWith.isEmpty()) params.add(
+                new Param("firstNameStartsWith", firstNameStartsWith));
+        if(!lastName.isEmpty()) params.add(new Param("lastName", lastName));
+        if(!lastNameStartsWith.isEmpty()) params.add(
+                new Param("lastNameStartsWith", lastNameStartsWith));
         if(modifiedSince != null) params.add(
                 new Param("modifiedSince", modifiedSince.toString()));
-        
         return params.isEmpty() ? null : params;
     }
     
@@ -125,23 +109,25 @@ public class SeriesFXMLController extends FXMLController {
     @Override 
     @FXML protected void showSelectedButtonAction(ActionEvent event){
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().
-            getResource("/fxml/SeriesDetails.fxml"));     
+            getResource("/fxml/CreatorDetails.fxml"));     
         Stage stage = new Stage();
         Parent root = null;                       
         try {
             root = (Parent)fxmlLoader.load();
         } catch (IOException ex) {
-            Logger.getLogger(SeriesFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CreatorFXMLController.class.getName()).log(Level.SEVERE, null, ex);
         }
         Scene scene = new Scene(root);
         //scene.getStylesheets().add("/styles/Styless.css");        
-        final Series seriesDomain = tableView.getSelectionModel().getSelectedItem(); 
-        stage.setTitle("Series - "+seriesDomain.getTitle());
+        final Creator creatorDomain = tableView.getSelectionModel().getSelectedItem(); 
+        if(creatorDomain == null) return;
+        stage.setTitle("Creator - "+creatorDomain.getFirstName()+" "+ 
+                creatorDomain.getLastName());
         stage.setScene(scene);       
 
-        SeriesFXMLDetailsController controller = 
-        fxmlLoader.<SeriesFXMLDetailsController>getController();
-        controller.initData(seriesDomain);
+        CreatorFXMLDetailsController controller = 
+        fxmlLoader.<CreatorFXMLDetailsController>getController();
+        controller.initData(creatorDomain);
         
         stage.show();        
     }

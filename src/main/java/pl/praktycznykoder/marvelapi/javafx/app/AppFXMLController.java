@@ -15,7 +15,7 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
-package pl.praktycznykoder.marvelapi.javafx;
+package pl.praktycznykoder.marvelapi.javafx.app;
 
 import java.io.IOException;
 import java.net.URL;
@@ -42,7 +42,8 @@ public class AppFXMLController implements Initializable {
      * @throws IOException
      */
     @FXML protected void handleDataCharacterMenuItem(ActionEvent event) throws IOException {
-        Node charactersNode = FXMLLoader.load(getClass().getResource("/fxml/Character.fxml"));        
+        Node charactersNode = FXMLLoader.load(getClass().getResource(
+                ScenesFactory.getSceneData("characters").getUrl()));        
         appBorderPane.setCenter(charactersNode);
     }
 
@@ -52,7 +53,8 @@ public class AppFXMLController implements Initializable {
      * @throws IOException
      */
     @FXML protected void handleDataComicsMenuItem(ActionEvent event) throws IOException {
-        Node comicsNode = FXMLLoader.load(getClass().getResource("/fxml/Comics.fxml"));        
+        Node comicsNode = FXMLLoader.load(getClass().getResource(
+                ScenesFactory.getSceneData("comics").getUrl()));        
         appBorderPane.setCenter(comicsNode);
     }    
 
@@ -62,7 +64,8 @@ public class AppFXMLController implements Initializable {
      * @throws IOException
      */
     @FXML protected void handleDataCreatorMenuItem(ActionEvent event) throws IOException {
-        Node creatorsNode = FXMLLoader.load(getClass().getResource("/fxml/Creator.fxml"));        
+        Node creatorsNode = FXMLLoader.load(getClass().getResource(
+            ScenesFactory.getSceneData("creators").getUrl()));        
         appBorderPane.setCenter(creatorsNode);
     }  
 
@@ -72,7 +75,8 @@ public class AppFXMLController implements Initializable {
      * @throws IOException
      */
     @FXML protected void handleDataEventMenuItem(ActionEvent event) throws IOException {
-        Node eventsNode = FXMLLoader.load(getClass().getResource("/fxml/Event.fxml"));        
+        Node eventsNode = FXMLLoader.load(getClass().getResource(
+            ScenesFactory.getSceneData("events").getUrl()));        
         appBorderPane.setCenter(eventsNode);
     }  
 
@@ -82,7 +86,8 @@ public class AppFXMLController implements Initializable {
      * @throws IOException
      */
     @FXML protected void handleDataSeriesMenuItem(ActionEvent event) throws IOException {
-        Node  seriesNode = FXMLLoader.load(getClass().getResource("/fxml/Series.fxml"));        
+        Node  seriesNode = FXMLLoader.load(getClass().getResource(
+            ScenesFactory.getSceneData("series").getUrl()));        
         appBorderPane.setCenter(seriesNode);
     }  
 
@@ -92,7 +97,8 @@ public class AppFXMLController implements Initializable {
      * @throws IOException
      */
     @FXML protected void handleDataStoryMenuItem(ActionEvent event) throws IOException {
-        Node storiesNode = FXMLLoader.load(getClass().getResource("/fxml/Story.fxml"));        
+        Node storiesNode = FXMLLoader.load(getClass().getResource(
+            ScenesFactory.getSceneData("stories").getUrl()));        
         appBorderPane.setCenter(storiesNode);
     }
 

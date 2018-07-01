@@ -15,7 +15,7 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
-package pl.praktycznykoder.marvelapi.javafx;
+package pl.praktycznykoder.marvelapi.javafx.controllers;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -105,7 +105,8 @@ public class StoryFXMLController extends FXMLController {
         }
         Scene scene = new Scene(root);
         //scene.getStylesheets().add("/styles/Styless.css");        
-        final Story storyDomain = tableView.getSelectionModel().getSelectedItem(); 
+        final Story storyDomain = tableView.getSelectionModel().getSelectedItem();        
+        if(storyDomain == null) return;
         stage.setTitle("Story - "+storyDomain.getTitle());
         stage.setScene(scene);       
 

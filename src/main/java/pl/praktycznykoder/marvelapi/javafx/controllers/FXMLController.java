@@ -15,7 +15,7 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
-package pl.praktycznykoder.marvelapi.javafx;
+package pl.praktycznykoder.marvelapi.javafx.controllers;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -36,6 +36,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import pl.praktycznykoder.api.domain.Param;
 import pl.praktycznykoder.marvelapi.client.response.Data;
 import pl.praktycznykoder.marvelapi.model.services.Service;
@@ -107,7 +108,13 @@ public abstract class FXMLController implements Initializable{
             comboBox.getSelectionModel().clearSelection();
         };
     }
-        
+    @FXML  
+    protected void doubleClickRowMouseEvent(MouseEvent mouseEvent){
+        if(mouseEvent.getClickCount() >=2){
+            showSelectedButtonAction(null);
+        }
+    }
+    
     @FXML Button firstButton;
     @FXML Button previousButton;
     @FXML Button goCurrentPageButton;

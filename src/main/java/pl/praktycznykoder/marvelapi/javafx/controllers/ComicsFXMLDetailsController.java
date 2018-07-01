@@ -15,7 +15,7 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
-package pl.praktycznykoder.marvelapi.javafx;
+package pl.praktycznykoder.marvelapi.javafx.controllers;
 
 import java.awt.Desktop;
 import java.io.IOException;
@@ -56,7 +56,7 @@ public class ComicsFXMLDetailsController extends FXMLDetailsController<Comics> {
         return service;
     }
     
-    private Comics comics;
+    private Comics comicsDomain;
         
     @FXML private TextField idTextField;
     @FXML private TextField digitalIdTextField;
@@ -76,8 +76,7 @@ public class ComicsFXMLDetailsController extends FXMLDetailsController<Comics> {
     
     @FXML private TextArea textObjectsTextArea;
     @FXML private TextArea pricesTextArea;
-    @FXML private TextArea datesTextArea;
-    
+    @FXML private TextArea datesTextArea;    
     //Comics
     @FXML private ComboBox<DomainWraper> variantsComboBox;
     //Comics
@@ -93,58 +92,68 @@ public class ComicsFXMLDetailsController extends FXMLDetailsController<Comics> {
     
     @FXML private Button seriesButton;
     
+    @FXML private Button variantsButton;
+    @FXML private Button collectionsButton;
+    @FXML private Button collectedIssuesButton;
+    @FXML private Button urlsButton;
+    @FXML private Button imagesButton;
+    @FXML private Button creatorsButton;
+    @FXML private Button charactersButton;
+    @FXML private Button storiesButton;
+    @FXML private Button eventsButton;    
+    
     /**
      *
      */
     @Override
     protected void initFields() {
         thumbnailImageView.setImage(
-                getImage(comics.getThumbnail().toString()));
-        idTextField.setText(comics.getId()+"");
-        digitalIdTextField.setText(comics.getDigitalId()+"");
-        titleTextField.setText(comics.getTitle());
-        issueNumberTextField.setText(comics.getIssueNumber()+"");
-        modyfiedTextField.setText(comics.getVariantDescription());
-        upcTextField.setText(comics.getDescription());
-        eanTextField.setText(comics.getModified());
-        issnTextField.setText(comics.getIssn());
-        diamondCodeTextField.setText(comics.getDiamondCode());
-        formatTextField.setText(comics.getFormat());
-        resourceURITextField.setText(comics.getResourceURI());
-        pageCountTextField.setText(comics.getPageCount()+"");
-        isbnTextField.setText(comics.getIsbn());
+                getImage(comicsDomain.getThumbnail().toString()));
+        idTextField.setText(comicsDomain.getId()+"");
+        digitalIdTextField.setText(comicsDomain.getDigitalId()+"");
+        titleTextField.setText(comicsDomain.getTitle());
+        issueNumberTextField.setText(comicsDomain.getIssueNumber()+"");
+        modyfiedTextField.setText(comicsDomain.getVariantDescription());
+        upcTextField.setText(comicsDomain.getDescription());
+        eanTextField.setText(comicsDomain.getModified());
+        issnTextField.setText(comicsDomain.getIssn());
+        diamondCodeTextField.setText(comicsDomain.getDiamondCode());
+        formatTextField.setText(comicsDomain.getFormat());
+        resourceURITextField.setText(comicsDomain.getResourceURI());
+        pageCountTextField.setText(comicsDomain.getPageCount()+"");
+        isbnTextField.setText(comicsDomain.getIsbn());
         
-        variantDescriptionTextArea.setText(comics.getVariantDescription());
-        descriptionTextArea.setText(comics.getDescription());
+        variantDescriptionTextArea.setText(comicsDomain.getVariantDescription());
+        descriptionTextArea.setText(comicsDomain.getDescription());
         
-        setArrayObjectToTextArea(comics.getTextObjects(), textObjectsTextArea);
-        setArrayObjectToTextArea(comics.getPrices(), pricesTextArea);
-        setArrayObjectToTextArea(comics.getDates(), datesTextArea);
+        setArrayObjectToTextArea(comicsDomain.getTextObjects(), textObjectsTextArea);
+        setArrayObjectToTextArea(comicsDomain.getPrices(), pricesTextArea);
+        setArrayObjectToTextArea(comicsDomain.getDates(), datesTextArea);
                 
-        variantsComboBox.getItems().addAll(comics.getVariants());
-        disableComboBoxWhereIsEmpty(variantsComboBox);
-        collectionsComboBox.getItems().addAll(comics.getCollections());
-        disableComboBoxWhereIsEmpty(collectionsComboBox);
-        collectedIssuesComboBox.getItems().addAll(comics.getCollectedIssues());
-        disableComboBoxWhereIsEmpty(collectedIssuesComboBox);
-        urlsComboBox.getItems().addAll(comics.getUrls());
-        disableComboBoxWhereIsEmpty(urlsComboBox);   
-        imagesComboBox.getItems().addAll(comics.getImages());        
-        disableComboBoxWhereIsEmpty(imagesComboBox);
+        variantsComboBox.getItems().addAll(comicsDomain.getVariants());
+        disableComboBoxWhereIsEmpty(variantsComboBox, variantsButton);
+        collectionsComboBox.getItems().addAll(comicsDomain.getCollections());
+        disableComboBoxWhereIsEmpty(collectionsComboBox, collectionsButton);
+        collectedIssuesComboBox.getItems().addAll(comicsDomain.getCollectedIssues());
+        disableComboBoxWhereIsEmpty(collectedIssuesComboBox, collectedIssuesButton);
+        urlsComboBox.getItems().addAll(comicsDomain.getUrls());
+        disableComboBoxWhereIsEmpty(urlsComboBox, urlsButton);   
+        imagesComboBox.getItems().addAll(comicsDomain.getImages());        
+        disableComboBoxWhereIsEmpty(imagesComboBox, imagesButton);
         
-        creatorsComboBox.getItems().addAll(comics.getCreators().getItems());
-        disableComboBoxWhereIsEmpty(creatorsComboBox);
+        creatorsComboBox.getItems().addAll(comicsDomain.getCreators().getItems());
+        disableComboBoxWhereIsEmpty(creatorsComboBox, creatorsButton);
         
-        charactersComboBox.getItems().addAll(comics.getCharacters().getItems());
-        disableComboBoxWhereIsEmpty(charactersComboBox);
+        charactersComboBox.getItems().addAll(comicsDomain.getCharacters().getItems());
+        disableComboBoxWhereIsEmpty(charactersComboBox, charactersButton);
         
-        storiesComboBox.getItems().addAll(comics.getStories().getItems());
-        disableComboBoxWhereIsEmpty(storiesComboBox);
+        storiesComboBox.getItems().addAll(comicsDomain.getStories().getItems());
+        disableComboBoxWhereIsEmpty(storiesComboBox, storiesButton);
         
-        eventsComboBox.getItems().addAll(comics.getEvents().getItems());
-        disableComboBoxWhereIsEmpty(eventsComboBox);
+        eventsComboBox.getItems().addAll(comicsDomain.getEvents().getItems());
+        disableComboBoxWhereIsEmpty(eventsComboBox, eventsButton);
         
-        disableButtonWhereIsEmpty(seriesButton, comics.getSeries());
+        disableButtonWhereIsEmpty(seriesButton, comicsDomain.getSeries());
         
         
     }
@@ -155,7 +164,7 @@ public class ComicsFXMLDetailsController extends FXMLDetailsController<Comics> {
      */
     @Override
     public void initData(Comics comics){
-        this.comics = comics;
+        this.comicsDomain = comics;
         initFields();
     }
     
@@ -166,7 +175,7 @@ public class ComicsFXMLDetailsController extends FXMLDetailsController<Comics> {
     @Override
     public void initData(DomainWraper remoteDomain) {
         try {
-            this.comics = service.getObjectWithUrl(remoteDomain.getResourceURI(), null);
+            this.comicsDomain = service.getObjectWithUrl(remoteDomain.getResourceURI(), null);
         } catch (NoSuchAlgorithmException | URISyntaxException | IOException ex) {
             Logger.getLogger(CharacterFXMLDetailsController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -201,11 +210,11 @@ public class ComicsFXMLDetailsController extends FXMLDetailsController<Comics> {
             break;                   
             case "seriesButton":   
                 openNewScene("/fxml/SeriesDetails.fxml", "Series",
-                        comics.getSeries());
+                        comicsDomain.getSeries());
             break;            
             case "resourceURIButton":
                 try {
-                    Desktop.getDesktop().browse(new URI(comics.getResourceURI()));
+                    Desktop.getDesktop().browse(new URI(comicsDomain.getResourceURI()));
                 } catch (IOException | URISyntaxException ex) {
                     Logger.getLogger(CharacterFXMLDetailsController.class.getName()).log(Level.SEVERE, null, ex);
                 }

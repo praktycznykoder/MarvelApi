@@ -15,7 +15,7 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
-package pl.praktycznykoder.marvelapi.javafx;
+package pl.praktycznykoder.marvelapi.javafx.controllers;
 
 import java.awt.Desktop;
 import java.awt.image.BufferedImage;
@@ -38,6 +38,8 @@ import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.WritableImage;
 import javafx.stage.Stage;
+import pl.praktycznykoder.marvelapi.javafx.app.SceneData;
+import pl.praktycznykoder.marvelapi.javafx.app.ScenesFactory;
 import pl.praktycznykoder.marvelapi.model.domain.basic.Image;
 import pl.praktycznykoder.marvelapi.model.domain.basic.Url;
 import pl.praktycznykoder.marvelapi.model.domain.wraper.DomainWraper;
@@ -95,10 +97,12 @@ public abstract class FXMLDetailsController<DomainType> implements Initializable
     /**
      *
      * @param comboBox
+     * @param activateButton
      */
-    protected void disableComboBoxWhereIsEmpty(ComboBox comboBox){
+    protected void disableComboBoxWhereIsEmpty(ComboBox comboBox, Button activateButton){
         if(comboBox.getItems().size()<= EMPTY_ITEMS){
             comboBox.setDisable(true);
+            activateButton.setDisable(true);
         }
     }
 
@@ -233,12 +237,15 @@ public abstract class FXMLDetailsController<DomainType> implements Initializable
 
     /**
      *
-     * @param resource
-     * @param titeScene
+     * @param sceneData
      * @param comboBox
      */
-    protected void openNewScene(String resource, String titeScene, 
-            ComboBox<DomainWraper> comboBox){        
+    protected void openNewScene(SceneData sceneData, 
+            ComboBox<DomainWraper> comboBox){   
+        
+        String resource = sceneData.getDetailsUrl();
+        String titeScene = sceneData.getTitle();
+        
         if(comboBox.getItems().isEmpty()){
             showAlert(titeScene, null, titeScene+" is Empty");
             return;
@@ -247,6 +254,34 @@ public abstract class FXMLDetailsController<DomainType> implements Initializable
                 getSelectedItem();
         openNewScene(resource, titeScene, remoteDomain); 
     }
+    
+    protected void openCharacterDetails(ComboBox<DomainWraper> comboBox){
+        SceneData sceneData = ScenesFactory.getSceneData("characters");
+        openNewScene(sceneData, comboBox);
+    }
+    protected void openComicsDetails(ComboBox<DomainWraper> comboBox){
+        SceneData sceneData = ScenesFactory.getSceneData("comics");
+        openNewScene(sceneData, comboBox);
+    }
+    protected void openCreatorsDetails(ComboBox<DomainWraper> comboBox){
+        SceneData sceneData = ScenesFactory.getSceneData("creators");
+        openNewScene(sceneData, comboBox);
+    }
+    protected void openEventsDetails(ComboBox<DomainWraper> comboBox){
+        SceneData sceneData = ScenesFactory.getSceneData("events");
+        openNewScene(sceneData, comboBox);
+    }
+    protected void openSeriesDetails(ComboBox<DomainWraper> comboBox){
+        SceneData sceneData = ScenesFactory.getSceneData("series");
+        openNewScene(sceneData, comboBox);
+    }
+    protected void openStoriesDetails(ComboBox<DomainWraper> comboBox){
+        SceneData sceneData = ScenesFactory.getSceneData("stories");
+        openNewScene(sceneData, comboBox);
+    }
+    
+    
+    
     
     /**
      *
